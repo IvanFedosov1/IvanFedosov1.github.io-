@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-11T16:11:26.993Z",
+  "updatedAt": "2026-11-11T16:11:30.927Z",
   "activeDate": "2026-11-11",
   "weekendBuffer": true,
   "soundEnabled": true,
@@ -222,19 +222,6 @@
       "tflops": 3,
       "direction": "pos",
       "time": "18:53"
-    },
-    {
-      "id": "ev_1794413453229_z3kh",
-      "date": "2026-11-11",
-      "taskId": "t_hab_distract",
-      "title": "Срыв: Срыв спринта / Думскроллинг (SIGKILL)",
-      "category": "work",
-      "difficulty": "easy",
-      "minutes": 0,
-      "xp": 0,
-      "tflops": 0,
-      "direction": "neg",
-      "time": "19:10"
     },
     {
       "id": "ev_1794413461079_t1ke",
