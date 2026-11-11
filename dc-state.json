@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-11T15:53:45.618Z",
+  "updatedAt": "2026-11-11T16:10:42.645Z",
   "activeDate": "2026-11-11",
   "weekendBuffer": true,
   "soundEnabled": true,
@@ -106,6 +106,19 @@
       ],
       "posCount": 0,
       "negCount": 0
+    },
+    {
+      "id": "t_1794413439840",
+      "type": "habit",
+      "title": "Не ел сладкое",
+      "category": "cooling",
+      "difficulty": "easy",
+      "habitDir": "both",
+      "schedule": "everyday",
+      "note": "шоколадки и тд",
+      "posCount": 0,
+      "negCount": 0,
+      "completedDates": []
     }
   ],
   "customStreaks": [
