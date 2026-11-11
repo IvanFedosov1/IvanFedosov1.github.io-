@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-11T12:51:34.608Z",
+  "updatedAt": "2026-11-11T12:53:03.300Z",
   "activeDate": "2026-11-11",
   "weekendBuffer": true,
   "soundEnabled": true,
@@ -7,7 +7,7 @@
     "level": 2,
     "xp": 66,
     "hp": 70,
-    "tflops": 46,
+    "tflops": 16,
     "sp": 1,
     "upgrades": {}
   },
@@ -30,7 +30,8 @@
     },
     "relics": {
       "rel_punch": 1,
-      "rel_duck": 1
+      "rel_duck": 1,
+      "rel_wafer": 1
     },
     "bonusMegaprojectMinutes": 0,
     "claimedMegaprojects": []
