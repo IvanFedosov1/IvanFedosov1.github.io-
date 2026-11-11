@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-11-11T16:11:00.579Z",
+  "updatedAt": "2026-11-11T16:11:05.230Z",
   "activeDate": "2026-11-11",
   "weekendBuffer": true,
   "soundEnabled": true,
   "rpg": {
     "level": 2,
-    "xp": 74,
-    "hp": 10,
-    "tflops": 19,
+    "xp": 92,
+    "hp": 70,
+    "tflops": 8,
     "sp": 1,
     "upgrades": {}
   },
@@ -37,7 +37,7 @@
     "claimedMegaprojects": [],
     "activeMegaprojectId": "mp_qcore",
     "megaprojectProgress": {
-      "mp_qcore": 250,
+      "mp_qcore": 280,
       "mp_agi": 0,
       "mp_subsea": 0,
       "mp_orbital": 0,
@@ -116,8 +116,8 @@
       "habitDir": "both",
       "schedule": "everyday",
       "note": "шоколадки и тд",
-      "posCount": 0,
-      "negCount": 0,
+      "posCount": 1,
+      "negCount": 4,
       "completedDates": []
     }
   ],
@@ -274,6 +274,71 @@
       "tflops": 0,
       "direction": "neg",
       "time": "19:10"
+    },
+    {
+      "id": "ev_1794413461079_t1ke",
+      "date": "2026-11-11",
+      "taskId": "t_1794413439840",
+      "title": "Не ел сладкое",
+      "category": "cooling",
+      "difficulty": "easy",
+      "minutes": 30,
+      "xp": 18,
+      "tflops": 9,
+      "direction": "pos",
+      "time": "19:11"
+    },
+    {
+      "id": "ev_1794413461663_7m11",
+      "date": "2026-11-11",
+      "taskId": "t_1794413439840",
+      "title": "Срыв: Не ел сладкое",
+      "category": "cooling",
+      "difficulty": "easy",
+      "minutes": 0,
+      "xp": 0,
+      "tflops": 0,
+      "direction": "neg",
+      "time": "19:11"
+    },
+    {
+      "id": "ev_1794413462050_eqc7",
+      "date": "2026-11-11",
+      "taskId": "t_1794413439840",
+      "title": "Срыв: Не ел сладкое",
+      "category": "cooling",
+      "difficulty": "easy",
+      "minutes": 0,
+      "xp": 0,
+      "tflops": 0,
+      "direction": "neg",
+      "time": "19:11"
+    },
+    {
+      "id": "ev_1794413462992_7f9h",
+      "date": "2026-11-11",
+      "taskId": "t_1794413439840",
+      "title": "Срыв: Не ел сладкое",
+      "category": "cooling",
+      "difficulty": "easy",
+      "minutes": 0,
+      "xp": 0,
+      "tflops": 0,
+      "direction": "neg",
+      "time": "19:11"
+    },
+    {
+      "id": "ev_1794413464957_xvyh",
+      "date": "2026-11-11",
+      "taskId": "t_1794413439840",
+      "title": "Срыв: Не ел сладкое",
+      "category": "cooling",
+      "difficulty": "easy",
+      "minutes": 0,
+      "xp": 0,
+      "tflops": 0,
+      "direction": "neg",
+      "time": "19:11"
     }
   ]
 }
