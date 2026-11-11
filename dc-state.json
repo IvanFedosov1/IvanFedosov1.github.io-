@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-11T16:11:30.927Z",
+  "updatedAt": "2026-11-11T16:11:39.735Z",
   "activeDate": "2026-11-11",
   "weekendBuffer": true,
   "soundEnabled": true,
@@ -234,19 +234,6 @@
       "xp": 18,
       "tflops": 9,
       "direction": "pos",
-      "time": "19:11"
-    },
-    {
-      "id": "ev_1794413461663_7m11",
-      "date": "2026-11-11",
-      "taskId": "t_1794413439840",
-      "title": "Срыв: Не ел сладкое",
-      "category": "cooling",
-      "difficulty": "easy",
-      "minutes": 0,
-      "xp": 0,
-      "tflops": 0,
-      "direction": "neg",
       "time": "19:11"
     }
   ]
