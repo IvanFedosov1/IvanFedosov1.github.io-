@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-11-11T12:53:03.300Z",
+  "updatedAt": "2026-11-11T15:53:30.840Z",
   "activeDate": "2026-11-11",
   "weekendBuffer": true,
   "soundEnabled": true,
   "rpg": {
     "level": 2,
-    "xp": 66,
+    "xp": 74,
     "hp": 70,
-    "tflops": 16,
+    "tflops": 19,
     "sp": 1,
     "upgrades": {}
   },
@@ -34,7 +34,15 @@
       "rel_wafer": 1
     },
     "bonusMegaprojectMinutes": 0,
-    "claimedMegaprojects": []
+    "claimedMegaprojects": [],
+    "activeMegaprojectId": "mp_qcore",
+    "megaprojectProgress": {
+      "mp_qcore": 250,
+      "mp_agi": 0,
+      "mp_subsea": 0,
+      "mp_orbital": 0,
+      "mp_dyson": 0
+    }
   },
   "tasks": [
     {
@@ -93,7 +101,9 @@
       "difficulty": "trivial",
       "schedule": "everyday",
       "note": "Выбрать 3 главные задачи дня",
-      "completedDates": [],
+      "completedDates": [
+        "2026-11-11"
+      ],
       "posCount": 0,
       "negCount": 0
     }
@@ -186,6 +196,19 @@
       "tflops": 0,
       "direction": "neg",
       "time": "15:51"
+    },
+    {
+      "id": "ev_1794412408490_61pd",
+      "date": "2026-11-11",
+      "taskId": "t_day_plan",
+      "title": "Утренний стендап и план деплоя на день",
+      "category": "work",
+      "difficulty": "trivial",
+      "minutes": 10,
+      "xp": 8,
+      "tflops": 3,
+      "direction": "pos",
+      "time": "18:53"
     }
   ]
 }
