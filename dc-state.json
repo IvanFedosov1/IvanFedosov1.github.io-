@@ -1,12 +1,12 @@
 {
-  "updatedAt": "2026-11-11T12:51:16.417Z",
+  "updatedAt": "2026-11-11T12:51:34.608Z",
   "activeDate": "2026-11-11",
   "weekendBuffer": true,
   "soundEnabled": true,
   "rpg": {
     "level": 2,
     "xp": 66,
-    "hp": 85,
+    "hp": 70,
     "tflops": 46,
     "sp": 1,
     "upgrades": {}
@@ -81,7 +81,7 @@
       "habitDir": "neg",
       "note": "Штраф по стабильности SLA кластера",
       "posCount": 0,
-      "negCount": 1,
+      "negCount": 2,
       "completedDates": []
     },
     {
@@ -172,6 +172,19 @@
       "tflops": 19,
       "direction": "pos",
       "time": "15:29"
+    },
+    {
+      "id": "ev_1794401492165_jkv6",
+      "date": "2026-11-11",
+      "taskId": "t_hab_distract",
+      "title": "Срыв: Срыв спринта / Думскроллинг (SIGKILL)",
+      "category": "work",
+      "difficulty": "easy",
+      "minutes": 0,
+      "xp": 0,
+      "tflops": 0,
+      "direction": "neg",
+      "time": "15:51"
     }
   ]
 }
