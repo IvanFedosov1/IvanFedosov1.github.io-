@@ -1,0 +1,189 @@
+{
+  "updatedAt": "2026-11-11T12:49:16.526Z",
+  "activeDate": "2026-11-11",
+  "weekendBuffer": true,
+  "soundEnabled": true,
+  "rpg": {
+    "level": 2,
+    "xp": 66,
+    "hp": 85,
+    "tflops": 46,
+    "sp": 1,
+    "upgrades": {}
+  },
+  "collection": {
+    "energyCores": 6,
+    "equippedFamiliarId": "fam_python",
+    "familiars": {
+      "fam_rust": {
+        "stage": 2,
+        "feedProgress": 3
+      },
+      "fam_tux": {
+        "stage": 1,
+        "feedProgress": 0
+      },
+      "fam_python": {
+        "stage": 1,
+        "feedProgress": 0
+      }
+    },
+    "relics": {
+      "rel_punch": 1,
+      "rel_duck": 1
+    },
+    "bonusMegaprojectMinutes": 0,
+    "claimedMegaprojects": []
+  },
+  "tasks": [
+    {
+      "id": "t_hab_60",
+      "type": "habit",
+      "title": "Глубокий спринт 60 мин (Сервер в стойку)",
+      "category": "work",
+      "difficulty": "medium",
+      "habitDir": "both",
+      "note": "Полный час фокуса без мессенджеров",
+      "posCount": 3,
+      "negCount": 0,
+      "completedDates": []
+    },
+    {
+      "id": "t_hab_30",
+      "type": "habit",
+      "title": "Спринт 30 мин (Docker-контейнер)",
+      "category": "code",
+      "difficulty": "easy",
+      "habitDir": "pos",
+      "note": "Закрытие подзадачи или код-ревью",
+      "posCount": 0,
+      "negCount": 0,
+      "completedDates": []
+    },
+    {
+      "id": "t_hab_pool",
+      "type": "habit",
+      "title": "Бассейн / Силовая разминка (Охлаждение ЦОД)",
+      "category": "cooling",
+      "difficulty": "medium",
+      "habitDir": "pos",
+      "note": "Сбрасывает нагрев серверов и восстанавливает SLA HP",
+      "posCount": 1,
+      "negCount": 0,
+      "completedDates": []
+    },
+    {
+      "id": "t_hab_distract",
+      "type": "habit",
+      "title": "Срыв спринта / Думскроллинг (SIGKILL)",
+      "category": "work",
+      "difficulty": "easy",
+      "habitDir": "neg",
+      "note": "Штраф по стабильности SLA кластера",
+      "posCount": 0,
+      "negCount": 1,
+      "completedDates": []
+    },
+    {
+      "id": "t_day_plan",
+      "type": "daily",
+      "title": "Утренний стендап и план деплоя на день",
+      "category": "work",
+      "difficulty": "trivial",
+      "schedule": "everyday",
+      "note": "Выбрать 3 главные задачи дня",
+      "completedDates": [],
+      "posCount": 0,
+      "negCount": 0
+    },
+    {
+      "id": "t_day_code",
+      "type": "daily",
+      "title": "Минимум 1 час чистого кода / архитектуры",
+      "category": "code",
+      "difficulty": "medium",
+      "schedule": "weekdays",
+      "note": "Обязательный буст ключевого проекта",
+      "completedDates": [],
+      "posCount": 0,
+      "negCount": 0
+    }
+  ],
+  "customStreaks": [
+    {
+      "id": "str_deep_core",
+      "title": "🔥 Deep Core (Серверы 60м+)",
+      "targetSource": "diff:medium_hard",
+      "requiredCount": 3,
+      "period": "day"
+    },
+    {
+      "id": "str_cooling_week",
+      "title": "🌊 Бассейн и Спорт (Охлаждение)",
+      "targetSource": "cat:cooling",
+      "requiredCount": 2,
+      "period": "week"
+    },
+    {
+      "id": "str_total_week",
+      "title": "⚡ Баланс железа (Все задачи)",
+      "targetSource": "cat:all",
+      "requiredCount": 15,
+      "period": "week"
+    }
+  ],
+  "events": [
+    {
+      "id": "ev_1794400179665_j20m",
+      "date": "2026-11-10",
+      "taskId": "t_hab_pool",
+      "title": "Бассейн / Силовая разминка (Охлаждение ЦОД)",
+      "category": "cooling",
+      "difficulty": "medium",
+      "minutes": 60,
+      "xp": 40,
+      "tflops": 19,
+      "direction": "pos",
+      "time": "15:29"
+    },
+    {
+      "id": "ev_1794400184407_bqz3",
+      "date": "2026-11-10",
+      "taskId": "t_hab_60",
+      "title": "Глубокий спринт 60 мин (Сервер в стойку)",
+      "category": "work",
+      "difficulty": "medium",
+      "minutes": 60,
+      "xp": 46,
+      "tflops": 19,
+      "direction": "pos",
+      "time": "15:29"
+    },
+    {
+      "id": "ev_1794400196853_tcv9",
+      "date": "2026-11-11",
+      "taskId": "t_hab_60",
+      "title": "Глубокий спринт 60 мин (Сервер в стойку)",
+      "category": "work",
+      "difficulty": "medium",
+      "minutes": 60,
+      "xp": 40,
+      "tflops": 19,
+      "direction": "pos",
+      "time": "15:29"
+    },
+    {
+      "id": "ev_1794400197718_or3b",
+      "date": "2026-11-11",
+      "taskId": "t_hab_60",
+      "title": "Глубокий спринт 60 мин (Сервер в стойку)",
+      "category": "work",
+      "difficulty": "medium",
+      "minutes": 60,
+      "xp": 40,
+      "tflops": 19,
+      "direction": "pos",
+      "time": "15:29"
+    }
+  ]
+}
