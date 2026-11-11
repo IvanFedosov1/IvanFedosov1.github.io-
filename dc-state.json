@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-11-11T16:11:50.073Z",
+  "updatedAt": "2026-11-11T16:11:52.379Z",
   "activeDate": "2026-11-11",
   "weekendBuffer": true,
   "soundEnabled": true,
   "rpg": {
     "level": 3,
-    "xp": 5,
-    "hp": 100,
-    "tflops": 35,
+    "xp": 26,
+    "hp": 97,
+    "tflops": 44,
     "sp": 2,
     "upgrades": {}
   },
@@ -30,14 +30,14 @@
     },
     "relics": {
       "rel_punch": 1,
-      "rel_duck": 1,
+      "rel_duck": 2,
       "rel_wafer": 2
     },
     "bonusMegaprojectMinutes": 0,
     "claimedMegaprojects": [],
     "activeMegaprojectId": "mp_qcore",
     "megaprojectProgress": {
-      "mp_qcore": 370,
+      "mp_qcore": 400,
       "mp_agi": 0,
       "mp_subsea": 0,
       "mp_orbital": 0,
@@ -116,8 +116,8 @@
       "habitDir": "both",
       "schedule": "everyday",
       "note": "шоколадки и тд",
-      "posCount": 4,
-      "negCount": 6,
+      "posCount": 5,
+      "negCount": 7,
       "completedDates": []
     }
   ],
@@ -264,6 +264,32 @@
     },
     {
       "id": "ev_1794413507756_ncg9",
+      "date": "2026-11-11",
+      "taskId": "t_1794413439840",
+      "title": "Не ел сладкое",
+      "category": "cooling",
+      "difficulty": "easy",
+      "minutes": 30,
+      "xp": 21,
+      "tflops": 9,
+      "direction": "pos",
+      "time": "19:11"
+    },
+    {
+      "id": "ev_1794413510118_zekm",
+      "date": "2026-11-11",
+      "taskId": "t_1794413439840",
+      "title": "Срыв: Не ел сладкое",
+      "category": "cooling",
+      "difficulty": "easy",
+      "minutes": 0,
+      "xp": 0,
+      "tflops": 0,
+      "direction": "neg",
+      "time": "19:11"
+    },
+    {
+      "id": "ev_1794413511991_e5dm",
       "date": "2026-11-11",
       "taskId": "t_1794413439840",
       "title": "Не ел сладкое",
