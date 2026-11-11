@@ -906,6 +906,9 @@
           </div>
           <button type="button" onclick="shiftActiveDate(1)" class="btn-small mono" title="Следующий день">▶</button>
           <button type="button" onclick="resetDateToSystemToday()" class="btn-small">Сегодня</button>
+          <button type="button" id="headerCloudSyncBtn" onclick="onHeaderCloudClick()" class="btn-small mono" style="border-color: var(--cyan); color: var(--cyan);" title="Синхронизация файла dc-state.json через GitHub">
+            ☁️ Облако: Выкл
+          </button>
           <button type="button" onclick="openTaskModal()" class="btn-primary" style="padding: 6px 12px; font-size: 12px;">
             + Новое задание
           </button>
@@ -1242,6 +1245,59 @@
     <!-- TAB 4: НАСТРОЙКИ, ДАТА И БЭКАП             -->
     <!-- ========================================== -->
     <section id="tab-settings" class="tab-section hidden">
+      <!-- GITHUB CLOUD FILE SYNC CARD -->
+      <div class="card" style="border-color: rgba(56, 189, 248, 0.5);">
+        <div class="card-header">
+          <div>
+            <div class="card-title">
+              <span>☁️ Облачная база данных в твоем репозитории GitHub (ПК ↔ Телефон)</span>
+              <span id="cloudSyncStatusBadge" class="badge badge-amber mono">Не подключено</span>
+            </div>
+            <div class="card-desc">
+              Так как GitHub Pages — это статический хостинг, по умолчанию браузер хранит данные в своем локальном кэше (<code>localStorage</code>). Подключи свой токен GitHub ниже, и приложение будет автоматически сохранять и читать твои данные напрямую из файла <code>dc-state.json</code> в твоем репозитории!
+            </div>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin-bottom: 12px;">
+          <div>
+            <label for="ghRepoInput" class="field-label">Твой репозиторий (owner/repo)</label>
+            <input id="ghRepoInput" type="text" value="IvanFedosov1/IvanFedosov1.github.io-" placeholder="IvanFedosov1/IvanFedosov1.github.io-" class="input-box mono" />
+          </div>
+          <div>
+            <label for="ghFilePathInput" class="field-label">Имя файла базы в репозитории</label>
+            <input id="ghFilePathInput" type="text" value="dc-state.json" placeholder="dc-state.json" class="input-box mono" />
+          </div>
+          <div>
+            <label for="ghTokenInput" class="field-label">GitHub Personal Access Token (ключ API)</label>
+            <input id="ghTokenInput" type="password" placeholder="github_pat_... или ghp_..." class="input-box mono" />
+          </div>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; padding-top: 8px; border-top: 1px solid var(--border-subtle);">
+          <label style="display: flex; align-items: center; gap: 8px; font-size: 12px; cursor: pointer;">
+            <input type="checkbox" id="ghAutoSyncToggle" onchange="saveCloudConfigFromInputs()" checked />
+            <span>Автоматически сохранять в <code>dc-state.json</code> при каждом действии и загружать при входе</span>
+          </label>
+
+          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+            <button type="button" onclick="saveAndConnectCloud()" class="btn-primary mono" style="padding: 8px 14px; font-size: 12px;">
+              🔗 Сохранить ключ и подключить
+            </button>
+            <button type="button" onclick="pushStateToGithub(true)" class="btn-secondary mono" style="padding: 8px 12px; font-size: 12px; color: var(--cyan); border-color: rgba(56,189,248,0.4);">
+              ⬆ Выгрузить в файл ( с ПК )
+            </button>
+            <button type="button" onclick="pullStateFromGithub(true)" class="btn-secondary mono" style="padding: 8px 12px; font-size: 12px; color: var(--green); border-color: rgba(57,211,83,0.4);">
+              ⬇ Загрузить из файла ( на Телефон )
+            </button>
+          </div>
+        </div>
+
+        <div style="margin-top: 10px; padding: 10px 12px; background: var(--bg); border: 1px solid var(--border-subtle); border-radius: 9px; font-size: 11px; color: var(--muted);">
+          <b style="color: #fff;">Где взять токен за 30 секунд:</b> на GitHub нажми на свою аватарку (справа вверху) → <b>Settings</b> → в самом низу слева <b>Developer settings</b> → <b>Personal access tokens</b> → <b>Tokens (classic)</b> → <b>Generate new token (classic)</b>. Поставь галочку <b>repo</b>, нажми Generate и вставь скопированный код (начинается на <code>ghp_...</code>) в поле выше на ПК и на телефоне. Сам токен хранится только у тебя в браузере.
+        </div>
+      </div>
+
       <div class="card">
         <div class="card-header">
           <div>
@@ -1779,6 +1835,7 @@
         };
         localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
       } catch (e) {}
+      scheduleAutoCloudPush();
     }
 
     function loadState() {
@@ -3393,9 +3450,298 @@
       renderSettingsTab();
     }
 
+    // =========================================================================
+    // 15. GITHUB API CLOUD FILE SYNC (dc-state.json IN USER REPOSITORY)
+    // =========================================================================
+    const CLOUD_CFG_KEY = 'dc_habitica_gh_cloud_cfg_v1';
+    let cloudConfig = {
+      repo: 'IvanFedosov1/IvanFedosov1.github.io-',
+      path: 'dc-state.json',
+      token: '',
+      autoSync: true,
+      lastSha: null,
+      status: 'off' // 'off' | 'syncing' | 'ok' | 'err'
+    };
+    let autoPushTimer = null;
+
+    function loadCloudConfig() {
+      try {
+        const raw = localStorage.getItem(CLOUD_CFG_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (parsed && typeof parsed === 'object') {
+            cloudConfig.repo = parsed.repo || 'IvanFedosov1/IvanFedosov1.github.io-';
+            cloudConfig.path = parsed.path || 'dc-state.json';
+            cloudConfig.token = parsed.token || '';
+            if (typeof parsed.autoSync === 'boolean') cloudConfig.autoSync = parsed.autoSync;
+          }
+        }
+      } catch (e) {}
+      updateCloudUiIndicators();
+    }
+
+    function saveCloudConfig() {
+      try {
+        localStorage.setItem(CLOUD_CFG_KEY, JSON.stringify({
+          repo: cloudConfig.repo,
+          path: cloudConfig.path,
+          token: cloudConfig.token,
+          autoSync: cloudConfig.autoSync
+        }));
+      } catch (e) {}
+      updateCloudUiIndicators();
+    }
+
+    function saveCloudConfigFromInputs() {
+      const repoEl = document.getElementById('ghRepoInput');
+      const pathEl = document.getElementById('ghFilePathInput');
+      const tokEl = document.getElementById('ghTokenInput');
+      const autoEl = document.getElementById('ghAutoSyncToggle');
+      if (repoEl) cloudConfig.repo = (repoEl.value || '').trim() || 'IvanFedosov1/IvanFedosov1.github.io-';
+      if (pathEl) cloudConfig.path = (pathEl.value || '').trim() || 'dc-state.json';
+      if (tokEl) cloudConfig.token = (tokEl.value || '').trim();
+      if (autoEl) cloudConfig.autoSync = autoEl.checked;
+      saveCloudConfig();
+    }
+
+    function populateCloudInputs() {
+      const repoEl = document.getElementById('ghRepoInput');
+      const pathEl = document.getElementById('ghFilePathInput');
+      const tokEl = document.getElementById('ghTokenInput');
+      const autoEl = document.getElementById('ghAutoSyncToggle');
+      if (repoEl) repoEl.value = cloudConfig.repo;
+      if (pathEl) pathEl.value = cloudConfig.path;
+      if (tokEl) tokEl.value = cloudConfig.token;
+      if (autoEl) autoEl.checked = cloudConfig.autoSync;
+      updateCloudUiIndicators();
+    }
+
+    function updateCloudUiIndicators(customText) {
+      const hdrBtn = document.getElementById('headerCloudSyncBtn');
+      const stBadge = document.getElementById('cloudSyncStatusBadge');
+      if (!hdrBtn || !stBadge) return;
+
+      if (!cloudConfig.token) {
+        hdrBtn.textContent = '☁️ Облако: Выкл';
+        hdrBtn.style.borderColor = 'var(--border)';
+        hdrBtn.style.color = 'var(--muted)';
+        stBadge.className = 'badge badge-amber mono';
+        stBadge.textContent = 'Не подключено (введи токен)';
+        return;
+      }
+
+      if (cloudConfig.status === 'syncing') {
+        hdrBtn.textContent = '☁️ Синхр...';
+        hdrBtn.style.borderColor = 'var(--cyan)';
+        hdrBtn.style.color = 'var(--cyan)';
+        stBadge.className = 'badge badge-cyan mono';
+        stBadge.textContent = customText || 'Синхронизация с GitHub...';
+      } else if (cloudConfig.status === 'err') {
+        hdrBtn.textContent = '☁️ Ошибка API';
+        hdrBtn.style.borderColor = 'var(--red)';
+        hdrBtn.style.color = 'var(--red)';
+        stBadge.className = 'badge badge-red mono';
+        stBadge.textContent = customText || 'Ошибка доступа (проверь токен/репозиторий)';
+      } else {
+        hdrBtn.textContent = '☁️ В облаке ✓';
+        hdrBtn.style.borderColor = 'var(--green)';
+        hdrBtn.style.color = 'var(--green)';
+        stBadge.className = 'badge badge-green mono';
+        stBadge.textContent = customText || `Подключено к ${cloudConfig.path} ✓`;
+      }
+    }
+
+    function onHeaderCloudClick() {
+      if (!cloudConfig.token) {
+        switchTab('settings');
+        showToast('Введи GitHub Token в верхнем блоке настроек для синхронизации ПК и телефона');
+      } else {
+        pullStateFromGithub(true);
+      }
+    }
+
+    function utf8ToBase64(str) {
+      return btoa(unescape(encodeURIComponent(str)));
+    }
+
+    function base64ToUtf8(b64) {
+      return decodeURIComponent(escape(atob(b64.replace(/\s/g, ''))));
+    }
+
+    async function saveAndConnectCloud() {
+      saveCloudConfigFromInputs();
+      if (!cloudConfig.token) {
+        showToast('Вставь свой GitHub Token (ghp_... или github_pat_...)', 'err');
+        return;
+      }
+      // Try pulling existing file first; if 404 (not created yet), push current state to create it!
+      const pulled = await pullStateFromGithub(false);
+      if (!pulled && cloudConfig.status !== 'err') {
+        await pushStateToGithub(true);
+      }
+    }
+
+    async function pullStateFromGithub(manualNotify) {
+      saveCloudConfigFromInputs();
+      if (!cloudConfig.token || !cloudConfig.repo) {
+        if (manualNotify) showToast('Сначала укажи репозиторий и GitHub Token', 'err');
+        return false;
+      }
+
+      cloudConfig.status = 'syncing';
+      updateCloudUiIndicators('Загрузка dc-state.json с GitHub...');
+
+      try {
+        const res = await fetch(`https://api.github.com/repos/${cloudConfig.repo}/contents/${cloudConfig.path}?t=${Date.now()}`, {
+          headers: {
+            'Authorization': `Bearer ${cloudConfig.token}`,
+            'Accept': 'application/vnd.github.v3+json'
+          }
+        });
+
+        if (res.status === 404) {
+          cloudConfig.status = 'ok';
+          updateCloudUiIndicators('Файл еще не создан — нажми «Выгрузить в файл»');
+          if (manualNotify) showToast('Файл dc-state.json еще не создан в репозитории. Выгружаю текущие данные...');
+          return false;
+        }
+
+        if (!res.ok) {
+          cloudConfig.status = 'err';
+          updateCloudUiIndicators(`Ошибка HTTP ${res.status}`);
+          if (manualNotify) showToast(`Ошибка чтения с GitHub (${res.status}): проверь права токена repo`, 'err');
+          return false;
+        }
+
+        const data = await res.json();
+        cloudConfig.lastSha = data.sha;
+        const jsonStr = base64ToUtf8(data.content || '');
+        const parsed = JSON.parse(jsonStr);
+
+        if (parsed && Array.isArray(parsed.tasks) && Array.isArray(parsed.events)) {
+          appState.tasks = parsed.tasks;
+          appState.events = parsed.events;
+          if (Array.isArray(parsed.customStreaks)) appState.customStreaks = parsed.customStreaks;
+          if (parsed.rpg) appState.rpg = parsed.rpg;
+          if (parsed.collection) appState.collection = parsed.collection;
+          if (typeof parsed.weekendBuffer === 'boolean') appState.weekendBuffer = parsed.weekendBuffer;
+
+          try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(parsed));
+          } catch (e) {}
+
+          cloudConfig.status = 'ok';
+          renderAll();
+          updateCloudUiIndicators('Синхронизировано с GitHub ✓');
+          if (manualNotify) showToast('☁️ Данные успешно загружены из файла dc-state.json на GitHub!');
+          return true;
+        }
+      } catch (err) {
+        cloudConfig.status = 'err';
+        updateCloudUiIndicators('Ошибка сети / API');
+        if (manualNotify) showToast('Не удалось связаться с GitHub API', 'err');
+      }
+      return false;
+    }
+
+    async function pushStateToGithub(manualNotify) {
+      if (manualNotify) saveCloudConfigFromInputs();
+      if (!cloudConfig.token || !cloudConfig.repo) {
+        if (manualNotify) showToast('Сначала укажи GitHub Token в настройках', 'err');
+        return false;
+      }
+
+      cloudConfig.status = 'syncing';
+      updateCloudUiIndicators('Сохранение в dc-state.json...');
+
+      try {
+        // Fetch current SHA first so PUT never conflicts
+        const getRes = await fetch(`https://api.github.com/repos/${cloudConfig.repo}/contents/${cloudConfig.path}?t=${Date.now()}`, {
+          headers: {
+            'Authorization': `Bearer ${cloudConfig.token}`,
+            'Accept': 'application/vnd.github.v3+json'
+          }
+        });
+        if (getRes.ok) {
+          const meta = await getRes.json();
+          cloudConfig.lastSha = meta.sha;
+        } else if (getRes.status !== 404) {
+          cloudConfig.status = 'err';
+          updateCloudUiIndicators(`Ошибка доступа (${getRes.status})`);
+          if (manualNotify) showToast(`Ошибка GitHub API (${getRes.status}): проверь токен`, 'err');
+          return false;
+        }
+
+        const payloadObj = {
+          updatedAt: new Date().toISOString(),
+          activeDate: appState.activeDate,
+          weekendBuffer: appState.weekendBuffer,
+          soundEnabled: appState.soundEnabled,
+          rpg: appState.rpg,
+          collection: appState.collection,
+          tasks: appState.tasks,
+          customStreaks: appState.customStreaks,
+          events: appState.events
+        };
+
+        const bodyPayload = {
+          message: `sync: update dc-state.json (${appState.activeDate})`,
+          content: utf8ToBase64(JSON.stringify(payloadObj, null, 2))
+        };
+        if (cloudConfig.lastSha) {
+          bodyPayload.sha = cloudConfig.lastSha;
+        }
+
+        const putRes = await fetch(`https://api.github.com/repos/${cloudConfig.repo}/contents/${cloudConfig.path}`, {
+          method: 'PUT',
+          headers: {
+            'Authorization': `Bearer ${cloudConfig.token}`,
+            'Accept': 'application/vnd.github.v3+json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(bodyPayload)
+        });
+
+        if (!putRes.ok) {
+          cloudConfig.status = 'err';
+          updateCloudUiIndicators(`Ошибка записи (${putRes.status})`);
+          if (manualNotify) showToast(`Не удалось записать файл (${putRes.status}) — включи галочку repo у токена`, 'err');
+          return false;
+        }
+
+        const putData = await putRes.json();
+        if (putData && putData.content && putData.content.sha) {
+          cloudConfig.lastSha = putData.content.sha;
+        }
+
+        cloudConfig.status = 'ok';
+        updateCloudUiIndicators(`Сохранено в ${cloudConfig.path} ✓`);
+        if (manualNotify) showToast('☁️ Файл dc-state.json успешно сохранен в твоем репозитории GitHub!');
+        return true;
+      } catch (err) {
+        cloudConfig.status = 'err';
+        updateCloudUiIndicators('Сбой сети при записи');
+        if (manualNotify) showToast('Ошибка сети при обращении к GitHub API', 'err');
+        return false;
+      }
+    }
+
+    function scheduleAutoCloudPush() {
+      if (!cloudConfig.token || !cloudConfig.autoSync) return;
+      if (autoPushTimer) clearTimeout(autoPushTimer);
+      autoPushTimer = setTimeout(() => {
+        pushStateToGithub(false);
+      }, 1800);
+    }
+
     window.addEventListener('DOMContentLoaded', () => {
       loadState();
+      loadCloudConfig();
+      populateCloudInputs();
       switchTab('tasks');
+      if (cloudConfig.token && cloudConfig.autoSync) {
+        pullStateFromGithub(false);
+      }
     });
   </script>
 </body>
