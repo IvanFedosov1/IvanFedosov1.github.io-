@@ -2554,6 +2554,10 @@
 
     function clearAllHistoryKeepTasks() {
       appState.events = [];
+      if (appState.collection) {
+        appState.collection.megaprojectProgress = { mp_qcore: 0, mp_agi: 0, mp_subsea: 0, mp_orbital: 0, mp_dyson: 0 };
+        appState.collection.activeMegaprojectId = 'mp_qcore';
+      }
       appState.tasks.forEach(t => {
         t.posCount = 0;
         t.negCount = 0;
@@ -3163,7 +3167,6 @@
         appState.collection = {
           energyCores: 3,
           equippedFamiliarId: 'fam_rust',
-          // stage: 0 = locked, 1 = Mk.I Prototype (Pet), 2 = Mk.II Mainframe (Mount)
           familiars: {
             fam_rust: { stage: 1, feedProgress: 1 },
             fam_tux:  { stage: 1, feedProgress: 0 }
@@ -3172,14 +3175,64 @@
             rel_punch: 1,
             rel_duck: 1
           },
+          activeMegaprojectId: 'mp_qcore',
+          megaprojectProgress: {
+            mp_qcore: 240,
+            mp_agi: 0,
+            mp_subsea: 0,
+            mp_orbital: 0,
+            mp_dyson: 0
+          },
           bonusMegaprojectMinutes: 0,
           claimedMegaprojects: []
         };
       }
+      if (!appState.collection.activeMegaprojectId) {
+        appState.collection.activeMegaprojectId = 'mp_qcore';
+      }
+      if (!appState.collection.megaprojectProgress) {
+        appState.collection.megaprojectProgress = {
+          mp_qcore: 240,
+          mp_agi: 0,
+          mp_subsea: 0,
+          mp_orbital: 0,
+          mp_dyson: 0
+        };
+      }
+    }
+
+    function addMinutesToActiveMegaproject(mins) {
+      ensureCollectionState();
+      const c = appState.collection;
+      let activeId = c.activeMegaprojectId || 'mp_qcore';
+      let mpMeta = MEGAPROJECTS_CATALOG.find(m => m.id === activeId) || MEGAPROJECTS_CATALOG[0];
+
+      // Add minutes only to the currently selected active megaproject
+      const curVal = c.megaprojectProgress[activeId] || 0;
+      c.megaprojectProgress[activeId] = Math.min(mpMeta.targetMinutes, curVal + mins);
+
+      // If this megaproject just reached 100%, automatically advance active pointer to next unfinished project
+      if (c.megaprojectProgress[activeId] >= mpMeta.targetMinutes) {
+        const nextUnfinished = MEGAPROJECTS_CATALOG.find(m => (c.megaprojectProgress[m.id] || 0) < m.targetMinutes);
+        if (nextUnfinished) {
+          c.activeMegaprojectId = nextUnfinished.id;
+        }
+      }
+    }
+
+    function selectActiveMegaproject(mpId) {
+      ensureCollectionState();
+      appState.collection.activeMegaprojectId = mpId;
+      const mp = MEGAPROJECTS_CATALOG.find(m => m.id === mpId);
+      playTone('plus');
+      if (mp) showToast(`🎯 Активная стройка переключена на: ${mp.title}`);
+      saveState();
+      renderAll();
     }
 
     function rollCollectionLootDrop(difficultyId, taskMinutes) {
       ensureCollectionState();
+      addMinutesToActiveMegaproject(taskMinutes || 30);
       // Drop chance scales with task difficulty
       const chanceMap = { trivial: 0.35, easy: 0.55, medium: 0.80, hard: 1.0 };
       const chance = chanceMap[difficultyId] || 0.65;
@@ -3292,9 +3345,9 @@
         return;
       }
       appState.rpg.tflops -= cost;
-      appState.collection.bonusMegaprojectMinutes = (appState.collection.bonusMegaprojectMinutes || 0) + 120;
+      addMinutesToActiveMegaproject(120);
       playTone('lvlup');
-      showToast('🚀 Инвестировано 40 TFLOPS: +120 минут в прогресс Мегапроектов!', 'lvl');
+      showToast('🚀 Инвестировано 40 TFLOPS: +120 минут в текущий активный Мегапроект!', 'lvl');
       saveState();
       renderAll();
     }
@@ -3335,28 +3388,33 @@
       document.getElementById('collTotalProgressBadge').textContent =
         `Коллекция: ${ownedFamsCount + ownedRelicsCount} / ${FAMILIARS_CATALOG.length + RELICS_CATALOG.length}`;
 
-      // 1. Render Megaprojects
-      const totalLoggedMinutes = appState.events
-        .filter(e => e.direction === 'pos')
-        .reduce((sum, e) => sum + (e.minutes || 30), 0) + (c.bonusMegaprojectMinutes || 0);
-
+      // 1. Render Megaprojects (Only the selected Active Megaproject receives progress; others wait their turn)
       const mpBox = document.getElementById('megaprojectsContainer');
       mpBox.innerHTML = MEGAPROJECTS_CATALOG.map(mp => {
-        const pct = Math.min(100, Math.round((totalLoggedMinutes / mp.targetMinutes) * 100));
-        const isCompleted = totalLoggedMinutes >= mp.targetMinutes;
+        const curMins = Math.min(mp.targetMinutes, (c.megaprojectProgress && c.megaprojectProgress[mp.id]) || 0);
+        const pct = Math.min(100, Math.round((curMins / mp.targetMinutes) * 100));
+        const isCompleted = curMins >= mp.targetMinutes;
         const isClaimed = (c.claimedMegaprojects || []).includes(mp.id);
+        const isActive = c.activeMegaprojectId === mp.id && !isCompleted;
 
         return `
-          <div style="background: var(--bg); border: 1px solid ${isCompleted ? 'var(--green)' : 'var(--border)'}; border-radius: 11px; padding: 12px 14px;">
+          <div style="background: var(--bg); border: ${isActive ? '2px solid var(--cyan)' : isCompleted ? '1px solid var(--green)' : '1px solid var(--border)'}; border-radius: 11px; padding: 12px 14px; opacity: ${isActive || isCompleted || curMins > 0 ? '1' : '0.72'};">
             <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
               <div>
-                <strong style="font-size: 14px; color: #fff;">${mp.icon} ${mp.title}</strong>
+                <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                  <strong style="font-size: 14px; color: #fff;">${mp.icon} ${mp.title}</strong>
+                  ${isActive ? `<span class="badge badge-cyan mono">🔨 СТРОИТСЯ СЕЙЧАС</span>` : ''}
+                </div>
                 <div style="font-size: 11px; color: var(--muted); margin-top: 2px;">${mp.desc}</div>
               </div>
-              <div style="display: flex; align-items: center; gap: 8px;">
-                <span class="mono" style="font-size: 12px; font-weight: 700; color: ${isCompleted ? 'var(--green)' : 'var(--cyan)'};">
-                  ${Math.min(totalLoggedMinutes, mp.targetMinutes)} / ${mp.targetMinutes} мин (${pct}%)
+              <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                <span class="mono" style="font-size: 12px; font-weight: 700; color: ${isCompleted ? 'var(--green)' : isActive ? 'var(--cyan)' : 'var(--muted)'};">
+                  ${curMins} / ${mp.targetMinutes} мин (${pct}%)
                 </span>
+                ${!isActive && !isCompleted
+                  ? `<button type="button" onclick="selectActiveMegaproject('${mp.id}')" class="btn-small mono" style="padding: 4px 9px; font-size: 11px;">🎯 Выбрать для стройки</button>`
+                  : ''
+                }
                 ${isCompleted && !isClaimed
                   ? `<button type="button" onclick="claimMegaprojectReward('${mp.id}')" class="btn-primary mono" style="padding: 5px 10px; font-size: 11px;">Забрать награду (+${mp.rewardTflops} TF)</button>`
                   : (isClaimed ? `<span class="badge badge-green mono">ПОСТРОЕНО ✓</span>` : '')
@@ -3364,7 +3422,7 @@
               </div>
             </div>
             <div class="bar-track" style="margin-top: 8px; height: 8px;">
-              <div class="bar-fill" style="width: ${pct}%; background: ${isCompleted ? 'var(--green)' : 'var(--cyan)'};"></div>
+              <div class="bar-fill" style="width: ${pct}%; background: ${isCompleted ? 'var(--green)' : isActive ? 'var(--cyan)' : 'var(--muted)'};"></div>
             </div>
           </div>
         `;
