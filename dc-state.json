@@ -1,14 +1,14 @@
 {
-  "updatedAt": "2026-11-11T16:11:39.735Z",
+  "updatedAt": "2026-11-11T16:11:50.073Z",
   "activeDate": "2026-11-11",
   "weekendBuffer": true,
   "soundEnabled": true,
   "rpg": {
-    "level": 2,
-    "xp": 92,
-    "hp": 40,
-    "tflops": 8,
-    "sp": 1,
+    "level": 3,
+    "xp": 5,
+    "hp": 100,
+    "tflops": 35,
+    "sp": 2,
     "upgrades": {}
   },
   "collection": {
@@ -31,13 +31,13 @@
     "relics": {
       "rel_punch": 1,
       "rel_duck": 1,
-      "rel_wafer": 1
+      "rel_wafer": 2
     },
     "bonusMegaprojectMinutes": 0,
     "claimedMegaprojects": [],
     "activeMegaprojectId": "mp_qcore",
     "megaprojectProgress": {
-      "mp_qcore": 280,
+      "mp_qcore": 370,
       "mp_agi": 0,
       "mp_subsea": 0,
       "mp_orbital": 0,
@@ -116,7 +116,7 @@
       "habitDir": "both",
       "schedule": "everyday",
       "note": "шоколадки и тд",
-      "posCount": 1,
+      "posCount": 4,
       "negCount": 6,
       "completedDates": []
     }
@@ -232,6 +232,45 @@
       "difficulty": "easy",
       "minutes": 30,
       "xp": 18,
+      "tflops": 9,
+      "direction": "pos",
+      "time": "19:11"
+    },
+    {
+      "id": "ev_1794413505977_esb7",
+      "date": "2026-11-11",
+      "taskId": "t_1794413439840",
+      "title": "Не ел сладкое",
+      "category": "cooling",
+      "difficulty": "easy",
+      "minutes": 30,
+      "xp": 21,
+      "tflops": 9,
+      "direction": "pos",
+      "time": "19:11"
+    },
+    {
+      "id": "ev_1794413507625_7bwr",
+      "date": "2026-11-11",
+      "taskId": "t_1794413439840",
+      "title": "Не ел сладкое",
+      "category": "cooling",
+      "difficulty": "easy",
+      "minutes": 30,
+      "xp": 21,
+      "tflops": 9,
+      "direction": "pos",
+      "time": "19:11"
+    },
+    {
+      "id": "ev_1794413507756_ncg9",
+      "date": "2026-11-11",
+      "taskId": "t_1794413439840",
+      "title": "Не ел сладкое",
+      "category": "cooling",
+      "difficulty": "easy",
+      "minutes": 30,
+      "xp": 21,
       "tflops": 9,
       "direction": "pos",
       "time": "19:11"
