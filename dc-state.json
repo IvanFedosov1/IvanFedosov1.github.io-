@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-11T16:13:16.218Z",
+  "updatedAt": "2026-11-11T16:13:19.909Z",
   "activeDate": "2026-11-11",
   "weekendBuffer": true,
   "soundEnabled": true,
@@ -222,19 +222,6 @@
       "tflops": 3,
       "direction": "pos",
       "time": "18:53"
-    },
-    {
-      "id": "ev_1794413507625_7bwr",
-      "date": "2026-11-11",
-      "taskId": "t_1794413439840",
-      "title": "Не ел сладкое",
-      "category": "cooling",
-      "difficulty": "easy",
-      "minutes": 30,
-      "xp": 21,
-      "tflops": 9,
-      "direction": "pos",
-      "time": "19:11"
     },
     {
       "id": "ev_1794413510118_zekm",
