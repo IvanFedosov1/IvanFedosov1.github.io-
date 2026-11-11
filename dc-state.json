@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-11T12:49:16.526Z",
+  "updatedAt": "2026-11-11T12:51:16.417Z",
   "activeDate": "2026-11-11",
   "weekendBuffer": true,
   "soundEnabled": true,
@@ -92,18 +92,6 @@
       "difficulty": "trivial",
       "schedule": "everyday",
       "note": "Выбрать 3 главные задачи дня",
-      "completedDates": [],
-      "posCount": 0,
-      "negCount": 0
-    },
-    {
-      "id": "t_day_code",
-      "type": "daily",
-      "title": "Минимум 1 час чистого кода / архитектуры",
-      "category": "code",
-      "difficulty": "medium",
-      "schedule": "weekdays",
-      "note": "Обязательный буст ключевого проекта",
       "completedDates": [],
       "posCount": 0,
       "negCount": 0
