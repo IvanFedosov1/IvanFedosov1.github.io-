@@ -1,12 +1,12 @@
 {
-  "updatedAt": "2026-11-11T16:11:05.230Z",
+  "updatedAt": "2026-11-11T16:11:08.535Z",
   "activeDate": "2026-11-11",
   "weekendBuffer": true,
   "soundEnabled": true,
   "rpg": {
     "level": 2,
     "xp": 92,
-    "hp": 70,
+    "hp": 40,
     "tflops": 8,
     "sp": 1,
     "upgrades": {}
@@ -117,7 +117,7 @@
       "schedule": "everyday",
       "note": "шоколадки и тд",
       "posCount": 1,
-      "negCount": 4,
+      "negCount": 6,
       "completedDates": []
     }
   ],
@@ -329,6 +329,32 @@
     },
     {
       "id": "ev_1794413464957_xvyh",
+      "date": "2026-11-11",
+      "taskId": "t_1794413439840",
+      "title": "Срыв: Не ел сладкое",
+      "category": "cooling",
+      "difficulty": "easy",
+      "minutes": 0,
+      "xp": 0,
+      "tflops": 0,
+      "direction": "neg",
+      "time": "19:11"
+    },
+    {
+      "id": "ev_1794413465653_ke2t",
+      "date": "2026-11-11",
+      "taskId": "t_1794413439840",
+      "title": "Срыв: Не ел сладкое",
+      "category": "cooling",
+      "difficulty": "easy",
+      "minutes": 0,
+      "xp": 0,
+      "tflops": 0,
+      "direction": "neg",
+      "time": "19:11"
+    },
+    {
+      "id": "ev_1794413466287_9o9b",
       "date": "2026-11-11",
       "taskId": "t_1794413439840",
       "title": "Срыв: Не ел сладкое",
