@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-11T16:11:54.288Z",
+  "updatedAt": "2026-11-11T16:13:14.333Z",
   "activeDate": "2026-11-11",
   "weekendBuffer": true,
   "soundEnabled": true,
@@ -222,32 +222,6 @@
       "tflops": 3,
       "direction": "pos",
       "time": "18:53"
-    },
-    {
-      "id": "ev_1794413461079_t1ke",
-      "date": "2026-11-11",
-      "taskId": "t_1794413439840",
-      "title": "Не ел сладкое",
-      "category": "cooling",
-      "difficulty": "easy",
-      "minutes": 30,
-      "xp": 18,
-      "tflops": 9,
-      "direction": "pos",
-      "time": "19:11"
-    },
-    {
-      "id": "ev_1794413505977_esb7",
-      "date": "2026-11-11",
-      "taskId": "t_1794413439840",
-      "title": "Не ел сладкое",
-      "category": "cooling",
-      "difficulty": "easy",
-      "minutes": 30,
-      "xp": 21,
-      "tflops": 9,
-      "direction": "pos",
-      "time": "19:11"
     },
     {
       "id": "ev_1794413507625_7bwr",
