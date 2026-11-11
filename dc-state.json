@@ -1,12 +1,12 @@
 {
-  "updatedAt": "2026-11-11T16:10:55.477Z",
+  "updatedAt": "2026-11-11T16:11:00.579Z",
   "activeDate": "2026-11-11",
   "weekendBuffer": true,
   "soundEnabled": true,
   "rpg": {
     "level": 2,
     "xp": 74,
-    "hp": 55,
+    "hp": 10,
     "tflops": 19,
     "sp": 1,
     "upgrades": {}
@@ -90,7 +90,7 @@
       "habitDir": "neg",
       "note": "Штраф по стабильности SLA кластера",
       "posCount": 0,
-      "negCount": 3,
+      "negCount": 6,
       "completedDates": []
     },
     {
@@ -225,6 +225,45 @@
     },
     {
       "id": "ev_1794413453229_z3kh",
+      "date": "2026-11-11",
+      "taskId": "t_hab_distract",
+      "title": "Срыв: Срыв спринта / Думскроллинг (SIGKILL)",
+      "category": "work",
+      "difficulty": "easy",
+      "minutes": 0,
+      "xp": 0,
+      "tflops": 0,
+      "direction": "neg",
+      "time": "19:10"
+    },
+    {
+      "id": "ev_1794413456799_yv3m",
+      "date": "2026-11-11",
+      "taskId": "t_hab_distract",
+      "title": "Срыв: Срыв спринта / Думскроллинг (SIGKILL)",
+      "category": "work",
+      "difficulty": "easy",
+      "minutes": 0,
+      "xp": 0,
+      "tflops": 0,
+      "direction": "neg",
+      "time": "19:10"
+    },
+    {
+      "id": "ev_1794413457879_vcor",
+      "date": "2026-11-11",
+      "taskId": "t_hab_distract",
+      "title": "Срыв: Срыв спринта / Думскроллинг (SIGKILL)",
+      "category": "work",
+      "difficulty": "easy",
+      "minutes": 0,
+      "xp": 0,
+      "tflops": 0,
+      "direction": "neg",
+      "time": "19:10"
+    },
+    {
+      "id": "ev_1794413458310_zggo",
       "date": "2026-11-11",
       "taskId": "t_hab_distract",
       "title": "Срыв: Срыв спринта / Думскроллинг (SIGKILL)",
