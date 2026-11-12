@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-11-12T12:24:04.413Z",
+  "updatedAt": "2026-11-12T12:24:32.401Z",
   "activeDate": "2026-11-12",
   "weekendBuffer": true,
   "soundEnabled": true,
   "rpg": {
     "level": 4,
-    "xp": 38,
+    "xp": 61,
     "hp": 100,
-    "tflops": 16,
+    "tflops": 28,
     "sp": 0,
     "upgrades": {
       "up_k8s": 1,
@@ -59,7 +59,7 @@
       "mp_subsea": 0,
       "mp_orbital": 0,
       "mp_dyson": 0,
-      "mp_diesel": 150,
+      "mp_diesel": 180,
       "mp_fiber": 0,
       "mp_hydro_tower": 0,
       "mp_solar": 0,
@@ -129,7 +129,7 @@
       "difficulty": "easy",
       "habitDir": "pos",
       "note": "",
-      "posCount": 0,
+      "posCount": 1,
       "negCount": 0,
       "completedDates": [],
       "minutes": 30,
@@ -515,6 +515,19 @@
       "tflops": 38,
       "direction": "pos",
       "time": "14:01"
+    },
+    {
+      "id": "ev_1794486270145_qll1",
+      "date": "2026-11-12",
+      "taskId": "t_hab_30",
+      "title": "Спринт 30 мин",
+      "category": "code",
+      "difficulty": "easy",
+      "minutes": 30,
+      "xp": 23,
+      "tflops": 12,
+      "direction": "pos",
+      "time": "15:24"
     }
   ]
 }
