@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-11-12T07:04:01.461Z",
+  "updatedAt": "2026-11-12T07:04:11.795Z",
   "activeDate": "2026-11-12",
   "weekendBuffer": true,
   "soundEnabled": true,
   "rpg": {
     "level": 3,
-    "xp": 35,
+    "xp": 81,
     "hp": 97,
-    "tflops": 7,
+    "tflops": 27,
     "sp": 2,
     "upgrades": {
       "up_k8s": 1
@@ -33,13 +33,14 @@
     "relics": {
       "rel_punch": 1,
       "rel_duck": 2,
-      "rel_wafer": 2
+      "rel_wafer": 2,
+      "rel_vt100": 1
     },
     "bonusMegaprojectMinutes": 0,
     "claimedMegaprojects": [],
     "activeMegaprojectId": "mp_qcore",
     "megaprojectProgress": {
-      "mp_qcore": 410,
+      "mp_qcore": 470,
       "mp_agi": 0,
       "mp_subsea": 0,
       "mp_orbital": 0,
@@ -55,7 +56,7 @@
       "difficulty": "medium",
       "habitDir": "both",
       "note": "Полный час фокуса без мессенджеров",
-      "posCount": 3,
+      "posCount": 4,
       "negCount": 0,
       "completedDates": []
     },
@@ -330,6 +331,19 @@
       "tflops": 3,
       "direction": "pos",
       "time": "09:05"
+    },
+    {
+      "id": "ev_1794467049559_a7qh",
+      "date": "2026-11-12",
+      "taskId": "t_hab_60",
+      "title": "Глубокий спринт 60 мин (Сервер в стойку)",
+      "category": "work",
+      "difficulty": "medium",
+      "minutes": 60,
+      "xp": 46,
+      "tflops": 20,
+      "direction": "pos",
+      "time": "10:04"
     }
   ]
 }
