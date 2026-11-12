@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-11-12T12:24:32.401Z",
+  "updatedAt": "2026-11-12T12:24:54.164Z",
   "activeDate": "2026-11-12",
   "weekendBuffer": true,
   "soundEnabled": true,
   "rpg": {
     "level": 4,
-    "xp": 61,
+    "xp": 71,
     "hp": 100,
-    "tflops": 28,
+    "tflops": 42,
     "sp": 0,
     "upgrades": {
       "up_k8s": 1,
@@ -59,7 +59,7 @@
       "mp_subsea": 0,
       "mp_orbital": 0,
       "mp_dyson": 0,
-      "mp_diesel": 180,
+      "mp_diesel": 190,
       "mp_fiber": 0,
       "mp_hydro_tower": 0,
       "mp_solar": 0,
@@ -258,7 +258,9 @@
       "note": "",
       "posCount": 0,
       "negCount": 0,
-      "completedDates": [],
+      "completedDates": [
+        "2026-11-12"
+      ],
       "minutes": 10,
       "completedDate": null,
       "checklist": []
@@ -526,6 +528,19 @@
       "minutes": 30,
       "xp": 23,
       "tflops": 12,
+      "direction": "pos",
+      "time": "15:24"
+    },
+    {
+      "id": "ev_1794486291816_gc17",
+      "date": "2026-11-12",
+      "taskId": "t_1794459987162",
+      "title": "Планирование дел на завтра",
+      "category": "work",
+      "difficulty": "trivial",
+      "minutes": 10,
+      "xp": 10,
+      "tflops": 14,
       "direction": "pos",
       "time": "15:24"
     }
