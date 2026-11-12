@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-12T12:22:23.505Z",
+  "updatedAt": "2026-11-12T12:24:00.399Z",
   "activeDate": "2026-11-13",
   "weekendBuffer": true,
   "soundEnabled": true,
@@ -297,6 +297,22 @@
       ],
       "minutes": 60,
       "completedDate": "2026-11-12",
+      "checklist": []
+    },
+    {
+      "id": "t_1794486237959",
+      "type": "todo",
+      "title": "Задача с чего начать сегодня",
+      "category": "work",
+      "difficulty": "easy",
+      "minutes": 0,
+      "habitDir": "pos",
+      "schedule": "everyday",
+      "note": "Выгрузку вчера более менее добил но нужно разобраться чё там с суммами происходит, копейки всё равно теряются.",
+      "posCount": 0,
+      "negCount": 0,
+      "completedDates": [],
+      "completedDate": null,
       "checklist": []
     }
   ],
