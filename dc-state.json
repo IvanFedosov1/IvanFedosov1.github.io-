@@ -1,14 +1,14 @@
 {
-  "updatedAt": "2026-11-12T11:01:01.924Z",
+  "updatedAt": "2026-11-12T11:01:06.256Z",
   "activeDate": "2026-11-12",
   "weekendBuffer": true,
   "soundEnabled": true,
   "rpg": {
-    "level": 3,
-    "xp": 182,
-    "hp": 97,
-    "tflops": 38,
-    "sp": 0,
+    "level": 4,
+    "xp": 38,
+    "hp": 100,
+    "tflops": 76,
+    "sp": 1,
     "upgrades": {
       "up_k8s": 1,
       "up_blade": 2,
@@ -57,7 +57,7 @@
       "mp_subsea": 0,
       "mp_orbital": 0,
       "mp_dyson": 0,
-      "mp_diesel": 90,
+      "mp_diesel": 150,
       "mp_fiber": 0,
       "mp_hydro_tower": 0,
       "mp_solar": 0,
@@ -177,7 +177,9 @@
       "note": "",
       "posCount": 0,
       "negCount": 0,
-      "completedDates": [],
+      "completedDates": [
+        "2026-11-12"
+      ],
       "completedDate": null,
       "checklist": [
         {
@@ -482,6 +484,19 @@
       "tflops": 26,
       "direction": "pos",
       "time": "14:00"
+    },
+    {
+      "id": "ev_1794481264034_w7oo",
+      "date": "2026-11-12",
+      "taskId": "t_1794477655284",
+      "title": "Выполнить два спринта по часу за день",
+      "category": "work",
+      "difficulty": "medium",
+      "minutes": 0,
+      "xp": 56,
+      "tflops": 38,
+      "direction": "pos",
+      "time": "14:01"
     }
   ]
 }
