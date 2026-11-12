@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-11-12T08:52:06.231Z",
+  "updatedAt": "2026-11-12T08:52:21.113Z",
   "activeDate": "2026-11-12",
   "weekendBuffer": true,
   "soundEnabled": true,
   "rpg": {
     "level": 3,
-    "xp": 90,
+    "xp": 108,
     "hp": 97,
-    "tflops": 30,
+    "tflops": 36,
     "sp": 2,
     "upgrades": {
       "up_k8s": 1
@@ -15,7 +15,7 @@
     "skills": []
   },
   "collection": {
-    "energyCores": 6,
+    "energyCores": 8,
     "equippedFamiliarId": "fam_python",
     "familiars": {
       "fam_rust": {
@@ -39,9 +39,9 @@
     },
     "bonusMegaprojectMinutes": 0,
     "claimedMegaprojects": [],
-    "activeMegaprojectId": "mp_qcore",
+    "activeMegaprojectId": "mp_diesel",
     "megaprojectProgress": {
-      "mp_qcore": 490,
+      "mp_qcore": 600,
       "mp_agi": 0,
       "mp_subsea": 0,
       "mp_orbital": 0,
@@ -223,25 +223,29 @@
       "note": "1) редактирование задач. 2) не все задачи должны учитывать время, некоторые достаточно просто факт.",
       "posCount": 0,
       "negCount": 0,
-      "completedDates": [],
+      "completedDates": [
+        "2026-11-12"
+      ],
       "minutes": 60,
-      "completedDate": null,
+      "completedDate": "2026-11-12",
       "checklist": []
     },
     {
       "id": "t_1794463683649",
       "type": "todo",
       "title": "Допилить трекер",
-      "category": "work",
-      "difficulty": "medium",
+      "category": "cat_1794473518995",
+      "difficulty": "trivial",
       "habitDir": "pos",
       "schedule": "everyday",
       "note": "Сделать задачи привязанными к дате или исчезающими. 2 варианта, с возможностью поменять потом",
       "posCount": 0,
       "negCount": 0,
-      "completedDates": [],
+      "completedDates": [
+        "2026-11-12"
+      ],
       "minutes": 60,
-      "completedDate": null,
+      "completedDate": "2026-11-12",
       "checklist": []
     },
     {
@@ -403,6 +407,32 @@
       "tflops": 20,
       "direction": "pos",
       "time": "10:04"
+    },
+    {
+      "id": "ev_1794473538563_xzg5",
+      "date": "2026-11-12",
+      "taskId": "t_1794463683649",
+      "title": "Допилить трекер",
+      "category": "cat_1794473518995",
+      "difficulty": "trivial",
+      "minutes": 60,
+      "xp": 9,
+      "tflops": 3,
+      "direction": "pos",
+      "time": "11:52"
+    },
+    {
+      "id": "ev_1794473540387_0e5b",
+      "date": "2026-11-12",
+      "taskId": "t_1794461371115",
+      "title": "Допилить трекер",
+      "category": "cat_1794473518995",
+      "difficulty": "trivial",
+      "minutes": 60,
+      "xp": 9,
+      "tflops": 3,
+      "direction": "pos",
+      "time": "11:52"
     }
   ]
 }
