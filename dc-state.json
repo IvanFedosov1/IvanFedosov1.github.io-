@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-12T08:58:56.687Z",
+  "updatedAt": "2026-11-12T08:59:31.107Z",
   "activeDate": "2026-11-12",
   "weekendBuffer": true,
   "soundEnabled": true,
@@ -67,6 +67,15 @@
       "icon": "🎨",
       "theme": "red",
       "color": "#F85149",
+      "isCooling": false,
+      "builtin": false
+    },
+    {
+      "id": "cat_1794473968438",
+      "tag": "#Правильное питание",
+      "icon": "🏠",
+      "theme": "amber",
+      "color": "#F59E0B",
       "isCooling": false,
       "builtin": false
     }
