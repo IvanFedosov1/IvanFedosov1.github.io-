@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-12T08:10:25.111Z",
+  "updatedAt": "2026-11-12T08:10:39.186Z",
   "activeDate": "2026-11-12",
   "weekendBuffer": true,
   "soundEnabled": true,
@@ -55,6 +55,21 @@
     }
   },
   "tasks": [
+    {
+      "id": "t_1794460030691",
+      "type": "habit",
+      "title": "Спринт 90 минут 💀",
+      "category": "work",
+      "difficulty": "hard",
+      "habitDir": "both",
+      "schedule": "everyday",
+      "note": "",
+      "posCount": 0,
+      "negCount": 0,
+      "completedDates": [],
+      "minutes": 90,
+      "completedDate": null
+    },
     {
       "id": "t_hab_60",
       "type": "habit",
@@ -174,21 +189,6 @@
       "negCount": 0,
       "completedDates": [],
       "minutes": 10,
-      "completedDate": null
-    },
-    {
-      "id": "t_1794460030691",
-      "type": "habit",
-      "title": "Спринт 90 минут 💀",
-      "category": "work",
-      "difficulty": "hard",
-      "habitDir": "both",
-      "schedule": "everyday",
-      "note": "",
-      "posCount": 0,
-      "negCount": 0,
-      "completedDates": [],
-      "minutes": 90,
       "completedDate": null
     },
     {
