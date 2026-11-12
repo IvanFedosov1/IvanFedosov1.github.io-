@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-12T08:08:59.782Z",
+  "updatedAt": "2026-11-12T08:09:51.817Z",
   "activeDate": "2026-11-12",
   "weekendBuffer": true,
   "soundEnabled": true,
@@ -73,7 +73,7 @@
       "id": "t_hab_30",
       "type": "habit",
       "title": "Спринт 30 мин (Docker-контейнер)",
-      "category": "code",
+      "category": "work",
       "difficulty": "easy",
       "habitDir": "pos",
       "note": "Закрытие подзадачи или код-ревью",
@@ -81,7 +81,8 @@
       "negCount": 0,
       "completedDates": [],
       "minutes": 30,
-      "completedDate": null
+      "completedDate": null,
+      "schedule": "everyday"
     },
     {
       "id": "t_hab_pool",
