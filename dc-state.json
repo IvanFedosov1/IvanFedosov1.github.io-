@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-12T10:00:00.795Z",
+  "updatedAt": "2026-11-12T10:00:57.667Z",
   "activeDate": "2026-11-12",
   "weekendBuffer": true,
   "soundEnabled": true,
@@ -158,6 +158,33 @@
       "minutes": 30,
       "completedDate": null,
       "checklist": []
+    },
+    {
+      "id": "t_1794477655284",
+      "type": "daily",
+      "title": "Выполнить два спринта по часу за день",
+      "category": "work",
+      "difficulty": "medium",
+      "minutes": 0,
+      "habitDir": "pos",
+      "schedule": "everyday",
+      "note": "",
+      "posCount": 0,
+      "negCount": 0,
+      "completedDates": [],
+      "completedDate": null,
+      "checklist": [
+        {
+          "id": "chk_1794477641419_ut9",
+          "text": "Спринт 1",
+          "done": false
+        },
+        {
+          "id": "chk_1794477645195_zoj",
+          "text": "Спринт 2",
+          "done": false
+        }
+      ]
     },
     {
       "id": "t_day_plan",
