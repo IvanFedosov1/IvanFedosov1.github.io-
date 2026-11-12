@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-11-12T07:09:40.504Z",
-  "activeDate": "2026-11-13",
+  "updatedAt": "2026-11-12T08:08:59.782Z",
+  "activeDate": "2026-11-12",
   "weekendBuffer": true,
   "soundEnabled": true,
   "rpg": {
@@ -44,7 +44,14 @@
       "mp_agi": 0,
       "mp_subsea": 0,
       "mp_orbital": 0,
-      "mp_dyson": 0
+      "mp_dyson": 0,
+      "mp_diesel": 0,
+      "mp_fiber": 0,
+      "mp_hydro_tower": 0,
+      "mp_solar": 0,
+      "mp_radar": 0,
+      "mp_nuclear": 0,
+      "mp_lunar": 0
     }
   },
   "tasks": [
@@ -58,7 +65,9 @@
       "note": "Полный час фокуса без мессенджеров",
       "posCount": 4,
       "negCount": 0,
-      "completedDates": []
+      "completedDates": [],
+      "minutes": 60,
+      "completedDate": null
     },
     {
       "id": "t_hab_30",
@@ -70,7 +79,9 @@
       "note": "Закрытие подзадачи или код-ревью",
       "posCount": 0,
       "negCount": 0,
-      "completedDates": []
+      "completedDates": [],
+      "minutes": 30,
+      "completedDate": null
     },
     {
       "id": "t_hab_pool",
@@ -82,7 +93,9 @@
       "note": "Сбрасывает нагрев серверов и восстанавливает SLA HP",
       "posCount": 1,
       "negCount": 0,
-      "completedDates": []
+      "completedDates": [],
+      "minutes": 60,
+      "completedDate": null
     },
     {
       "id": "t_hab_distract",
@@ -94,7 +107,9 @@
       "note": "Штраф по стабильности SLA кластера",
       "posCount": 0,
       "negCount": 6,
-      "completedDates": []
+      "completedDates": [],
+      "minutes": 30,
+      "completedDate": null
     },
     {
       "id": "t_day_plan",
@@ -108,7 +123,9 @@
         "2026-11-11"
       ],
       "posCount": 0,
-      "negCount": 0
+      "negCount": 0,
+      "minutes": 10,
+      "completedDate": null
     },
     {
       "id": "t_1794413439840",
@@ -121,7 +138,9 @@
       "note": "шоколадки и тд",
       "posCount": 5,
       "negCount": 7,
-      "completedDates": []
+      "completedDates": [],
+      "minutes": 30,
+      "completedDate": null
     },
     {
       "id": "t_1794459950770",
@@ -136,7 +155,9 @@
       "negCount": 0,
       "completedDates": [
         "2026-11-12"
-      ]
+      ],
+      "minutes": 10,
+      "completedDate": "2026-11-12"
     },
     {
       "id": "t_1794459987162",
@@ -149,7 +170,9 @@
       "note": "",
       "posCount": 0,
       "negCount": 0,
-      "completedDates": []
+      "completedDates": [],
+      "minutes": 10,
+      "completedDate": null
     },
     {
       "id": "t_1794460030691",
@@ -162,7 +185,9 @@
       "note": "",
       "posCount": 0,
       "negCount": 0,
-      "completedDates": []
+      "completedDates": [],
+      "minutes": 90,
+      "completedDate": null
     },
     {
       "id": "t_1794461371115",
@@ -175,7 +200,9 @@
       "note": "1) редактирование задач. 2) не все задачи должны учитывать время, некоторые достаточно просто факт.",
       "posCount": 0,
       "negCount": 0,
-      "completedDates": []
+      "completedDates": [],
+      "minutes": 60,
+      "completedDate": null
     },
     {
       "id": "t_1794463683649",
@@ -188,7 +215,9 @@
       "note": "Сделать задачи привязанными к дате или исчезающими. 2 варианта, с возможностью поменять потом",
       "posCount": 0,
       "negCount": 0,
-      "completedDates": []
+      "completedDates": [],
+      "minutes": 60,
+      "completedDate": null
     },
     {
       "id": "t_1794467371082",
@@ -203,7 +232,9 @@
       "negCount": 0,
       "completedDates": [
         "2026-11-12"
-      ]
+      ],
+      "minutes": 10,
+      "completedDate": "2026-11-12"
     }
   ],
   "customStreaks": [
