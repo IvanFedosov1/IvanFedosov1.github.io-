@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-11-12T05:29:33.669Z",
+  "updatedAt": "2026-11-12T06:05:17.488Z",
   "activeDate": "2026-11-12",
   "weekendBuffer": true,
   "soundEnabled": true,
   "rpg": {
     "level": 3,
-    "xp": 26,
+    "xp": 35,
     "hp": 97,
-    "tflops": 4,
+    "tflops": 7,
     "sp": 2,
     "upgrades": {
       "up_k8s": 1
@@ -39,7 +39,7 @@
     "claimedMegaprojects": [],
     "activeMegaprojectId": "mp_qcore",
     "megaprojectProgress": {
-      "mp_qcore": 400,
+      "mp_qcore": 410,
       "mp_agi": 0,
       "mp_subsea": 0,
       "mp_orbital": 0,
@@ -133,7 +133,9 @@
       "note": "",
       "posCount": 0,
       "negCount": 0,
-      "completedDates": []
+      "completedDates": [
+        "2026-11-12"
+      ]
     },
     {
       "id": "t_1794459987162",
@@ -302,6 +304,19 @@
       "tflops": 9,
       "direction": "pos",
       "time": "19:11"
+    },
+    {
+      "id": "ev_1794463515259_4j1z",
+      "date": "2026-11-12",
+      "taskId": "t_1794459950770",
+      "title": "Ответить безопаснику по срокам",
+      "category": "work",
+      "difficulty": "trivial",
+      "minutes": 10,
+      "xp": 9,
+      "tflops": 3,
+      "direction": "pos",
+      "time": "09:05"
     }
   ]
 }
