@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-12T10:01:00.834Z",
+  "updatedAt": "2026-11-12T10:01:11.858Z",
   "activeDate": "2026-11-12",
   "weekendBuffer": true,
   "soundEnabled": true,
@@ -101,7 +101,7 @@
       "id": "t_hab_60",
       "type": "habit",
       "title": "Спринт 60 мин",
-      "category": "work",
+      "category": "code",
       "difficulty": "medium",
       "habitDir": "pos",
       "note": "",
