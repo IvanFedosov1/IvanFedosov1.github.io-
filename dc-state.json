@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-12T08:52:01.341Z",
+  "updatedAt": "2026-11-12T08:52:06.231Z",
   "activeDate": "2026-11-12",
   "weekendBuffer": true,
   "soundEnabled": true,
@@ -216,8 +216,8 @@
       "id": "t_1794461371115",
       "type": "todo",
       "title": "Допилить трекер",
-      "category": "work",
-      "difficulty": "medium",
+      "category": "cat_1794473518995",
+      "difficulty": "trivial",
       "habitDir": "pos",
       "schedule": "everyday",
       "note": "1) редактирование задач. 2) не все задачи должны учитывать время, некоторые достаточно просто факт.",
