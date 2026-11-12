@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-12T10:01:15.896Z",
+  "updatedAt": "2026-11-12T10:01:20.839Z",
   "activeDate": "2026-11-12",
   "weekendBuffer": true,
   "soundEnabled": true,
@@ -85,7 +85,7 @@
       "id": "t_1794460030691",
       "type": "habit",
       "title": "Спринт 90 минут 💀",
-      "category": "work",
+      "category": "code",
       "difficulty": "hard",
       "habitDir": "both",
       "schedule": "everyday",
