@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-12T08:59:31.107Z",
+  "updatedAt": "2026-11-12T08:59:47.373Z",
   "activeDate": "2026-11-12",
   "weekendBuffer": true,
   "soundEnabled": true,
@@ -180,7 +180,7 @@
       "id": "t_1794413439840",
       "type": "habit",
       "title": "Не ел сладкое",
-      "category": "cooling",
+      "category": "cat_1794473968438",
       "difficulty": "easy",
       "habitDir": "both",
       "schedule": "everyday",
