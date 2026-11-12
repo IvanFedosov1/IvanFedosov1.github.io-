@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-12T08:09:51.817Z",
+  "updatedAt": "2026-11-12T08:10:14.604Z",
   "activeDate": "2026-11-12",
   "weekendBuffer": true,
   "soundEnabled": true,
@@ -58,16 +58,17 @@
     {
       "id": "t_hab_60",
       "type": "habit",
-      "title": "Глубокий спринт 60 мин (Сервер в стойку)",
+      "title": "Спринт 60 мин",
       "category": "work",
       "difficulty": "medium",
-      "habitDir": "both",
-      "note": "Полный час фокуса без мессенджеров",
+      "habitDir": "pos",
+      "note": "",
       "posCount": 4,
       "negCount": 0,
       "completedDates": [],
       "minutes": 60,
-      "completedDate": null
+      "completedDate": null,
+      "schedule": "everyday"
     },
     {
       "id": "t_hab_30",
