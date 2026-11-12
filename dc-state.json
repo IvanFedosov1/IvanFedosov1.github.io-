@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-12T10:26:35.510Z",
+  "updatedAt": "2026-11-12T10:27:01.103Z",
   "activeDate": "2026-11-12",
   "weekendBuffer": true,
   "soundEnabled": true,
@@ -7,11 +7,12 @@
     "level": 3,
     "xp": 130,
     "hp": 97,
-    "tflops": 42,
+    "tflops": 12,
     "sp": 0,
     "upgrades": {
       "up_k8s": 1,
-      "up_blade": 2
+      "up_blade": 2,
+      "up_cron": 1
     },
     "skills": [
       "sk_root",
