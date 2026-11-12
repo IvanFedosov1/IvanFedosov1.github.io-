@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-12T08:56:42.014Z",
+  "updatedAt": "2026-11-12T08:57:29.825Z",
   "activeDate": "2026-11-12",
   "weekendBuffer": true,
   "soundEnabled": true,
@@ -8,11 +8,13 @@
     "xp": 108,
     "hp": 97,
     "tflops": 96,
-    "sp": 2,
+    "sp": 1,
     "upgrades": {
       "up_k8s": 1
     },
-    "skills": []
+    "skills": [
+      "sk_root"
+    ]
   },
   "collection": {
     "energyCores": 11,
