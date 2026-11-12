@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-12T12:24:54.164Z",
+  "updatedAt": "2026-11-12T12:25:39.401Z",
   "activeDate": "2026-11-12",
   "weekendBuffer": true,
   "soundEnabled": true,
@@ -315,7 +315,18 @@
       "negCount": 0,
       "completedDates": [],
       "completedDate": null,
-      "checklist": []
+      "checklist": [
+        {
+          "id": "chk_1794486310399_obi",
+          "text": "Выгрузку вчера более менее добил но нужно разобраться чё там с суммами происходит, копейки всё равно теряются.",
+          "done": false
+        },
+        {
+          "id": "chk_1794486332053_uuo",
+          "text": "Проверить счёт фактуры и разобраться с НДС в целом всё ли корректно, есть пока сомнения",
+          "done": false
+        }
+      ]
     }
   ],
   "customStreaks": [
