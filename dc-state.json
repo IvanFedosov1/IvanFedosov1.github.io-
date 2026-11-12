@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-12T08:56:19.943Z",
+  "updatedAt": "2026-11-12T08:56:42.014Z",
   "activeDate": "2026-11-12",
   "weekendBuffer": true,
   "soundEnabled": true,
@@ -247,24 +247,6 @@
         "2026-11-12"
       ],
       "minutes": 60,
-      "completedDate": "2026-11-12",
-      "checklist": []
-    },
-    {
-      "id": "t_1794467371082",
-      "type": "todo",
-      "title": "тест",
-      "category": "work",
-      "difficulty": "trivial",
-      "habitDir": "pos",
-      "schedule": "everyday",
-      "note": "",
-      "posCount": 0,
-      "negCount": 0,
-      "completedDates": [
-        "2026-11-12"
-      ],
-      "minutes": 10,
       "completedDate": "2026-11-12",
       "checklist": []
     }
