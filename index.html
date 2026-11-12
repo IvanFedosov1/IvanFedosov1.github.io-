@@ -415,6 +415,7 @@
       display: flex;
       flex-direction: column;
       gap: 8px;
+      min-height: 44px;
     }
 
     .task-item {
@@ -426,17 +427,66 @@
       align-items: flex-start;
       justify-content: space-between;
       gap: 9px;
-      transition: border-color 0.15s ease;
+      transition: border-color 0.15s ease, transform 0.12s ease, background-color 0.15s ease;
+      position: relative;
     }
 
     .task-item:hover {
       border-color: var(--border);
     }
 
+    .task-item.dragging {
+      opacity: 0.45;
+      border: 1px dashed var(--cyan);
+      transform: scale(0.98);
+    }
+
+    .task-item.drag-over {
+      border-top: 2px solid var(--cyan);
+      background: rgba(56, 189, 248, 0.08);
+    }
+
     .task-item.done-today {
       opacity: 0.68;
       border-color: rgba(57, 211, 83, 0.35);
       background: rgba(35, 134, 54, 0.06);
+    }
+
+    .drag-handle {
+      cursor: grab;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1;
+      padding: 3px 4px;
+      border-radius: 5px;
+      user-select: none;
+    }
+
+    .drag-handle:hover {
+      color: #fff;
+      background: var(--card-hover);
+    }
+
+    .drag-handle:active {
+      cursor: grabbing;
+    }
+
+    .icon-action-btn {
+      font-size: 12px;
+      color: var(--muted);
+      padding: 3px 5px;
+      border-radius: 6px;
+      line-height: 1;
+    }
+
+    .icon-action-btn:hover {
+      color: #fff;
+      background: var(--card-hover);
+    }
+
+    .icon-action-btn.del:hover {
+      color: var(--red);
+      background: rgba(248, 81, 73, 0.15);
     }
 
     /* Habit +/- Controls */
@@ -534,8 +584,14 @@
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      gap: 4px;
+      gap: 3px;
       flex-shrink: 0;
+    }
+
+    .task-actions-row {
+      display: flex;
+      align-items: center;
+      gap: 2px;
     }
 
     /* Compact Sprint Timer Bar */
@@ -755,6 +811,143 @@
       gap: 10px;
     }
 
+    /* CAMPUS FOREST-STYLE MAP */
+    .dc-campus-wrap {
+      background: radial-gradient(circle at 50% 25%, rgba(56, 189, 248, 0.08), rgba(7, 10, 14, 0.98) 75%);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+      margin-bottom: 14px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dc-campus-wrap::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(to right, rgba(48, 54, 61, 0.22) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(48, 54, 61, 0.22) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+    }
+
+    .dc-campus-top {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .campus-zones-container {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .campus-zone-block {
+      background: rgba(13, 17, 23, 0.78);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 10px 12px;
+    }
+
+    .campus-zone-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .campus-plots-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    @media (max-width: 780px) {
+      .campus-plots-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .campus-plot {
+      background: var(--bg-deep);
+      border: 1px dashed var(--border);
+      border-radius: 11px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      text-align: center;
+      min-height: 124px;
+      position: relative;
+      transition: all 0.18s ease;
+      cursor: pointer;
+    }
+
+    .campus-plot:hover {
+      transform: translateY(-2px);
+      border-color: var(--cyan);
+    }
+
+    .campus-plot.plot-built {
+      border-style: solid;
+      border-color: rgba(57, 211, 83, 0.65);
+      background: linear-gradient(160deg, rgba(35, 134, 54, 0.16), rgba(13, 17, 23, 0.92));
+      box-shadow: 0 0 18px rgba(57, 211, 83, 0.12);
+    }
+
+    .campus-plot.plot-building {
+      border-style: solid;
+      border-color: var(--cyan);
+      background: linear-gradient(160deg, rgba(56, 189, 248, 0.14), rgba(13, 17, 23, 0.92));
+      box-shadow: 0 0 16px rgba(56, 189, 248, 0.15);
+    }
+
+    .campus-plot.plot-partial {
+      border-style: solid;
+      border-color: rgba(245, 158, 11, 0.45);
+      background: rgba(22, 27, 34, 0.75);
+    }
+
+    .campus-plot.plot-empty {
+      opacity: 0.6;
+    }
+
+    .plot-svg-box {
+      width: 58px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 2px 0 4px;
+    }
+
+    @keyframes pulseLed {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.35; }
+    }
+
+    .led-blink {
+      animation: pulseLed 2s infinite ease-in-out;
+    }
+
     /* Fixed Bottom Navigation */
     .bottom-nav {
       position: fixed;
@@ -845,7 +1038,7 @@
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 16px;
-      max-width: 520px;
+      max-width: 540px;
       width: 100%;
       padding: 20px;
       max-height: 90vh;
@@ -892,12 +1085,12 @@
               <span id="headerThermalBadge" class="badge badge-cyan mono">36°C • Разгон +15% XP</span>
             </div>
             <div style="font-size: 12px; color: var(--muted); margin-top: 2px;">
-              Выполняй привычки, дейлики и задачи → монтируй серверы в стойку и качай дерево ЦОД
+              Выполняй привычки, дейлики и задачи → монтируй серверы в стойку и строй кампус ЦОД
             </div>
           </div>
         </div>
 
-        <!-- Active Date Selector (System Date 11.11.2026 or Custom) -->
+        <!-- Active Date Selector -->
         <div class="Date-controls">
           <button type="button" onclick="shiftActiveDate(-1)" class="btn-small mono" title="Предыдущий день">◀</button>
           <div class="date-pill mono" title="Выбрать рабочую дату">
@@ -971,7 +1164,7 @@
               ⏱ Фокус-таймер (по желанию)
             </div>
             <div style="font-size: 11px; color: var(--muted);">
-              Можешь отмечать задачи сразу кликом внизу или запускать таймер на 60 / 30 / 15 мин
+              Отмечай задачи по факту/времени внизу или запускай спринт на 60 / 30 / 15 мин
             </div>
           </div>
         </div>
@@ -1002,9 +1195,10 @@
           <button type="button" onclick="setBoardCatFilter('cooling')" data-bcat="cooling" class="board-cat-btn btn-small">🌊 #Бассейн / #Спорт</button>
         </div>
 
-        <div style="display: flex; gap: 8px;">
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <span style="font-size: 11px; color: var(--muted);">💡 Перетаскивай карточки за ⠿ или меняй позицию через ✎</span>
           <button type="button" onclick="openTaskModal()" class="btn-primary" style="padding: 7px 14px; font-size: 12px;">
-            + Добавить привычку / дейлик / задачу
+            + Добавить задание
           </button>
         </div>
       </div>
@@ -1051,7 +1245,7 @@
             <button type="button" onclick="openTaskModal('todo')" class="btn-small" style="padding: 3px 8px;">+ Задача</button>
           </div>
           <div style="font-size: 11px; color: var(--muted);">
-            Конкретные таски и спринты с повышенной наградой XP и TFLOPS за деплой
+            Разовые задачи: остаются выполненными в день закрытия и скрываются в другие дни
           </div>
           <div id="todosListContainer" class="task-list"></div>
         </div>
@@ -1087,7 +1281,7 @@
               <span>🖧 Смонтировано в стойку за <span id="rackDateTitle" class="mono" style="color: var(--green);">11.11.2026</span></span>
             </div>
             <div class="card-desc">
-              Каждая выполненная задача или привычка монтирует узел согласно сложности: <b>Hard/Medium</b> → 🖥 Сервер 60м, <b>Easy</b> → 📦 Контейнер 30м, <b>#Бассейн/#Спорт</b> → ❄️ Чиллер охлаждения
+              Каждая выполненная задача или привычка монтирует узел согласно сложности: <b>Hard/Medium</b> → 🖥 Сервер, <b>Easy/Trivial</b> → 📦 Контейнер/Патч, <b>#Бассейн/#Спорт</b> → ❄️ Чиллер охлаждения
             </div>
           </div>
           <div id="rackDayStatsBadge" class="badge badge-cyan mono">Серверов: 0 • Контейнеров: 0 • Охлаждение: 0</div>
@@ -1124,7 +1318,7 @@
           <div>
             <div class="card-title">🟩 Карта активности (реальные данные без шума)</div>
             <div class="card-desc">
-              Пустые дни отображаются строго чёрными. Кликни на любой день, чтобы увидеть выполненные задачи за эту дату.
+              Пустые дни отображаются строго чёрными. Учитываются как задачи со временем, так и задачи по факту выполнения.
             </div>
           </div>
 
@@ -1174,7 +1368,7 @@
     </section>
 
     <!-- ================================================================= -->
-    <!-- TAB: КОЛЛЕКЦИЯ, КИБЕР-СПУТНИКИ, МУЗЕЙ ЖЕЛЕЗА И МЕГАПРОЕКТЫ        -->
+    <!-- TAB: КОЛЛЕКЦИЯ, КАРТА КАМПУСА ЦОД, СПУТНИКИ И МУЗЕЙ ЖЕЛЕЗА        -->
     <!-- ================================================================= -->
     <section id="tab-collection" class="tab-section hidden">
       <!-- Top Supply Crate / Resources Bar -->
@@ -1196,20 +1390,39 @@
         </div>
       </div>
 
-      <!-- 1. LONG-TERM MEGAPROJECTS (BOSS / QUEST ANALOG) -->
+      <!-- 1. LONG-TERM MEGAPROJECTS & FOREST-STYLE VISUAL DATA CENTER CAMPUS MAP -->
       <div class="card">
         <div class="card-header">
           <div>
-            <div class="card-title">🚀 Долгосрочные Мегапроекты ЦОД (Глобальные цели)</div>
+            <div class="card-title">🏗️ Мегапроекты и Визуальная Карта Кампуса ЦОД (в духе Forest)</div>
             <div class="card-desc">
-              Аналог квестов и рейд-боссов из Habitica: каждая минута выполненных тобой задач автоматически строит выбранный Мегапроект!
+              Каждая выполненная задача (по минутам или по весу сложности для задач без времени) возводит выбранный объект на карте твоего Дата-центра. Кликни на любой сектор карты, чтобы направить стройку туда!
             </div>
           </div>
           <button type="button" onclick="boostMegaprojectWithTflops()" class="btn-small mono" style="color: var(--cyan); border-color: var(--cyan);">
-            ⚡ Ускорить стройку (+120 мин за 40 TFLOPS)
+            ⚡ Ускорить стройку (+120 ед. за 40 TFLOPS)
           </button>
         </div>
 
+        <!-- VISUAL DATA CENTER CAMPUS MAP (FOREST ANALOG) -->
+        <div class="dc-campus-wrap">
+          <div class="dc-campus-top">
+            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+              <strong style="font-size: 13px; color: #fff;">🗺️ Схема застройки Кампуса ЦОД</strong>
+              <span id="campusBuiltSummaryBadge" class="badge badge-green mono">Построено объектов: 0 / 12</span>
+              <span id="campusPowerBadge" class="badge badge-cyan mono">⚡ Мощность кампуса: 0 МВт</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px; font-size: 11px; color: var(--muted);">
+              <span><b style="color: var(--green);">■</b> Построено</span>
+              <span><b style="color: var(--cyan);">■</b> Строится</span>
+              <span><b style="color: var(--muted);">□</b> Чертёж</span>
+            </div>
+          </div>
+
+          <div id="dcCampusMapContainer" class="campus-zones-container"></div>
+        </div>
+
+        <!-- Detailed List of Megaprojects -->
         <div id="megaprojectsContainer" style="display: flex; flex-direction: column; gap: 10px;"></div>
       </div>
 
@@ -1374,7 +1587,7 @@
   </div>
 
   <!-- ================================================================= -->
-  <!-- BOTTOM NAVIGATION BAR (4 TABS)                                    -->
+  <!-- BOTTOM NAVIGATION BAR (5 TABS)                                    -->
   <!-- ================================================================= -->
   <nav class="bottom-nav">
     <div class="bottom-nav-inner">
@@ -1392,7 +1605,7 @@
       </button>
       <button type="button" onclick="switchTab('collection')" data-tab="collection" class="nav-item">
         <span style="font-size: 17px;">👾</span>
-        <span>Коллекция</span>
+        <span>Коллекция и ЦОД</span>
       </button>
       <button type="button" onclick="switchTab('settings')" data-tab="settings" class="nav-item">
         <span style="font-size: 17px;">⚙️</span>
@@ -1414,7 +1627,7 @@
       <div style="display: flex; flex-direction: column; gap: 12px;">
         <div>
           <label for="tmTitle" class="field-label">Название задачи / привычки</label>
-          <input id="tmTitle" type="text" placeholder="Например: Глубокий спринт 60 мин / Бассейн 1500м / Код-ревью" class="input-box" />
+          <input id="tmTitle" type="text" placeholder="Например: Глубокий спринт / Бассейн 1500м / Код-ревью" class="input-box" />
         </div>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
@@ -1423,7 +1636,7 @@
             <select id="tmType" onchange="onTaskModalTypeChange()" class="input-box">
               <option value="habit">🔄 Привычка (+/-)</option>
               <option value="daily">📅 Ежедневное дело (Cron)</option>
-              <option value="todo">🎯 Разовая задача (To-Do)</option>
+              <option value="todo">🎯 Разовая задача (Бэклог)</option>
             </select>
           </div>
 
@@ -1438,34 +1651,65 @@
           </div>
         </div>
 
-        <div>
-          <label for="tmDifficulty" class="field-label">Сложность и тип узла в серверной стойке</label>
-          <select id="tmDifficulty" class="input-box mono">
-            <option value="trivial">🔧 Trivial (10 мин • Патч) → +8 XP, +3 TFLOPS</option>
-            <option value="easy">📦 Easy (30 мин • Docker Контейнер) → +18 XP, +8 TFLOPS</option>
-            <option value="medium" selected>🖥 Medium (60 мин • Сервер 2U) → +40 XP, +18 TFLOPS</option>
-            <option value="hard">🚀 Hard (90+ мин • Блейд-Кластер) → +75 XP, +35 TFLOPS</option>
-          </select>
+        <!-- SEPARATED DIFFICULTY & TIME -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+          <div>
+            <label for="tmDifficulty" class="field-label">Сложность (Награда и узел в стойке)</label>
+            <select id="tmDifficulty" class="input-box mono">
+              <option value="trivial">🔧 Trivial (Патч) → +8 XP, +3 TF</option>
+              <option value="easy">📦 Easy (Контейнер) → +18 XP, +8 TF</option>
+              <option value="medium" selected>🖥 Medium (Сервер 2U) → +40 XP, +18 TF</option>
+              <option value="hard">🚀 Hard (Кластер) → +75 XP, +35 TF</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="tmMinutesPreset" class="field-label">Учёт времени (или просто факт)</label>
+            <select id="tmMinutesPreset" onchange="onTaskMinutesPresetChange()" class="input-box mono">
+              <option value="0">⚡ Без времени (только факт)</option>
+              <option value="10">⏱ 10 мин</option>
+              <option value="15">⏱ 15 мин</option>
+              <option value="30">⏱ 30 мин</option>
+              <option value="45">⏱ 45 мин</option>
+              <option value="60" selected>⏱ 60 мин (1 час)</option>
+              <option value="90">⏱ 90 мин (1.5 ч)</option>
+              <option value="120">⏱ 120 мин (2 ч)</option>
+              <option value="custom">✏️ Своё время (мин)...</option>
+            </select>
+          </div>
         </div>
 
-        <!-- Habit Specific Direction -->
-        <div id="tmHabitOptions">
-          <label for="tmHabitDir" class="field-label">Кнопки привычки</label>
-          <select id="tmHabitDir" class="input-box">
-            <option value="both">➕ и ➖ (Полезная + / Срыв −)</option>
-            <option value="pos">Только ➕ (Полезная привычка)</option>
-            <option value="neg">Только ➖ (Вредная привычка — отнимает SLA)</option>
-          </select>
+        <div id="tmCustomMinutesWrap" class="hidden">
+          <label for="tmCustomMinutes" class="field-label">Укажи точное время в минутах (0 = без фиксации времени)</label>
+          <input id="tmCustomMinutes" type="number" min="0" max="720" value="45" class="input-box mono" />
         </div>
 
-        <!-- Daily Specific Schedule -->
-        <div id="tmDailyOptions" class="hidden">
-          <label for="tmDailySchedule" class="field-label">Повторение ежедневного дела</label>
-          <select id="tmDailySchedule" class="input-box">
-            <option value="everyday">Каждый день (Пн–Вс)</option>
-            <option value="weekdays">Только будни (Пн–Пт)</option>
-            <option value="weekends">Только выходные (Сб–Вс)</option>
-          </select>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+          <!-- Habit Specific Direction -->
+          <div id="tmHabitOptions">
+            <label for="tmHabitDir" class="field-label">Кнопки привычки</label>
+            <select id="tmHabitDir" class="input-box">
+              <option value="both">➕ и ➖ (Полезная + / Срыв −)</option>
+              <option value="pos">Только ➕ (Полезная)</option>
+              <option value="neg">Только ➖ (Вредная −SLA)</option>
+            </select>
+          </div>
+
+          <!-- Daily Specific Schedule -->
+          <div id="tmDailyOptions" class="hidden">
+            <label for="tmDailySchedule" class="field-label">Повторение дейлика</label>
+            <select id="tmDailySchedule" class="input-box">
+              <option value="everyday">Каждый день (Пн–Вс)</option>
+              <option value="weekdays">Только будни (Пн–Пт)</option>
+              <option value="weekends">Только выходные (Сб–Вс)</option>
+            </select>
+          </div>
+
+          <!-- Order / Position in Column -->
+          <div>
+            <label for="tmOrderPos" class="field-label">Позиция (номер в списке колонки)</label>
+            <select id="tmOrderPos" class="input-box mono"></select>
+          </div>
         </div>
 
         <div>
@@ -1473,9 +1717,14 @@
           <input id="tmNote" type="text" placeholder="Например: Без телефона и мессенджеров" class="input-box" />
         </div>
 
-        <div style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 6px;">
-          <button type="button" onclick="closeTaskModal()" class="btn-secondary">Отмена</button>
-          <button type="button" onclick="saveTaskFromModal()" class="btn-primary">Сохранить задание</button>
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: 6px;">
+          <div>
+            <button type="button" id="tmDeleteBtn" onclick="deleteTaskFromModal()" class="btn-danger hidden">🗑 Удалить</button>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <button type="button" onclick="closeTaskModal()" class="btn-secondary">Отмена</button>
+            <button type="button" id="tmSaveBtn" onclick="saveTaskFromModal()" class="btn-primary">Сохранить задание</button>
+          </div>
         </div>
       </div>
     </div>
@@ -1533,7 +1782,7 @@
 
   <script>
     // =========================================================================
-    // 1. LOCAL SYSTEM DATE UTILITIES (11.11.2026 WITHOUT UTC SHIFT BUGS)
+    // 1. LOCAL SYSTEM DATE UTILITIES (WITHOUT UTC SHIFT BUGS)
     // =========================================================================
     const STORAGE_KEY = 'dc_habitica_rpg_v2';
 
@@ -1580,13 +1829,13 @@
     }
 
     // =========================================================================
-    // 2. DIFFICULTIES, CATEGORIES & RPG UPGRADE TREE DEFINITIONS
+    // 2. DIFFICULTIES (DECOUPLED FROM TIME), CATEGORIES & RPG UPGRADE TREE
     // =========================================================================
     const DIFFICULTIES = {
-      trivial: { id: 'trivial', label: '🔧 Патч (10м)', minutes: 10, xp: 8,  tflops: 3,  rackType: 'patch',     rackLabel: 'Патч 10м' },
-      easy:    { id: 'easy',    label: '📦 Контейнер (30м)', minutes: 30, xp: 18, tflops: 8,  rackType: 'container', rackLabel: 'Docker Контейнер 30м' },
-      medium:  { id: 'medium',  label: '🖥 Сервер (60м)',    minutes: 60, xp: 40, tflops: 18, rackType: 'server',    rackLabel: '2U Сервер 60м' },
-      hard:    { id: 'hard',    label: '🚀 Кластер (90м)',   minutes: 90, xp: 75, tflops: 35, rackType: 'cluster',   rackLabel: 'Блейд-Кластер 90м' }
+      trivial: { id: 'trivial', label: '🔧 Trivial (Патч)',     shortLabel: '🔧 Патч',      defaultMinutes: 10, xp: 8,  tflops: 3,  rackType: 'patch',     rackLabel: 'Патч' },
+      easy:    { id: 'easy',    label: '📦 Easy (Контейнер)',  shortLabel: '📦 Контейнер', defaultMinutes: 30, xp: 18, tflops: 8,  rackType: 'container', rackLabel: 'Docker Контейнер' },
+      medium:  { id: 'medium',  label: '🖥 Medium (Сервер 2U)', shortLabel: '🖥 Сервер',    defaultMinutes: 60, xp: 40, tflops: 18, rackType: 'server',    rackLabel: '2U Сервер' },
+      hard:    { id: 'hard',    label: '🚀 Hard (Кластер)',     shortLabel: '🚀 Кластер',   defaultMinutes: 90, xp: 75, tflops: 35, rackType: 'cluster',   rackLabel: 'Блейд-Кластер' }
     };
 
     const CATEGORIES = {
@@ -1596,6 +1845,44 @@
       cooling: { id: 'cooling', tag: '#Бассейн / Спорт', icon: '🌊', color: '#38BDF8' }
     };
 
+    function getTaskMinutes(task) {
+      if (task && typeof task.minutes === 'number' && !isNaN(task.minutes)) {
+        return Math.max(0, task.minutes);
+      }
+      const diff = DIFFICULTIES[task && task.difficulty] || DIFFICULTIES.medium;
+      return diff.defaultMinutes;
+    }
+
+    function formatTaskTimeBadge(minutes) {
+      if (!minutes || minutes <= 0) return '⚡ По факту';
+      return `⏱ ${minutes}м`;
+    }
+
+    // Returns effective construction units for Megaprojects (if task has 0 minutes, uses difficulty weight so fact-only tasks still build the Data Center!)
+    function getConstructionUnitsForTask(difficultyId, minutes) {
+      if (typeof minutes === 'number' && minutes > 0) return minutes;
+      const diff = DIFFICULTIES[difficultyId] || DIFFICULTIES.medium;
+      return diff.defaultMinutes;
+    }
+
+    // Helper for To-Do single-day binding (backward compatible with completedDates[])
+    function getTodoCompletionDate(task) {
+      if (!task) return null;
+      if (typeof task.completedDate === 'string' && task.completedDate.length >= 10) {
+        return task.completedDate;
+      }
+      if (Array.isArray(task.completedDates) && task.completedDates.length > 0) {
+        return task.completedDates[task.completedDates.length - 1];
+      }
+      return null;
+    }
+
+    function isTodoVisibleOnDate(task, dateIso) {
+      const doneDate = getTodoCompletionDate(task);
+      if (!doneDate) return true; // Active backlog item: visible on any day until completed
+      return doneDate === dateIso; // Once completed: stays visible as completed ONLY on the day it was completed
+    }
+
     const TECH_TREE_SPEC = [
       {
         branchTitle: '🖥 Вычислительное Ядро',
@@ -1603,7 +1890,7 @@
         nodes: [
           { id: 'up_blade', name: 'Стойки 42U Supermicro', desc: '+15% TFLOPS за все задачи и спринты за каждый уровень', baseCost: 25, maxLvl: 5, bonusType: 'tflops_pct', bonusPerLvl: 15 },
           { id: 'up_k8s',   name: 'Автоскейлер Kubernetes', desc: '+15% XP за привычки и дейлики за каждый уровень', baseCost: 40, maxLvl: 5, bonusType: 'xp_pct', bonusPerLvl: 15 },
-          { id: 'up_npu',   name: 'Тензорный кластер H100', desc: '+25% к опыту и TFLOPS за сложные задачи (60–90м)', baseCost: 75, maxLvl: 3, bonusType: 'xp_pct', bonusPerLvl: 25 }
+          { id: 'up_npu',   name: 'Тензорный кластер H100', desc: '+25% к опыту и TFLOPS за сложные задачи (Medium/Hard)', baseCost: 75, maxLvl: 3, bonusType: 'xp_pct', bonusPerLvl: 25 }
         ]
       },
       {
@@ -1620,7 +1907,7 @@
         branchSub: 'Пассивный буст прогресса и статус Гиперскейлера',
         nodes: [
           { id: 'up_cron',  name: 'Нейро-планировщик Cron',   desc: '+10 дополнительных TFLOPS при закрытии любого Дейлика', baseCost: 30, maxLvl: 5, bonusType: 'daily_tflops', bonusPerLvl: 10 },
-          { id: 'up_audit', name: 'Предиктивный мониторинг',  desc: '+10 дополнительных XP за закрытие разовых Задач (To-Do)', baseCost: 45, maxLvl: 5, bonusType: 'todo_xp', bonusPerLvl: 10 },
+          { id: 'up_audit', name: 'Предиктивный мониторинг',  desc: '+10 дополнительных XP за закрытие разовых Задач (Бэклог)', baseCost: 45, maxLvl: 5, bonusType: 'todo_xp', bonusPerLvl: 10 },
           { id: 'up_tier5', name: 'Дата-центр Tier V (Цель)', desc: 'Элитный грейд инфраструктуры: удваивает прирост TFLOPS', baseCost: 150, maxLvl: 1, bonusType: 'tflops_pct', bonusPerLvl: 100 }
         ]
       }
@@ -1629,6 +1916,9 @@
     // =========================================================================
     // 3. APPLICATION STATE & CLEAN DEMO INITIALIZATION
     // =========================================================================
+    let editingTaskId = null;
+    let draggedTaskId = null;
+
     let appState = {
       activeTab: 'tasks',
       activeDate: getSystemLocalDateIso(),
@@ -1638,7 +1928,6 @@
       selectedHeatmapDate: null,
       weekendBuffer: true,
       soundEnabled: true,
-      // RPG Hero / Cluster Stats
       rpg: {
         level: 3,
         xp: 140,
@@ -1651,13 +1940,9 @@
           up_hydro: 1
         }
       },
-      // Tasks (Habits, Dailies, Todos)
       tasks: [],
-      // Custom Streak Definitions
       customStreaks: [],
-      // Real Event Ledger (ONLY source of truth for Heatmap & Streaks — NO fake 365-day noise!)
       events: [],
-      // Optional Focus Timer
       timer: {
         running: false,
         minutes: 60,
@@ -1668,18 +1953,19 @@
     };
 
     function createStarterDataset(baseDateIso) {
-      const d0 = baseDateIso; // e.g., 2026-11-11
-      const d1 = shiftIsoDate(d0, -1); // 2026-11-10
-      const d2 = shiftIsoDate(d0, -2); // 2026-11-09
+      const d0 = baseDateIso;
+      const d1 = shiftIsoDate(d0, -1);
+      const d2 = shiftIsoDate(d0, -2);
 
       const tasks = [
         // Habits (+/-)
         {
           id: 't_hab_60',
           type: 'habit',
-          title: 'Глубокий спринт 60 мин (Сервер в стойку)',
+          title: 'Глубокий спринт (Сервер в стойку)',
           category: 'work',
           difficulty: 'medium',
+          minutes: 60,
           habitDir: 'both',
           note: 'Полный час фокуса без мессенджеров',
           posCount: 3,
@@ -1688,9 +1974,10 @@
         {
           id: 't_hab_30',
           type: 'habit',
-          title: 'Спринт 30 мин (Docker-контейнер)',
+          title: 'Быстрый спринт (Docker-контейнер)',
           category: 'code',
           difficulty: 'easy',
+          minutes: 30,
           habitDir: 'pos',
           note: 'Закрытие подзадачи или код-ревью',
           posCount: 4,
@@ -1702,8 +1989,9 @@
           title: 'Бассейн / Силовая разминка (Охлаждение ЦОД)',
           category: 'cooling',
           difficulty: 'medium',
+          minutes: 0,
           habitDir: 'pos',
-          note: 'Сбрасывает нагрев серверов и восстанавливает SLA HP',
+          note: 'Факт тренировки: сбрасывает нагрев серверов и восстанавливает SLA HP',
           posCount: 1,
           negCount: 0
         },
@@ -1713,6 +2001,7 @@
           title: 'Срыв спринта / Думскроллинг (SIGKILL)',
           category: 'work',
           difficulty: 'easy',
+          minutes: 0,
           habitDir: 'neg',
           note: 'Штраф по стабильности SLA кластера',
           posCount: 0,
@@ -1725,8 +2014,9 @@
           title: 'Утренний стендап и план деплоя на день',
           category: 'work',
           difficulty: 'trivial',
+          minutes: 0,
           schedule: 'everyday',
-          note: 'Выбрать 3 главные задачи дня',
+          note: 'Выбрать 3 главные задачи дня (по факту)',
           completedDates: [d2, d1, d0]
         },
         {
@@ -1735,6 +2025,7 @@
           title: 'Минимум 1 час чистого кода / архитектуры',
           category: 'code',
           difficulty: 'medium',
+          minutes: 60,
           schedule: 'weekdays',
           note: 'Обязательный буст ключевого проекта',
           completedDates: [d2, d1, d0]
@@ -1742,9 +2033,10 @@
         {
           id: 't_day_study',
           type: 'daily',
-          title: 'Чтение тех. документации / книги (30 мин)',
+          title: 'Чтение тех. документации / книги',
           category: 'study',
           difficulty: 'easy',
+          minutes: 30,
           schedule: 'everyday',
           note: 'Прокачка базы знаний',
           completedDates: [d1]
@@ -1753,11 +2045,13 @@
         {
           id: 't_todo_host',
           type: 'todo',
-          title: 'Задеплоить трекер на арендованный хостинг и проверить с телефона',
+          title: 'Задеплоить обновление трекера на GitHub Pages и проверить сохранения',
           category: 'code',
           difficulty: 'hard',
-          note: 'Скопировать index.html на сервер',
-          completedDates: []
+          minutes: 0,
+          note: 'Факт релиза новой версии',
+          completedDates: [],
+          completedDate: null
         },
         {
           id: 't_todo_db',
@@ -1765,15 +2059,17 @@
           title: 'Оптимизировать тяжелые запросы в модуле отчетов',
           category: 'work',
           difficulty: 'medium',
+          minutes: 60,
           note: 'Проверить индексы и время ответа',
-          completedDates: []
+          completedDates: [],
+          completedDate: null
         }
       ];
 
       const customStreaks = [
         {
           id: 'str_deep_core',
-          title: '🔥 Deep Core (Серверы 60м+)',
+          title: '🔥 Deep Core (Серверы Medium/Hard)',
           targetSource: 'diff:medium_hard',
           requiredCount: 3,
           period: 'day'
@@ -1794,29 +2090,56 @@
         }
       ];
 
-      // Only 3 recent days of clean, transparent demo events (d2, d1, d0) so the rest of the calendar is 100% black & clean!
       const events = [
         // 2 days ago (d2)
-        { id: 'ev_1', date: d2, taskId: 't_hab_60', title: 'Глубокий спринт 60 мин (Сервер в стойку)', category: 'work', difficulty: 'medium', minutes: 60, xp: 40, tflops: 18, direction: 'pos', time: '10:00' },
-        { id: 'ev_2', date: d2, taskId: 't_hab_60', title: 'Глубокий спринт 60 мин (Сервер в стойку)', category: 'work', difficulty: 'medium', minutes: 60, xp: 40, tflops: 18, direction: 'pos', time: '12:00' },
+        { id: 'ev_1', date: d2, taskId: 't_hab_60', title: 'Глубокий спринт (Сервер в стойку)', category: 'work', difficulty: 'medium', minutes: 60, xp: 40, tflops: 18, direction: 'pos', time: '10:00' },
+        { id: 'ev_2', date: d2, taskId: 't_hab_60', title: 'Глубокий спринт (Сервер в стойку)', category: 'work', difficulty: 'medium', minutes: 60, xp: 40, tflops: 18, direction: 'pos', time: '12:00' },
         { id: 'ev_3', date: d2, taskId: 't_day_code', title: 'Минимум 1 час чистого кода / архитектуры', category: 'code', difficulty: 'medium', minutes: 60, xp: 40, tflops: 18, direction: 'pos', time: '15:00' },
-        { id: 'ev_4', date: d2, taskId: 't_hab_pool', title: 'Бассейн / Силовая разминка (Охлаждение ЦОД)', category: 'cooling', difficulty: 'medium', minutes: 60, xp: 40, tflops: 18, direction: 'pos', time: '18:00' },
+        { id: 'ev_4', date: d2, taskId: 't_hab_pool', title: 'Бассейн / Силовая разминка (Охлаждение ЦОД)', category: 'cooling', difficulty: 'medium', minutes: 0, xp: 40, tflops: 18, direction: 'pos', time: '18:00' },
 
         // Yesterday (d1)
-        { id: 'ev_5', date: d1, taskId: 't_hab_60', title: 'Глубокий спринт 60 мин (Сервер в стойку)', category: 'work', difficulty: 'medium', minutes: 60, xp: 40, tflops: 18, direction: 'pos', time: '09:30' },
-        { id: 'ev_6', date: d1, taskId: 't_hab_60', title: 'Глубокий спринт 60 мин (Сервер в стойку)', category: 'work', difficulty: 'medium', minutes: 60, xp: 40, tflops: 18, direction: 'pos', time: '11:30' },
+        { id: 'ev_5', date: d1, taskId: 't_hab_60', title: 'Глубокий спринт (Сервер в стойку)', category: 'work', difficulty: 'medium', minutes: 60, xp: 40, tflops: 18, direction: 'pos', time: '09:30' },
+        { id: 'ev_6', date: d1, taskId: 't_hab_60', title: 'Глубокий спринт (Сервер в стойку)', category: 'work', difficulty: 'medium', minutes: 60, xp: 40, tflops: 18, direction: 'pos', time: '11:30' },
         { id: 'ev_7', date: d1, taskId: 't_day_code', title: 'Минимум 1 час чистого кода / архитектуры', category: 'code', difficulty: 'medium', minutes: 60, xp: 40, tflops: 18, direction: 'pos', time: '14:00' },
-        { id: 'ev_8', date: d1, taskId: 't_day_study', title: 'Чтение тех. документации / книги (30 мин)', category: 'study', difficulty: 'easy', minutes: 30, xp: 18, tflops: 8, direction: 'pos', time: '17:00' },
+        { id: 'ev_8', date: d1, taskId: 't_day_study', title: 'Чтение тех. документации / книги', category: 'study', difficulty: 'easy', minutes: 30, xp: 18, tflops: 8, direction: 'pos', time: '17:00' },
 
-        // Today (d0 = 11.11.2026)
-        { id: 'ev_9',  date: d0, taskId: 't_hab_60', title: 'Глубокий спринт 60 мин (Сервер #1)', category: 'work', difficulty: 'medium', minutes: 60, xp: 46, tflops: 20, direction: 'pos', time: '09:00' },
-        { id: 'ev_10', date: d0, taskId: 't_hab_30', title: 'Спринт 30 мин (Docker-контейнер #1)', category: 'code', difficulty: 'easy', minutes: 30, xp: 20, tflops: 9, direction: 'pos', time: '10:30' },
+        // Today (d0)
+        { id: 'ev_9',  date: d0, taskId: 't_hab_60', title: 'Глубокий спринт (Сервер #1)', category: 'work', difficulty: 'medium', minutes: 60, xp: 46, tflops: 20, direction: 'pos', time: '09:00' },
+        { id: 'ev_10', date: d0, taskId: 't_hab_30', title: 'Быстрый спринт (Docker-контейнер #1)', category: 'code', difficulty: 'easy', minutes: 30, xp: 20, tflops: 9, direction: 'pos', time: '10:30' },
         { id: 'ev_11', date: d0, taskId: 't_day_code', title: 'Минимум 1 час чистого кода (Сервер #2)', category: 'code', difficulty: 'medium', minutes: 60, xp: 46, tflops: 20, direction: 'pos', time: '12:00' },
-        { id: 'ev_12', date: d0, taskId: 't_hab_pool', title: 'Бассейн 1500м (Водяная помпа ЦОД)', category: 'cooling', difficulty: 'medium', minutes: 60, xp: 46, tflops: 20, direction: 'pos', time: '14:00' },
-        { id: 'ev_13', date: d0, taskId: 't_hab_60', title: 'Глубокий спринт 60 мин (Сервер #3)', category: 'work', difficulty: 'medium', minutes: 60, xp: 46, tflops: 20, direction: 'pos', time: '16:00' }
+        { id: 'ev_12', date: d0, taskId: 't_hab_pool', title: 'Бассейн 1500м (Водяная помпа ЦОД)', category: 'cooling', difficulty: 'medium', minutes: 0, xp: 46, tflops: 20, direction: 'pos', time: '14:00' },
+        { id: 'ev_13', date: d0, taskId: 't_hab_60', title: 'Глубокий спринт (Сервер #3)', category: 'work', difficulty: 'medium', minutes: 60, xp: 46, tflops: 20, direction: 'pos', time: '16:00' }
       ];
 
       return { tasks, customStreaks, events };
+    }
+
+    // Normalize loaded tasks so older saves work seamlessly with separated time & single-day todo completion
+    function normalizeLoadedTasks(tasksArray) {
+      if (!Array.isArray(tasksArray)) return [];
+      return tasksArray.map(t => {
+        const diff = DIFFICULTIES[t.difficulty] || DIFFICULTIES.medium;
+        const minutes = (typeof t.minutes === 'number' && !isNaN(t.minutes))
+          ? Math.max(0, t.minutes)
+          : diff.defaultMinutes;
+
+        let completedDates = Array.isArray(t.completedDates) ? t.completedDates : [];
+        let completedDate = t.completedDate || null;
+        if (t.type === 'todo') {
+          if (!completedDate && completedDates.length > 0) {
+            completedDate = completedDates[completedDates.length - 1];
+          }
+          if (completedDate && !completedDates.includes(completedDate)) {
+            completedDates = [completedDate];
+          }
+        }
+        return {
+          ...t,
+          minutes,
+          completedDates,
+          completedDate
+        };
+      });
     }
 
     // =========================================================================
@@ -1854,7 +2177,7 @@
         if (raw) {
           const parsed = JSON.parse(raw);
           if (parsed && Array.isArray(parsed.tasks) && Array.isArray(parsed.events)) {
-            appState.tasks = parsed.tasks;
+            appState.tasks = normalizeLoadedTasks(parsed.tasks);
             appState.events = parsed.events;
             appState.customStreaks = parsed.customStreaks || starter.customStreaks;
             appState.rpg = parsed.rpg || appState.rpg;
@@ -1968,14 +2291,12 @@
         });
       });
 
-      // Check if today has active cooling session for thermal overclock boost
       const todayEvents = appState.events.filter(e => e.date === appState.activeDate && e.direction === 'pos');
       const hasCoolingToday = todayEvents.some(e => e.category === 'cooling');
       if (hasCoolingToday) {
         xpPct += 15;
       }
 
-      // Apply Equipped Cyber-Familiar Passive Bonus (doubled when evolved to Mk.II!)
       if (appState.collection && appState.collection.equippedFamiliarId && typeof FAMILIARS_CATALOG !== 'undefined') {
         const eqId = appState.collection.equippedFamiliarId;
         const fMeta = FAMILIARS_CATALOG.find(f => f.id === eqId);
@@ -2015,7 +2336,7 @@
       return `AI Core Overlord (Tier ${lvl})`;
     }
 
-    function awardRpgProgress(taskType, difficultyId, categoryId) {
+    function awardRpgProgress(taskType, difficultyId, categoryId, taskMinutes) {
       const diff = DIFFICULTIES[difficultyId] || DIFFICULTIES.medium;
       const bonuses = getTechBonuses();
 
@@ -2028,13 +2349,11 @@
       appState.rpg.xp += gainedXp;
       appState.rpg.tflops += gainedTflops;
 
-      // Cooling tasks restore SLA HP
       if (categoryId === 'cooling') {
         const heal = 12 + bonuses.healHpBonus;
         appState.rpg.hp = Math.min(bonuses.maxHp, appState.rpg.hp + heal);
       }
 
-      // Check Level Up
       let leveledUp = false;
       while (appState.rpg.xp >= getXpNeededForLevel(appState.rpg.level)) {
         appState.rpg.xp -= getXpNeededForLevel(appState.rpg.level);
@@ -2044,7 +2363,8 @@
         leveledUp = true;
       }
 
-      const dropMsg = rollCollectionLootDrop(difficultyId, diff.minutes);
+      const constructionUnits = getConstructionUnitsForTask(difficultyId, taskMinutes);
+      const dropMsg = rollCollectionLootDrop(difficultyId, constructionUnits);
 
       if (leveledUp) {
         playTone('lvlup');
@@ -2054,7 +2374,7 @@
         showToast(`+${gainedXp} XP, +${gainedTflops} TF • ${dropMsg}`, 'lvl');
       } else {
         playTone('plus');
-        showToast(`+${gainedXp} XP, +${gainedTflops} TFLOPS • Узел добавлен в стойку!`);
+        showToast(`+${gainedXp} XP, +${gainedTflops} TFLOPS • Узел смонтирован!`);
       }
 
       return { gainedXp, gainedTflops };
@@ -2068,7 +2388,6 @@
 
       playTone('minus');
       if (appState.rpg.hp <= 0) {
-        // Kernel Panic recovery
         appState.rpg.hp = bonuses.maxHp;
         appState.rpg.tflops = Math.max(0, appState.rpg.tflops - 20);
         showToast(`KERNEL PANIC! SLA упал до 0% — потеряно 20 TFLOPS на перезапуск стойки`, 'err');
@@ -2078,17 +2397,17 @@
     }
 
     // =========================================================================
-    // 7. TASK INTERACTIONS (HABITS +/-, DAILIES CHECK, TODOS CHECK, CRUD)
+    // 7. TASK INTERACTIONS, EDITING, SINGLE-DAY TODO BINDING & REORDERING
     // =========================================================================
     function triggerHabit(taskId, direction) {
       const task = appState.tasks.find(t => t.id === taskId);
       if (!task) return;
-      const diff = DIFFICULTIES[task.difficulty] || DIFFICULTIES.medium;
+      const taskMins = getTaskMinutes(task);
       const nowTime = new Date().toTimeString().slice(0, 5);
 
       if (direction === 'pos') {
         task.posCount = (task.posCount || 0) + 1;
-        const { gainedXp, gainedTflops } = awardRpgProgress('habit', task.difficulty, task.category);
+        const { gainedXp, gainedTflops } = awardRpgProgress('habit', task.difficulty, task.category, taskMins);
         appState.events.push({
           id: 'ev_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6),
           date: appState.activeDate,
@@ -2096,7 +2415,7 @@
           title: task.title,
           category: task.category,
           difficulty: task.difficulty,
-          minutes: diff.minutes,
+          minutes: taskMins,
           xp: gainedXp,
           tflops: gainedTflops,
           direction: 'pos',
@@ -2130,12 +2449,24 @@
       if (!Array.isArray(task.completedDates)) task.completedDates = [];
 
       const activeDate = appState.activeDate;
-      const alreadyDone = task.completedDates.includes(activeDate);
-      const diff = DIFFICULTIES[task.difficulty] || DIFFICULTIES.medium;
+      const taskMins = getTaskMinutes(task);
+
+      // Check current completion state depending on daily vs todo
+      const alreadyDone = task.type === 'todo'
+        ? (getTodoCompletionDate(task) === activeDate)
+        : task.completedDates.includes(activeDate);
 
       if (!alreadyDone) {
-        task.completedDates.push(activeDate);
-        const { gainedXp, gainedTflops } = awardRpgProgress(task.type, task.difficulty, task.category);
+        if (task.type === 'todo') {
+          // Bind Todo strictly to this specific day
+          task.completedDate = activeDate;
+          task.completedDates = [activeDate];
+        } else {
+          if (!task.completedDates.includes(activeDate)) {
+            task.completedDates.push(activeDate);
+          }
+        }
+        const { gainedXp, gainedTflops } = awardRpgProgress(task.type, task.difficulty, task.category, taskMins);
         appState.events.push({
           id: 'ev_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6),
           date: activeDate,
@@ -2143,15 +2474,20 @@
           title: task.title,
           category: task.category,
           difficulty: task.difficulty,
-          minutes: diff.minutes,
+          minutes: taskMins,
           xp: gainedXp,
           tflops: gainedTflops,
           direction: 'pos',
           time: new Date().toTimeString().slice(0, 5)
         });
       } else {
-        // Uncheck: remove today's completion and latest matching event on activeDate
-        task.completedDates = task.completedDates.filter(d => d !== activeDate);
+        // Uncheck: remove completion and revert event on activeDate
+        if (task.type === 'todo') {
+          task.completedDate = null;
+          task.completedDates = [];
+        } else {
+          task.completedDates = task.completedDates.filter(d => d !== activeDate);
+        }
         const idx = appState.events.map((e, i) => (e.date === activeDate && e.taskId === task.id) ? i : -1).filter(i => i !== -1).pop();
         if (idx !== undefined && idx >= 0) {
           const ev = appState.events[idx];
@@ -2173,24 +2509,229 @@
       showToast('Задание удалено из списка');
     }
 
-    function openTaskModal(defaultType = 'habit') {
-      document.getElementById('tmTitle').value = '';
-      document.getElementById('tmType').value = defaultType;
-      document.getElementById('tmCategory').value = 'work';
-      document.getElementById('tmDifficulty').value = 'medium';
-      document.getElementById('tmNote').value = '';
-      onTaskModalTypeChange();
+    function deleteTaskFromModal() {
+      if (!editingTaskId) return;
+      deleteTask(editingTaskId);
+      closeTaskModal();
+    }
+
+    // Reordering tasks within their column (by relative index among tasks of the same type)
+    function getTasksOfTypeForOrdering(type) {
+      if (type === 'todo') {
+        return appState.tasks.filter(t => t.type === 'todo' && isTodoVisibleOnDate(t, appState.activeDate));
+      }
+      return appState.tasks.filter(t => t.type === type);
+    }
+
+    function moveTaskToColumnPosition(taskId, targetOneBasedIndex) {
+      const task = appState.tasks.find(t => t.id === taskId);
+      if (!task) return;
+      const colTasks = getTasksOfTypeForOrdering(task.type);
+      const curIdxInCol = colTasks.findIndex(t => t.id === taskId);
+      if (curIdxInCol === -1) return;
+
+      const clampedTargetIdx = Math.max(0, Math.min(colTasks.length - 1, targetOneBasedIndex - 1));
+      if (curIdxInCol === clampedTargetIdx) return;
+
+      // Remove task from global array
+      const globalFromIdx = appState.tasks.findIndex(t => t.id === taskId);
+      if (globalFromIdx === -1) return;
+      const [removed] = appState.tasks.splice(globalFromIdx, 1);
+
+      const remainingCol = getTasksOfTypeForOrdering(task.type);
+      if (clampedTargetIdx >= remainingCol.length) {
+        // Insert after the last task of this type
+        if (remainingCol.length === 0) {
+          appState.tasks.push(removed);
+        } else {
+          const lastColTask = remainingCol[remainingCol.length - 1];
+          const anchorIdx = appState.tasks.findIndex(t => t.id === lastColTask.id);
+          appState.tasks.splice(anchorIdx + 1, 0, removed);
+        }
+      } else {
+        const anchorTask = remainingCol[clampedTargetIdx];
+        const anchorIdx = appState.tasks.findIndex(t => t.id === anchorTask.id);
+        appState.tasks.splice(anchorIdx, 0, removed);
+      }
+    }
+
+    function nudgeTaskOrder(taskId, delta) {
+      const task = appState.tasks.find(t => t.id === taskId);
+      if (!task) return;
+      const colTasks = getTasksOfTypeForOrdering(task.type);
+      const idx = colTasks.findIndex(t => t.id === taskId);
+      if (idx === -1) return;
+      const newPos = idx + 1 + delta;
+      if (newPos < 1 || newPos > colTasks.length) return;
+      moveTaskToColumnPosition(taskId, newPos);
+      saveState();
+      renderAll();
+    }
+
+    // HTML5 Drag & Drop Handlers for Task Cards
+    function onTaskDragStart(ev, taskId) {
+      draggedTaskId = taskId;
+      if (ev.dataTransfer) {
+        ev.dataTransfer.effectAllowed = 'move';
+        ev.dataTransfer.setData('text/plain', taskId);
+      }
+      const el = ev.currentTarget;
+      if (el) setTimeout(() => el.classList.add('dragging'), 0);
+    }
+
+    function onTaskDragEnd(ev) {
+      draggedTaskId = null;
+      document.querySelectorAll('.task-item').forEach(el => {
+        el.classList.remove('dragging', 'drag-over');
+      });
+    }
+
+    function onTaskDragOver(ev) {
+      ev.preventDefault();
+      if (ev.dataTransfer) ev.dataTransfer.dropEffect = 'move';
+      const el = ev.currentTarget;
+      if (el && !el.classList.contains('dragging')) {
+        el.classList.add('drag-over');
+      }
+    }
+
+    function onTaskDragLeave(ev) {
+      const el = ev.currentTarget;
+      if (el) el.classList.remove('drag-over');
+    }
+
+    function onTaskDrop(ev, targetTaskId) {
+      ev.preventDefault();
+      const el = ev.currentTarget;
+      if (el) el.classList.remove('drag-over');
+
+      const sourceId = draggedTaskId || (ev.dataTransfer && ev.dataTransfer.getData('text/plain'));
+      draggedTaskId = null;
+      if (!sourceId || sourceId === targetTaskId) return;
+
+      const srcTask = appState.tasks.find(t => t.id === sourceId);
+      const tgtTask = appState.tasks.find(t => t.id === targetTaskId);
+      if (!srcTask || !tgtTask || srcTask.type !== tgtTask.type) return;
+
+      const colTasks = getTasksOfTypeForOrdering(srcTask.type);
+      const tgtIdx = colTasks.findIndex(t => t.id === targetTaskId);
+      if (tgtIdx === -1) return;
+
+      moveTaskToColumnPosition(sourceId, tgtIdx + 1);
+      saveState();
+      renderAll();
+      showToast('Порядок задач обновлён');
+    }
+
+    function populateOrderPositionSelect(type, currentTaskId = null) {
+      const sel = document.getElementById('tmOrderPos');
+      if (!sel) return;
+      const colTasks = getTasksOfTypeForOrdering(type);
+      const existingIdx = currentTaskId ? colTasks.findIndex(t => t.id === currentTaskId) : -1;
+      const totalPositions = existingIdx !== -1 ? colTasks.length : colTasks.length + 1;
+      const defaultPos = existingIdx !== -1 ? existingIdx + 1 : totalPositions;
+
+      let html = '';
+      for (let i = 1; i <= totalPositions; i++) {
+        const suffix = i === 1 ? ' (В начало списка)' : i === totalPositions ? ' (В конец списка)' : '';
+        html += `<option value="${i}" ${i === defaultPos ? 'selected' : ''}>#${i}${suffix}</option>`;
+      }
+      sel.innerHTML = html;
+    }
+
+    function onTaskMinutesPresetChange() {
+      const val = document.getElementById('tmMinutesPreset').value;
+      const customWrap = document.getElementById('tmCustomMinutesWrap');
+      customWrap.classList.toggle('hidden', val !== 'custom');
+    }
+
+    function setModalMinutesFields(minutes) {
+      const presetSel = document.getElementById('tmMinutesPreset');
+      const customWrap = document.getElementById('tmCustomMinutesWrap');
+      const customInp = document.getElementById('tmCustomMinutes');
+      const strVal = String(minutes);
+      const knownPresets = ['0', '10', '15', '30', '45', '60', '90', '120'];
+
+      if (knownPresets.includes(strVal)) {
+        presetSel.value = strVal;
+        customWrap.classList.add('hidden');
+      } else {
+        presetSel.value = 'custom';
+        customInp.value = String(Math.max(0, Number(minutes) || 0));
+        customWrap.classList.remove('hidden');
+      }
+    }
+
+    function getModalMinutesValue() {
+      const presetVal = document.getElementById('tmMinutesPreset').value;
+      if (presetVal === 'custom') {
+        const parsed = parseInt(document.getElementById('tmCustomMinutes').value, 10);
+        return isNaN(parsed) ? 0 : Math.max(0, parsed);
+      }
+      return Math.max(0, parseInt(presetVal, 10) || 0);
+    }
+
+    function openTaskModal(defaultType = 'habit', editId = null) {
+      editingTaskId = editId || null;
+      const headerEl = document.getElementById('taskModalHeader');
+      const delBtn = document.getElementById('tmDeleteBtn');
+      const saveBtn = document.getElementById('tmSaveBtn');
+
+      if (editingTaskId) {
+        const task = appState.tasks.find(t => t.id === editingTaskId);
+        if (!task) {
+          editingTaskId = null;
+          return;
+        }
+        headerEl.textContent = '✏️ Редактировать задание';
+        saveBtn.textContent = 'Сохранить изменения';
+        delBtn.classList.remove('hidden');
+
+        document.getElementById('tmTitle').value = task.title || '';
+        document.getElementById('tmType').value = task.type || 'habit';
+        document.getElementById('tmCategory').value = task.category || 'work';
+        document.getElementById('tmDifficulty').value = task.difficulty || 'medium';
+        document.getElementById('tmHabitDir').value = task.habitDir || 'both';
+        document.getElementById('tmDailySchedule').value = task.schedule || 'everyday';
+        document.getElementById('tmNote').value = task.note || '';
+        setModalMinutesFields(getTaskMinutes(task));
+
+        onTaskModalTypeChange(true);
+        populateOrderPositionSelect(task.type, task.id);
+      } else {
+        headerEl.textContent = '➕ Новое задание';
+        saveBtn.textContent = 'Создать задание';
+        delBtn.classList.add('hidden');
+
+        document.getElementById('tmTitle').value = '';
+        document.getElementById('tmType').value = defaultType;
+        document.getElementById('tmCategory').value = 'work';
+        document.getElementById('tmDifficulty').value = 'medium';
+        document.getElementById('tmHabitDir').value = 'both';
+        document.getElementById('tmDailySchedule').value = 'everyday';
+        document.getElementById('tmNote').value = '';
+        // Default time: 0 min (fact only) for todos, 60 min for work habits/dailies
+        setModalMinutesFields(defaultType === 'todo' ? 0 : 60);
+
+        onTaskModalTypeChange(true);
+        populateOrderPositionSelect(defaultType, null);
+      }
+
       document.getElementById('taskModal').classList.remove('hidden');
     }
 
     function closeTaskModal() {
+      editingTaskId = null;
       document.getElementById('taskModal').classList.add('hidden');
     }
 
-    function onTaskModalTypeChange() {
+    function onTaskModalTypeChange(skipOrderReset = false) {
       const t = document.getElementById('tmType').value;
       document.getElementById('tmHabitOptions').classList.toggle('hidden', t !== 'habit');
       document.getElementById('tmDailyOptions').classList.toggle('hidden', t !== 'daily');
+      if (!skipOrderReset) {
+        populateOrderPositionSelect(t, editingTaskId);
+      }
     }
 
     function saveTaskFromModal() {
@@ -2202,28 +2743,50 @@
       const type = document.getElementById('tmType').value;
       const category = document.getElementById('tmCategory').value;
       const difficulty = document.getElementById('tmDifficulty').value;
+      const minutes = getModalMinutesValue();
       const note = (document.getElementById('tmNote').value || '').trim();
       const habitDir = document.getElementById('tmHabitDir').value;
       const schedule = document.getElementById('tmDailySchedule').value;
+      const desiredPos = parseInt(document.getElementById('tmOrderPos').value, 10) || 1;
 
-      appState.tasks.push({
-        id: 't_' + Date.now(),
-        type,
-        title,
-        category,
-        difficulty,
-        habitDir: type === 'habit' ? habitDir : 'pos',
-        schedule: type === 'daily' ? schedule : 'everyday',
-        note,
-        posCount: 0,
-        negCount: 0,
-        completedDates: []
-      });
+      if (editingTaskId) {
+        const task = appState.tasks.find(t => t.id === editingTaskId);
+        if (task) {
+          task.title = title;
+          task.type = type;
+          task.category = category;
+          task.difficulty = difficulty;
+          task.minutes = minutes;
+          task.habitDir = type === 'habit' ? habitDir : 'pos';
+          task.schedule = type === 'daily' ? schedule : 'everyday';
+          task.note = note;
+          moveTaskToColumnPosition(task.id, desiredPos);
+          showToast(`Обновлено: ${title}`);
+        }
+      } else {
+        const newId = 't_' + Date.now();
+        appState.tasks.push({
+          id: newId,
+          type,
+          title,
+          category,
+          difficulty,
+          minutes,
+          habitDir: type === 'habit' ? habitDir : 'pos',
+          schedule: type === 'daily' ? schedule : 'everyday',
+          note,
+          posCount: 0,
+          negCount: 0,
+          completedDates: [],
+          completedDate: null
+        });
+        moveTaskToColumnPosition(newId, desiredPos);
+        showToast(`Добавлено: ${title}`);
+      }
 
       closeTaskModal();
       saveState();
       renderAll();
-      showToast(`Добавлено: ${title}`);
     }
 
     // =========================================================================
@@ -2272,7 +2835,7 @@
       appState.timer.remainingSec = mins * 60;
 
       const diffId = mins >= 60 ? 'medium' : mins >= 30 ? 'easy' : 'trivial';
-      const { gainedXp, gainedTflops } = awardRpgProgress('habit', diffId, 'work');
+      const { gainedXp, gainedTflops } = awardRpgProgress('habit', diffId, 'work', mins);
       appState.events.push({
         id: 'ev_' + Date.now(),
         date: appState.activeDate,
@@ -2393,7 +2956,6 @@
       const req = Math.max(1, Number(streakRule.requiredCount) || 1);
 
       if (streakRule.period === 'day') {
-        // Count consecutive days backwards from activeDate
         let streakCount = 0;
         let todayProgress = 0;
 
@@ -2405,7 +2967,6 @@
           if (countOnDay >= req) {
             streakCount++;
           } else if (d === 0) {
-            // If today is not yet completed, check if yesterday keeps the streak alive
             continue;
           } else if (appState.weekendBuffer && isWeekendIso(iso)) {
             continue;
@@ -2438,7 +2999,6 @@
         return { streakCount, currentProgress: currentWeekProgress, required: req, unitLabel: 'нед. подряд', periodName: 'За 7 дней' };
       }
 
-      // 'month' (30-day blocks)
       let streakCount = 0;
       let currentMonthProgress = 0;
       for (let m = 0; m < 12; m++) {
@@ -2466,7 +3026,7 @@
 
       const sel = document.getElementById('smTargetSource');
       let opts = `
-        <option value="diff:medium_hard">🖥 Любые серверы 60м+ (Medium / Hard)</option>
+        <option value="diff:medium_hard">🖥 Любые серверы (Medium / Hard)</option>
         <option value="cat:all">⚡ Любые выполненные задачи (Все категории)</option>
         <option value="cat:work">⚡ Категория #Работа</option>
         <option value="cat:code">💻 Категория #Код</option>
@@ -2556,13 +3116,16 @@
     function clearAllHistoryKeepTasks() {
       appState.events = [];
       if (appState.collection) {
-        appState.collection.megaprojectProgress = { mp_qcore: 0, mp_agi: 0, mp_subsea: 0, mp_orbital: 0, mp_dyson: 0 };
-        appState.collection.activeMegaprojectId = 'mp_qcore';
+        appState.collection.megaprojectProgress = {};
+        MEGAPROJECTS_CATALOG.forEach(m => { appState.collection.megaprojectProgress[m.id] = 0; });
+        appState.collection.activeMegaprojectId = MEGAPROJECTS_CATALOG[0].id;
+        appState.collection.claimedMegaprojects = [];
       }
       appState.tasks.forEach(t => {
         t.posCount = 0;
         t.negCount = 0;
         t.completedDates = [];
+        t.completedDate = null;
       });
       appState.rpg = { level: 1, xp: 0, hp: 100, tflops: 0, sp: 0, upgrades: {} };
       saveState();
@@ -2575,7 +3138,18 @@
       appState.tasks = [];
       appState.customStreaks = [];
       appState.rpg = { level: 1, xp: 0, hp: 100, tflops: 0, sp: 0, upgrades: {} };
-      appState.collection = { energyCores: 0, equippedFamiliarId: 'fam_rust', familiars: {}, relics: {}, bonusMegaprojectMinutes: 0, claimedMegaprojects: [] };
+      const emptyMp = {};
+      MEGAPROJECTS_CATALOG.forEach(m => { emptyMp[m.id] = 0; });
+      appState.collection = {
+        energyCores: 0,
+        equippedFamiliarId: 'fam_rust',
+        familiars: {},
+        relics: {},
+        activeMegaprojectId: MEGAPROJECTS_CATALOG[0].id,
+        megaprojectProgress: emptyMp,
+        bonusMegaprojectMinutes: 0,
+        claimedMegaprojects: []
+      };
       saveState();
       renderAll();
       showToast('Полный сброс выполнен: чистый лист!');
@@ -2621,10 +3195,11 @@
       try {
         const parsed = JSON.parse(document.getElementById('settingsJsonArea').value);
         if (parsed && Array.isArray(parsed.tasks) && Array.isArray(parsed.events)) {
-          appState.tasks = parsed.tasks;
+          appState.tasks = normalizeLoadedTasks(parsed.tasks);
           appState.events = parsed.events;
           if (Array.isArray(parsed.customStreaks)) appState.customStreaks = parsed.customStreaks;
           if (parsed.rpg) appState.rpg = parsed.rpg;
+          if (parsed.collection) appState.collection = parsed.collection;
           if (parsed.activeDate) appState.activeDate = parsed.activeDate;
           saveState();
           renderAll();
@@ -2682,25 +3257,20 @@
       document.getElementById('rpgLevelNum').textContent = appState.rpg.level;
       document.getElementById('rpgRankTitle').textContent = getRankNameForLevel(appState.rpg.level);
 
-      // Date displays
       document.getElementById('activeDatePicker').value = appState.activeDate;
       document.getElementById('activeDateRuLabel').textContent =
         `${isoToRuDate(appState.activeDate)} (${getDayOfWeekShortRu(appState.activeDate)})`;
 
-      // SLA HP Bar
       const hp = Math.min(bonuses.maxHp, appState.rpg.hp);
       document.getElementById('rpgHpText').textContent = `${hp} / ${bonuses.maxHp}`;
       document.getElementById('rpgHpBar').style.width = `${Math.round((hp / bonuses.maxHp) * 100)}%`;
 
-      // XP Bar
       document.getElementById('rpgXpText').textContent = `${appState.rpg.xp} / ${xpNeed} XP`;
       document.getElementById('rpgXpBar').style.width = `${Math.min(100, Math.round((appState.rpg.xp / xpNeed) * 100))}%`;
 
-      // Currencies
       document.getElementById('rpgTflopsText').textContent = `⚡ ${appState.rpg.tflops} TFLOPS`;
       document.getElementById('rpgSpText').textContent = `🧬 ${appState.rpg.sp || 0} SP`;
 
-      // Thermal Status
       const todayEv = appState.events.filter(e => e.date === appState.activeDate && e.direction === 'pos');
       const computeCount = todayEv.filter(e => e.category !== 'cooling').length;
       const coolCount = todayEv.filter(e => e.category === 'cooling').length;
@@ -2719,6 +3289,23 @@
       }
     }
 
+    function renderTaskActionsBlock(task, idxInCol, totalInCol) {
+      return `
+        <div class="task-actions">
+          <div class="task-actions-row">
+            <span class="drag-handle mono" title="Перетащи мышкой или используй кнопки ↑↓ (#${idxInCol + 1})">⠿</span>
+            <button type="button" onclick="openTaskModal('${task.type}', '${task.id}')" class="icon-action-btn" title="Редактировать задание">✎</button>
+            <button type="button" onclick="deleteTask('${task.id}')" class="icon-action-btn del" title="Удалить">✕</button>
+          </div>
+          <div class="task-actions-row">
+            <span class="mono" style="font-size: 10px; color: var(--muted); margin-right: 2px;">#${idxInCol + 1}</span>
+            ${idxInCol > 0 ? `<button type="button" onclick="nudgeTaskOrder('${task.id}', -1)" class="icon-action-btn" title="Поднять выше">↑</button>` : ''}
+            ${idxInCol < totalInCol - 1 ? `<button type="button" onclick="nudgeTaskOrder('${task.id}', 1)" class="icon-action-btn" title="Опустить ниже">↓</button>` : ''}
+          </div>
+        </div>
+      `;
+    }
+
     function renderTasksBoard() {
       const catFilter = appState.boardCatFilter;
       const activeDate = appState.activeDate;
@@ -2727,24 +3314,31 @@
       const filtered = appState.tasks.filter(t => catFilter === 'all' || t.category === catFilter);
       const habits = filtered.filter(t => t.type === 'habit');
       const dailies = filtered.filter(t => t.type === 'daily');
-      const todos = filtered.filter(t => t.type === 'todo');
+      // Backlog To-Dos: show uncompleted tasks + tasks completed specifically on activeDate
+      const todos = filtered.filter(t => t.type === 'todo' && isTodoVisibleOnDate(t, activeDate));
 
       document.getElementById('countHabitsBadge').textContent = habits.length;
       document.getElementById('countDailiesBadge').textContent = dailies.length;
       document.getElementById('countTodosBadge').textContent = todos.length;
 
-      // Render Habits
+      // 1. Render Habits
       const habBox = document.getElementById('habitsListContainer');
       if (habits.length === 0) {
         habBox.innerHTML = `<div style="font-size: 12px; color: var(--muted); padding: 14px; text-align: center;">Нет привычек. Нажми «+ Привычка» сверху.</div>`;
       } else {
-        habBox.innerHTML = habits.map(h => {
+        habBox.innerHTML = habits.map((h, idx) => {
           const cat = CATEGORIES[h.category] || CATEGORIES.work;
           const diff = DIFFICULTIES[h.difficulty] || DIFFICULTIES.medium;
+          const mins = getTaskMinutes(h);
           const todayCount = appState.events.filter(e => e.date === activeDate && e.taskId === h.id && e.direction === 'pos').length;
 
           return `
-            <div class="task-item">
+            <div class="task-item" draggable="true"
+              ondragstart="onTaskDragStart(event, '${h.id}')"
+              ondragend="onTaskDragEnd(event)"
+              ondragover="onTaskDragOver(event)"
+              ondragleave="onTaskDragLeave(event)"
+              ondrop="onTaskDrop(event, '${h.id}')">
               <div class="habit-btns">
                 ${(h.habitDir === 'both' || h.habitDir === 'pos') ? `<button type="button" onclick="triggerHabit('${h.id}', 'pos')" class="habit-btn plus" title="Выполнить (+XP, +TFLOPS)">+</button>` : ''}
                 ${(h.habitDir === 'both' || h.habitDir === 'neg') ? `<button type="button" onclick="triggerHabit('${h.id}', 'neg')" class="habit-btn minus" title="Срыв (-SLA HP)">−</button>` : ''}
@@ -2754,77 +3348,101 @@
                 ${h.note ? `<div style="font-size: 11px; color: var(--muted); margin-top: 2px;">${h.note}</div>` : ''}
                 <div class="task-meta">
                   <span class="badge ${h.category === 'cooling' ? 'badge-cyan' : 'badge-green'} mono">${cat.icon} ${cat.tag}</span>
-                  <span class="badge mono">${diff.label}</span>
+                  <span class="badge mono">${diff.shortLabel}</span>
+                  <span class="badge mono">${formatTaskTimeBadge(mins)}</span>
                   <span class="badge mono" title="Выполнено за выбранный день">За день: ${todayCount}</span>
                 </div>
               </div>
-              <div class="task-actions">
-                <button type="button" onclick="deleteTask('${h.id}')" style="font-size: 11px; color: var(--muted);" title="Удалить">✕</button>
-              </div>
+              ${renderTaskActionsBlock(h, idx, habits.length)}
             </div>
           `;
         }).join('');
       }
 
-      // Render Dailies
+      // 2. Render Dailies
       const dayBox = document.getElementById('dailiesListContainer');
       if (dailies.length === 0) {
         dayBox.innerHTML = `<div style="font-size: 12px; color: var(--muted); padding: 14px; text-align: center;">Нет ежедневных дел. Нажми «+ Дейлик».</div>`;
       } else {
-        dayBox.innerHTML = dailies.map(d => {
+        dayBox.innerHTML = dailies.map((d, idx) => {
           const cat = CATEGORIES[d.category] || CATEGORIES.work;
           const diff = DIFFICULTIES[d.difficulty] || DIFFICULTIES.medium;
+          const mins = getTaskMinutes(d);
           const isDone = Array.isArray(d.completedDates) && d.completedDates.includes(activeDate);
           const schedLabel = d.schedule === 'weekdays' ? 'Будни' : d.schedule === 'weekends' ? 'Выходные' : 'Каждый день';
 
           return `
-            <div class="task-item ${isDone ? 'done-today' : ''}">
+            <div class="task-item ${isDone ? 'done-today' : ''}" draggable="true"
+              ondragstart="onTaskDragStart(event, '${d.id}')"
+              ondragend="onTaskDragEnd(event)"
+              ondragover="onTaskDragOver(event)"
+              ondragleave="onTaskDragLeave(event)"
+              ondrop="onTaskDrop(event, '${d.id}')">
               <button type="button" onclick="toggleCheckTask('${d.id}')" class="check-btn ${isDone ? 'checked' : ''}">✓</button>
               <div class="task-body">
                 <div class="task-name">${d.title}</div>
                 ${d.note ? `<div style="font-size: 11px; color: var(--muted); margin-top: 2px;">${d.note}</div>` : ''}
                 <div class="task-meta">
                   <span class="badge ${d.category === 'cooling' ? 'badge-cyan' : 'badge-green'} mono">${cat.icon} ${cat.tag}</span>
-                  <span class="badge mono">${diff.label}</span>
+                  <span class="badge mono">${diff.shortLabel}</span>
+                  <span class="badge mono">${formatTaskTimeBadge(mins)}</span>
                   <span class="badge mono">📅 ${schedLabel}</span>
                 </div>
               </div>
-              <div class="task-actions">
-                <button type="button" onclick="deleteTask('${d.id}')" style="font-size: 11px; color: var(--muted);" title="Удалить">✕</button>
-              </div>
+              ${renderTaskActionsBlock(d, idx, dailies.length)}
             </div>
           `;
         }).join('');
       }
 
-      // Render To-Dos
+      // 3. Render To-Dos (Backlog bound to completion date)
       const todoBox = document.getElementById('todosListContainer');
+      const hiddenCompletedCount = appState.tasks.filter(t =>
+        t.type === 'todo' &&
+        (catFilter === 'all' || t.category === catFilter) &&
+        !isTodoVisibleOnDate(t, activeDate)
+      ).length;
+
       if (todos.length === 0) {
-        todoBox.innerHTML = `<div style="font-size: 12px; color: var(--muted); padding: 14px; text-align: center;">Бэклог задач пуст. Нажми «+ Задача».</div>`;
+        todoBox.innerHTML = `
+          <div style="font-size: 12px; color: var(--muted); padding: 14px; text-align: center;">
+            На ${isoToRuDate(activeDate)} активных задач в бэклоге нет. Нажми «+ Задача».
+            ${hiddenCompletedCount > 0 ? `<div style="margin-top: 6px; font-size: 11px; color: var(--green);">✓ Закрыто в другие дни: ${hiddenCompletedCount} шт.</div>` : ''}
+          </div>
+        `;
       } else {
-        todoBox.innerHTML = todos.map(t => {
+        todoBox.innerHTML = todos.map((t, idx) => {
           const cat = CATEGORIES[t.category] || CATEGORIES.work;
           const diff = DIFFICULTIES[t.difficulty] || DIFFICULTIES.medium;
-          const isDone = Array.isArray(t.completedDates) && t.completedDates.includes(activeDate);
+          const mins = getTaskMinutes(t);
+          const doneDate = getTodoCompletionDate(t);
+          const isDone = doneDate === activeDate;
 
           return `
-            <div class="task-item ${isDone ? 'done-today' : ''}">
+            <div class="task-item ${isDone ? 'done-today' : ''}" draggable="true"
+              ondragstart="onTaskDragStart(event, '${t.id}')"
+              ondragend="onTaskDragEnd(event)"
+              ondragover="onTaskDragOver(event)"
+              ondragleave="onTaskDragLeave(event)"
+              ondrop="onTaskDrop(event, '${t.id}')">
               <button type="button" onclick="toggleCheckTask('${t.id}')" class="check-btn ${isDone ? 'checked' : ''}">✓</button>
               <div class="task-body">
                 <div class="task-name">${t.title}</div>
                 ${t.note ? `<div style="font-size: 11px; color: var(--muted); margin-top: 2px;">${t.note}</div>` : ''}
                 <div class="task-meta">
                   <span class="badge ${t.category === 'cooling' ? 'badge-cyan' : 'badge-purple'} mono">${cat.icon} ${cat.tag}</span>
-                  <span class="badge mono">${diff.label}</span>
+                  <span class="badge mono">${diff.shortLabel}</span>
+                  <span class="badge mono">${formatTaskTimeBadge(mins)}</span>
                   <span class="badge badge-amber mono">+${diff.xp} XP / +${diff.tflops} TF</span>
+                  ${isDone ? `<span class="badge badge-green mono">✓ Выполнено ${isoToShortRu(activeDate)}</span>` : ''}
                 </div>
               </div>
-              <div class="task-actions">
-                <button type="button" onclick="deleteTask('${t.id}')" style="font-size: 11px; color: var(--muted);" title="Удалить">✕</button>
-              </div>
+              ${renderTaskActionsBlock(t, idx, todos.length)}
             </div>
           `;
-        }).join('');
+        }).join('') + (hiddenCompletedCount > 0
+          ? `<div style="font-size: 11px; color: var(--muted); text-align: center; padding-top: 4px;">✓ Скрыто задач, выполненных в другие дни: ${hiddenCompletedCount}</div>`
+          : '');
       }
     }
 
@@ -2833,7 +3451,6 @@
       document.getElementById('treeBonusesSummary').textContent =
         `Бонус XP: +${bonuses.xpPct}% • Бонус TFLOPS: +${bonuses.tflopsPct}% • Макс SLA: ${bonuses.maxHp}`;
 
-      // Render 3-Branch Tech Tree
       const treeBox = document.getElementById('techTreeContainer');
       treeBox.innerHTML = TECH_TREE_SPEC.map(branch => `
         <div class="tree-branch">
@@ -2858,8 +3475,8 @@
                   ${isMax
                     ? `<span class="badge badge-green mono">МАКСИМУМ ✓</span>`
                     : `<button type="button" onclick="buyTechUpgrade('${node.id}')" class="btn-small mono" style="border-color: ${canAfford ? 'var(--cyan)' : 'var(--border)'}; color: ${canAfford ? 'var(--cyan)' : 'var(--muted)'};">
-                        Улучшить за ⚡ ${nextCost} TFLOPS
-                      </button>`
+                         Улучшить за ⚡ ${nextCost} TFLOPS
+                       </button>`
                   }
                 </div>
               </div>
@@ -2868,7 +3485,6 @@
         </div>
       `).join('');
 
-      // Render Visual Rack for Active Date
       const activeDate = appState.activeDate;
       document.getElementById('rackDateTitle').textContent = isoToRuDate(activeDate);
       const dayEvents = appState.events.filter(e => e.date === activeDate);
@@ -2876,7 +3492,6 @@
       const servers = dayEvents.filter(e => e.direction === 'pos' && e.category !== 'cooling' && (e.difficulty === 'medium' || e.difficulty === 'hard'));
       const containers = dayEvents.filter(e => e.direction === 'pos' && e.category !== 'cooling' && (e.difficulty === 'easy' || e.difficulty === 'trivial'));
       const coolings = dayEvents.filter(e => e.direction === 'pos' && e.category === 'cooling');
-      const crashes = dayEvents.filter(e => e.direction === 'neg');
 
       document.getElementById('rackDayStatsBadge').textContent =
         `Серверов: ${servers.length} • Контейнеров: ${containers.length} • Охлаждение: ${coolings.length}`;
@@ -2887,9 +3502,9 @@
           За дату <b>${isoToRuDate(activeDate)}</b> в стойке пока пусто. Отметь любую привычку, дейлик или задачу во вкладке «Задачи»!
         </div>`;
       } else {
-        rackBox.innerHTML = dayEvents.slice().reverse().map((ev, idx) => {
+        rackBox.innerHTML = dayEvents.slice().reverse().map(ev => {
           const cat = CATEGORIES[ev.category] || CATEGORIES.work;
-          const diff = DIFFICULTIES[ev.difficulty] || DIFFICULTIES.medium;
+          const evMins = (typeof ev.minutes === 'number') ? ev.minutes : (DIFFICULTIES[ev.difficulty]?.defaultMinutes || 0);
           if (ev.direction === 'neg') {
             return `
               <div class="rack-unit panic">
@@ -2916,7 +3531,7 @@
                 </div>
               </div>
               <span class="mono" style="font-size: 12px; font-weight: 700; color: ${isCool ? 'var(--cyan)' : 'var(--green)'};">
-                ${diff.minutes} мин
+                ${evMins > 0 ? `${evMins} мин` : 'По факту ✓'}
               </span>
             </div>
           `;
@@ -2928,7 +3543,6 @@
     // 13. RENDER CUSTOM STREAKS & NOISE-FREE ACTIVITY HEATMAP (WEEK/MONTH/YEAR)
     // =========================================================================
     function renderAnalyticsTab() {
-      // 1. Render Custom Streaks
       const streaksBox = document.getElementById('customStreaksGrid');
       if (appState.customStreaks.length === 0) {
         streaksBox.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 18px; color: var(--muted); font-size: 13px;">
@@ -2961,7 +3575,6 @@
         }).join('');
       }
 
-      // 2. Render Activity Heatmap strictly from real appState.events
       const period = appState.heatmapPeriod;
       const catFilter = appState.heatmapCat;
       const isCoolMap = catFilter === 'cooling';
@@ -2977,22 +3590,26 @@
           if (catFilter === 'all') return true;
           return e.category === catFilter;
         });
-        const totalMinutes = list.reduce((acc, item) => acc + (item.minutes || 30), 0);
+        const totalMinutes = list.reduce((acc, item) => {
+          const m = typeof item.minutes === 'number' ? item.minutes : 30;
+          return acc + m;
+        }, 0);
         return { count: list.length, minutes: totalMinutes, list };
       }
 
       function getCellColor(count, minutes) {
-        // Strictly pitch black #070A0E when count === 0!
         if (count <= 0) return '#070A0E';
+        // Effective intensity accounts for both timed tasks and fact-only tasks (0 min)
+        const intensity = Math.max(minutes, count * 30);
         if (isCoolMap) {
-          if (minutes <= 30) return '#0C4A6E';
-          if (minutes <= 60) return '#0369A1';
-          if (minutes <= 90) return '#0284C7';
+          if (intensity <= 30) return '#0C4A6E';
+          if (intensity <= 60) return '#0369A1';
+          if (intensity <= 90) return '#0284C7';
           return '#38BDF8';
         }
-        if (minutes <= 30) return '#0E4429';
-        if (minutes <= 60) return '#006D32';
-        if (minutes <= 120) return '#26A641';
+        if (intensity <= 30) return '#0E4429';
+        if (intensity <= 60) return '#006D32';
+        if (intensity <= 120) return '#26A641';
         return '#39D353';
       }
 
@@ -3014,7 +3631,7 @@
               </div>
               <div style="margin-top: 8px;">
                 <div class="mono" style="font-size: 16px; font-weight: 700; color: #fff;">${st.count} зач.</div>
-                <div class="mono" style="font-size: 11px; color: rgba(255,255,255,0.75);">${st.minutes} мин</div>
+                <div class="mono" style="font-size: 11px; color: rgba(255,255,255,0.75);">${st.minutes > 0 ? `${st.minutes} мин` : (st.count > 0 ? 'по факту' : '0 мин')}</div>
               </div>
             </button>
           `;
@@ -3040,7 +3657,6 @@
         html += '</div>';
         viewport.innerHTML = html;
       } else {
-        // 365 days year matrix
         let html = '<div class="heatmap-scroll"><div class="hm-year-grid">';
         for (let i = 364; i >= 0; i--) {
           const iso = shiftIsoDate(baseIso, -i);
@@ -3056,7 +3672,6 @@
         viewport.innerHTML = html;
       }
 
-      // Render Selected Date Inspector & Event History
       const inspectIso = appState.selectedHeatmapDate || baseIso;
       const inspectStats = getDayActivityStats(inspectIso);
       const detailsEl = document.getElementById('heatmapDayDetails');
@@ -3064,7 +3679,9 @@
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
           <span>Выбрана дата: <b class="mono" style="color: #fff;">${isoToRuDate(inspectIso)} (${getDayOfWeekShortRu(inspectIso)})</b></span>
           <span class="mono" style="color: ${inspectStats.count > 0 ? 'var(--green)' : 'var(--muted)'};">
-            ${inspectStats.count > 0 ? `Выполнено задач: ${inspectStats.count} (${inspectStats.minutes} мин фокуса)` : 'Пустой день (0 записей)'}
+            ${inspectStats.count > 0
+              ? `Выполнено задач: ${inspectStats.count}${inspectStats.minutes > 0 ? ` (${inspectStats.minutes} мин фокуса)` : ' (по факту)'}`
+              : 'Пустой день (0 записей)'}
           </span>
         </div>
       `;
@@ -3080,6 +3697,7 @@
       } else {
         histBox.innerHTML = allDayEvents.slice().reverse().map(ev => {
           const cat = CATEGORIES[ev.category] || CATEGORIES.work;
+          const evMins = typeof ev.minutes === 'number' ? ev.minutes : 0;
           return `
             <div style="background: var(--bg); border: 1px solid var(--border-subtle); border-radius: 9px; padding: 10px 12px; display: flex; justify-content: space-between; align-items: center; gap: 8px;">
               <div>
@@ -3088,7 +3706,7 @@
                 </strong>
                 <span class="badge mono" style="margin-left: 6px;">${cat.tag}</span>
                 <div style="font-size: 11px; color: var(--muted); margin-top: 2px;">
-                  Время: ${ev.time || '—'} • ${ev.direction === 'neg' ? 'Штраф SLA' : `+${ev.xp} XP, +${ev.tflops} TFLOPS`}
+                  Время: ${ev.time || '—'} • ${evMins > 0 ? `${evMins} мин • ` : 'По факту • '}${ev.direction === 'neg' ? 'Штраф SLA' : `+${ev.xp} XP, +${ev.tflops} TFLOPS`}
                 </div>
               </div>
               <button type="button" onclick="deleteEventById('${ev.id}')" class="btn-small" style="color: var(--red);">Удалить</button>
@@ -3117,7 +3735,9 @@
       document.getElementById('settingsJsonArea').value = JSON.stringify({
         activeDate: appState.activeDate,
         weekendBuffer: appState.weekendBuffer,
+        soundEnabled: appState.soundEnabled,
         rpg: appState.rpg,
+        collection: appState.collection,
         tasks: appState.tasks,
         customStreaks: appState.customStreaks,
         events: appState.events
@@ -3125,43 +3745,289 @@
     }
 
     // =========================================================================
-    // 14. COLLECTION SYSTEM: CYBER-FAMILIARS, HARDWARE RELICS & MEGAPROJECTS
+    // 14. COLLECTION SYSTEM & EXPANDED DATA CENTER CAMPUS MAP (FOREST STYLE)
     // =========================================================================
     const FAMILIARS_CATALOG = [
-      { id: 'fam_rust',    icon: '🦀', evoIcon: '🦞', name: 'Ferris Rust-Bot',     evoName: 'Ferris Borrow-Titan Mk.II', rarity: 'Обычный',    bonusText: '+5% к TFLOPS',       bonusType: 'tflops', bonusVal: 5 },
-      { id: 'fam_tux',     icon: '🐧', evoIcon: '🛡️', name: 'Tux Kernel-Guard',    evoName: 'Arch-Linux Sentinel Mk.II', rarity: 'Обычный',    bonusText: '+10 к макс. SLA HP', bonusType: 'hp',     bonusVal: 10 },
-      { id: 'fam_docker',  icon: '🐳', evoIcon: '🌊', name: 'Moby Container-Whale',evoName: 'K8s Leviathan Mk.II',       rarity: 'Редкий',     bonusText: '+8% к опыту XP',     bonusType: 'xp',     bonusVal: 8 },
-      { id: 'fam_fox',     icon: '🦊', evoIcon: '🔥', name: 'Cyber-Fox NetRunner', evoName: 'Blaze-Packet Kitsune Mk.II',rarity: 'Редкий',     bonusText: '+8% к TFLOPS',       bonusType: 'tflops', bonusVal: 8 },
-      { id: 'fam_octo',    icon: '🐙', evoIcon: '🌌', name: 'Git-Octocat Merger',  evoName: 'Master-Branch Kraken Mk.II',rarity: 'Редкий',     bonusText: '+10% к опыту XP',    bonusType: 'xp',     bonusVal: 10 },
-      { id: 'fam_python',  icon: '🐍', evoIcon: '🐉', name: 'Tensor-Boa AI',       evoName: 'PyTorch Hydra Mk.II',       rarity: 'Эпический',  bonusText: '+12% к TFLOPS',      bonusType: 'tflops', bonusVal: 12 },
-      { id: 'fam_falcon',  icon: '🦅', evoIcon: '⚡', name: 'Zero-Day Interceptor',evoName: 'Stealth Cyber-Hawk Mk.II',  rarity: 'Эпический',  bonusText: '+12% к опыту XP',    bonusType: 'xp',     bonusVal: 12 },
-      { id: 'fam_phoenix', icon: '❄️', evoIcon: '💎', name: 'Cryo-Chiller Bird',   evoName: 'SubZero LN2 Phoenix Mk.II', rarity: 'Эпический',  bonusText: '+20 к макс. SLA HP', bonusType: 'hp',     bonusVal: 20 },
-      { id: 'fam_dragon',  icon: '🐲', evoIcon: '👑', name: 'Qubit-Wyrm 512Q',     evoName: 'Quantum Overlord Dragon',   rarity: 'Легендарный',bonusText: '+18% XP и TFLOPS',   bonusType: 'both',   bonusVal: 18 },
-      { id: 'fam_agi',     icon: '👁️', evoIcon: '✨', name: 'AGI-Core Singularity',evoName: 'Omniscient Mainframe Prime',rarity: 'Мифический', bonusText: '+25% XP и TFLOPS',   bonusType: 'both',   bonusVal: 25 }
+      { id: 'fam_rust',    icon: '🦀', evoIcon: '🦞', name: 'Ferris Rust-Bot',      evoName: 'Ferris Borrow-Titan Mk.II', rarity: 'Обычный',     bonusText: '+5% к TFLOPS',        bonusType: 'tflops', bonusVal: 5 },
+      { id: 'fam_tux',     icon: '🐧', evoIcon: '🛡️', name: 'Tux Kernel-Guard',     evoName: 'Arch-Linux Sentinel Mk.II', rarity: 'Обычный',     bonusText: '+10 к макс. SLA HP',  bonusType: 'hp',     bonusVal: 10 },
+      { id: 'fam_docker',  icon: '🐳', evoIcon: '🌊', name: 'Moby Container-Whale', evoName: 'K8s Leviathan Mk.II',       rarity: 'Редкий',      bonusText: '+8% к опыту XP',      bonusType: 'xp',     bonusVal: 8 },
+      { id: 'fam_fox',     icon: '🦊', evoIcon: '🔥', name: 'Cyber-Fox NetRunner',  evoName: 'Blaze-Packet Kitsune Mk.II',rarity: 'Редкий',      bonusText: '+8% к TFLOPS',        bonusType: 'tflops', bonusVal: 8 },
+      { id: 'fam_octo',    icon: '🐙', evoIcon: '🌌', name: 'Git-Octocat Merger',   evoName: 'Master-Branch Kraken Mk.II',rarity: 'Редкий',      bonusText: '+10% к опыту XP',     bonusType: 'xp',     bonusVal: 10 },
+      { id: 'fam_python',  icon: '🐍', evoIcon: '🐉', name: 'Tensor-Boa AI',        evoName: 'PyTorch Hydra Mk.II',       rarity: 'Эпический',   bonusText: '+12% к TFLOPS',       bonusType: 'tflops', bonusVal: 12 },
+      { id: 'fam_falcon',  icon: '🦅', evoIcon: '⚡', name: 'Zero-Day Interceptor', evoName: 'Stealth Cyber-Hawk Mk.II',  rarity: 'Эпический',   bonusText: '+12% к опыту XP',     bonusType: 'xp',     bonusVal: 12 },
+      { id: 'fam_phoenix', icon: '❄️', evoIcon: '💎', name: 'Cryo-Chiller Bird',    evoName: 'SubZero LN2 Phoenix Mk.II', rarity: 'Эпический',   bonusText: '+20 к макс. SLA HP',  bonusType: 'hp',     bonusVal: 20 },
+      { id: 'fam_dragon',  icon: '🐲', evoIcon: '👑', name: 'Qubit-Wyrm 512Q',      evoName: 'Quantum Overlord Dragon',   rarity: 'Легендарный', bonusText: '+18% XP и TFLOPS',    bonusType: 'both',   bonusVal: 18 },
+      { id: 'fam_agi',     icon: '👁️', evoIcon: '✨', name: 'AGI-Core Singularity', evoName: 'Omniscient Mainframe Prime',rarity: 'Мифический',  bonusText: '+25% XP и TFLOPS',    bonusType: 'both',   bonusVal: 25 }
     ];
 
     const RELICS_CATALOG = [
-      { id: 'rel_punch',   icon: '🎫', name: 'Перфокарта IBM (1964)',       rarity: 'Обычный',     desc: '80 колонок чистого фортрана без единого синтаксического бага' },
-      { id: 'rel_floppy',  icon: '💾', name: 'Дискета 3.5" с DOOM.WAD',     rarity: 'Обычный',     desc: '1.44 МБ легендарного кода Джона Кармака' },
-      { id: 'rel_cherry',  icon: '⌨️', name: 'Свитч Cherry MX Blue',        rarity: 'Обычный',     desc: 'Тактильный клик, пробуждающий весь дата-центр' },
-      { id: 'rel_duck',    icon: '🦆', name: 'Золотая Уточка Отладки',      rarity: 'Редкий',      desc: 'Находит баг в твоем коде, пока ты просто объясняешь ей задачу' },
-      { id: 'rel_vt100',   icon: '🖥️', name: 'ЭЛТ-Терминал DEC VT100',      rarity: 'Редкий',      desc: 'Зеленый люминофор с идеальным моноширинным шрифтом' },
-      { id: 'rel_i4004',   icon: '🔲', name: 'Процессор Intel 4004 в золоте',rarity: 'Редкий',     desc: 'Первый в мире коммерческий 4-битный микропроцессор (2300 транзисторов)' },
-      { id: 'rel_apollo',  icon: '🚀', name: 'Память на ферритовых кольцах',rarity: 'Эпический',   desc: 'Модуль ПЗУ бортового компьютера «Аполлон-11», сплетенный вручную' },
-      { id: 'rel_wafer',   icon: '💿', name: 'Кремниевая пластина 2nm',     rarity: 'Эпический',   desc: 'Зеркальный диск экстремальной фотолитографии EUV' },
-      { id: 'rel_google99',icon: '🖧', name: 'Первый серверный блейд 1999', rarity: 'Эпический',   desc: 'Собранный на пробковой подложке узел раннего поискового кластера' },
-      { id: 'rel_majorana',icon: '⚛️', name: 'Топологический чип Majorana', rarity: 'Легендарный', desc: 'Криогенный квантовый процессор, устойчивый к декогеренции' },
-      { id: 'rel_satoshi', icon: '🗝️', name: 'Приватный Ключ Генезис-Блока',rarity: 'Легендарный', desc: 'Криптографический артефакт нулевого блока децентрализованной сети' },
-      { id: 'rel_epoch',   icon: '⏳', name: 'Монолит UNIX Epoch (1970)',    rarity: 'Мифический',  desc: 'Хранит нулевую секунду компьютерного времени: 00:00:00 UTC' }
+      { id: 'rel_punch',    icon: '🎫', name: 'Перфокарта IBM (1964)',         rarity: 'Обычный',     desc: '80 колонок чистого фортрана без единого синтаксического бага' },
+      { id: 'rel_floppy',   icon: '💾', name: 'Дискета 3.5" с DOOM.WAD',       rarity: 'Обычный',     desc: '1.44 МБ легендарного кода Джона Кармака' },
+      { id: 'rel_cherry',   icon: '⌨️', name: 'Свитч Cherry MX Blue',          rarity: 'Обычный',     desc: 'Тактильный клик, пробуждающий весь дата-центр' },
+      { id: 'rel_duck',     icon: '🦆', name: 'Золотая Уточка Отладки',        rarity: 'Редкий',      desc: 'Находит баг в твоем коде, пока ты просто объясняешь ей задачу' },
+      { id: 'rel_vt100',    icon: '🖥️', name: 'ЭЛТ-Терминал DEC VT100',        rarity: 'Редкий',      desc: 'Зеленый люминофор с идеальным моноширинным шрифтом' },
+      { id: 'rel_i4004',    icon: '🔲', name: 'Процессор Intel 4004 в золоте', rarity: 'Редкий',      desc: 'Первый в мире коммерческий 4-битный микропроцессор (2300 транзисторов)' },
+      { id: 'rel_apollo',   icon: '🚀', name: 'Память на ферритовых кольцах',  rarity: 'Эпический',   desc: 'Модуль ПЗУ бортового компьютера «Аполлон-11», сплетенный вручную' },
+      { id: 'rel_wafer',    icon: '💿', name: 'Кремниевая пластина 2nm',       rarity: 'Эпический',   desc: 'Зеркальный диск экстремальной фотолитографии EUV' },
+      { id: 'rel_google99', icon: '🖧', name: 'Первый серверный блейд 1999',   rarity: 'Эпический',   desc: 'Собранный на пробковой подложке узел раннего поискового кластера' },
+      { id: 'rel_majorana', icon: '⚛️', name: 'Топологический чип Majorana',   rarity: 'Легендарный', desc: 'Криогенный квантовый процессор, устойчивый к декогеренции' },
+      { id: 'rel_satoshi',  icon: '🗝️', name: 'Приватный Ключ Генезис-Блока',  rarity: 'Легендарный', desc: 'Криптографический артефакт нулевого блока децентрализованной сети' },
+      { id: 'rel_epoch',    icon: '⏳', name: 'Монолит UNIX Epoch (1970)',     rarity: 'Мифический',  desc: 'Хранит нулевую секунду компьютерного времени: 00:00:00 UTC' }
     ];
 
+    // Expanded 12-building Data Center Campus Catalog (Preserves all 5 original IDs: mp_qcore, mp_agi, mp_subsea, mp_orbital, mp_dyson)
     const MEGAPROJECTS_CATALOG = [
-      { id: 'mp_qcore',   icon: '⚛️', title: 'Этап I: Сборка Квантового Суперкомпьютера Q-Core', targetMinutes: 600,  rewardTflops: 60,  rewardCores: 3, desc: 'Суммарно закрыть 600 минут задач (10 часов глубокого фокуса)' },
-      { id: 'mp_agi',     icon: '🧠', title: 'Этап II: Обучение локальной нейросети AGI-70B',    targetMinutes: 1500, rewardTflops: 120, rewardCores: 5, desc: 'Набрать 1500 минут работы кластера (25 часов суммарного фокуса)' },
-      { id: 'mp_subsea',  icon: '🌊', title: 'Этап III: Подводный Крио-ЦОД на дне океана',       targetMinutes: 3000, rewardTflops: 250, rewardCores: 8, desc: 'Набрать 3000 минут (50 часов) — идеальное естественное охлаждение' },
-      { id: 'mp_orbital', icon: '🛰️', title: 'Этап IV: Орбитальная группировка серверов',       targetMinutes: 6000, rewardTflops: 500, rewardCores: 15,desc: 'Набрать 6000 минут (100 часов фокуса) — выход в открытый космос' },
-      { id: 'mp_dyson',   icon: '☀️', title: 'Этап V: Вычислительная Сфера Дайсона',             targetMinutes: 12000,rewardTflops: 1000,rewardCores: 30,desc: 'Финальная цель гринда: 12 000 минут (200 часов чистого созидания)' }
+      // ZONE 1: Наземный Инфраструктурный Контур (Tier I)
+      {
+        id: 'mp_diesel',
+        zone: 'tier1',
+        icon: '⚡',
+        shortName: 'Подстанция ДГУ',
+        title: 'Сектор 1: Дизель-роторная подстанция и ввод ЛЭП',
+        targetMinutes: 300,
+        rewardTflops: 35,
+        rewardCores: 2,
+        powerMw: 15,
+        svgType: 'power',
+        desc: 'Базовый энергоблок бесперебойного питания кампуса (300 ед. / 5 часов)'
+      },
+      {
+        id: 'mp_fiber',
+        zone: 'tier1',
+        icon: '🌐',
+        shortName: 'Оптический шлюз IX',
+        title: 'Сектор 2: Магистральный узел оптики Tier-1 IX',
+        targetMinutes: 450,
+        rewardTflops: 45,
+        rewardCores: 2,
+        powerMw: 10,
+        svgType: 'fiber',
+        desc: 'Трансконтинентальный кросс-коннект 800 Гбит/с (450 ед. / 7.5 часов)'
+      },
+      {
+        id: 'mp_qcore',
+        zone: 'tier1',
+        icon: '⚛️',
+        shortName: 'Квантовый зал Q-Core',
+        title: 'Сектор 3: Квантовый Суперкомпьютер Q-Core',
+        targetMinutes: 600,
+        rewardTflops: 60,
+        rewardCores: 3,
+        powerMw: 25,
+        svgType: 'qcore',
+        desc: 'Криогенный вычислительный зал сверхпроводящих кубитов (600 ед. / 10 часов)'
+      },
+      {
+        id: 'mp_hydro_tower',
+        zone: 'tier1',
+        icon: '❄️',
+        shortName: 'Градирни Крио-Цикла',
+        title: 'Сектор 4: Башни градирен и станция Free-Cooling',
+        targetMinutes: 900,
+        rewardTflops: 85,
+        rewardCores: 4,
+        powerMw: 20,
+        svgType: 'cooling',
+        desc: 'Замкнутый контур ледяного охлаждения серверных залов (900 ед. / 15 часов)'
+      },
+
+      // ZONE 2: Кластер Гиперскейлера и ИИ (Tier II)
+      {
+        id: 'mp_solar',
+        zone: 'tier2',
+        icon: '☀️',
+        shortName: 'Станция Megapack',
+        title: 'Сектор 5: Солнечное поле и батареи Megapack',
+        targetMinutes: 1200,
+        rewardTflops: 100,
+        rewardCores: 4,
+        powerMw: 45,
+        svgType: 'solar',
+        desc: 'Автономная зелёная генерация для питания стоек (1200 ед. / 20 часов)'
+      },
+      {
+        id: 'mp_agi',
+        zone: 'tier2',
+        icon: '🧠',
+        shortName: 'Нейро-корпус AGI-70B',
+        title: 'Сектор 6: Нейросетевой корпус кластера AGI-70B',
+        targetMinutes: 1500,
+        rewardTflops: 120,
+        rewardCores: 5,
+        powerMw: 60,
+        svgType: 'agi',
+        desc: 'Тензорный павильон глубокого обучения ИИ (1500 ед. / 25 часов)'
+      },
+      {
+        id: 'mp_radar',
+        zone: 'tier2',
+        icon: '📡',
+        shortName: 'Купол Кибер-ПВО SOC',
+        title: 'Сектор 7: Купол Кибер-ПВО и башня SOC-мониторинга',
+        targetMinutes: 2100,
+        rewardTflops: 180,
+        rewardCores: 6,
+        powerMw: 35,
+        svgType: 'radar',
+        desc: 'Активный щит от DDoS-атак и спутниковый телепорт (2100 ед. / 35 часов)'
+      },
+      {
+        id: 'mp_subsea',
+        zone: 'tier2',
+        icon: '🌊',
+        shortName: 'Подводный риф-ЦОД',
+        title: 'Сектор 8: Подводный Крио-ЦОД на дне океана',
+        targetMinutes: 3000,
+        rewardTflops: 250,
+        rewardCores: 8,
+        powerMw: 80,
+        svgType: 'subsea',
+        desc: 'Герметичные серверные капсулы на шельфе с природным охлаждением (3000 ед. / 50 часов)'
+      },
+
+      // ZONE 3: Мегаструктуры и Космический Контур (Tier III)
+      {
+        id: 'mp_nuclear',
+        zone: 'tier3',
+        icon: '☢️',
+        shortName: 'Реактор SMR-Core',
+        title: 'Сектор 9: Малый модульный атомный реактор SMR-Core',
+        targetMinutes: 4500,
+        rewardTflops: 380,
+        rewardCores: 12,
+        powerMw: 250,
+        svgType: 'nuclear',
+        desc: 'Бесконечная чистая энергия для вычислительных залов (4500 ед. / 75 часов)'
+      },
+      {
+        id: 'mp_orbital',
+        zone: 'tier3',
+        icon: '🛰️',
+        shortName: 'Орбитальный кластер',
+        title: 'Сектор 10: Орбитальная группировка серверов',
+        targetMinutes: 6000,
+        rewardTflops: 500,
+        rewardCores: 15,
+        powerMw: 320,
+        svgType: 'orbital',
+        desc: 'Космический лазерный ретранслятор и узлы на орбите (6000 ед. / 100 часов)'
+      },
+      {
+        id: 'mp_lunar',
+        zone: 'tier3',
+        icon: '🌙',
+        shortName: 'Лунный Cold-Бэкап',
+        title: 'Сектор 11: Лунный бункер «Холодный Архив»',
+        targetMinutes: 9000,
+        rewardTflops: 750,
+        rewardCores: 22,
+        powerMw: 450,
+        svgType: 'lunar',
+        desc: 'Вечное крио-хранилище бэкапов в кратере вечной тени (9000 ед. / 150 часов)'
+      },
+      {
+        id: 'mp_dyson',
+        zone: 'tier3',
+        icon: '🌟',
+        shortName: 'Сфера Дайсона',
+        title: 'Сектор 12: Вычислительная Сфера Дайсона',
+        targetMinutes: 12000,
+        rewardTflops: 1000,
+        rewardCores: 30,
+        powerMw: 1000,
+        svgType: 'dyson',
+        desc: 'Финальный мегапроект: звёздный вычислительный матриошка-мозг (12000 ед. / 200 часов)'
+      }
     ];
+
+    function getCampusBuildingSvg(svgType, stateClass) {
+      const strokeCol = stateClass === 'plot-built' ? '#39D353' : stateClass === 'plot-building' ? '#38BDF8' : stateClass === 'plot-partial' ? '#F59E0B' : '#484F58';
+      const accentCol = stateClass === 'plot-built' ? '#38BDF8' : stateClass === 'plot-building' ? '#39D353' : '#30363D';
+      const fillCol = stateClass === 'plot-built' ? 'rgba(57, 211, 83, 0.16)' : stateClass === 'plot-building' ? 'rgba(56, 189, 248, 0.14)' : 'rgba(22, 27, 34, 0.5)';
+      const ledClass = (stateClass === 'plot-built' || stateClass === 'plot-building') ? 'led-blink' : '';
+
+      switch (svgType) {
+        case 'power':
+          return `<svg viewBox="0 0 64 56" width="56" height="50">
+            <rect x="8" y="20" width="48" height="28" rx="4" fill="${fillCol}" stroke="${strokeCol}" stroke-width="2"/>
+            <path d="M18 20 V10 M32 20 V8 M46 20 V10" stroke="${strokeCol}" stroke-width="2" stroke-linecap="round"/>
+            <polygon points="34,24 25,35 32,35 29,44 40,32 33,32" fill="${accentCol}" class="${ledClass}"/>
+          </svg>`;
+        case 'fiber':
+          return `<svg viewBox="0 0 64 56" width="56" height="50">
+            <rect x="10" y="14" width="44" height="32" rx="5" fill="${fillCol}" stroke="${strokeCol}" stroke-width="2"/>
+            <line x1="16" y1="24" x2="48" y2="24" stroke="${accentCol}" stroke-width="2"/>
+            <line x1="16" y1="34" x2="48" y2="34" stroke="${strokeCol}" stroke-width="2"/>
+            <circle cx="22" cy="24" r="3" fill="${strokeCol}" class="${ledClass}"/>
+            <circle cx="34" cy="34" r="3" fill="${accentCol}" class="${ledClass}"/>
+          </svg>`;
+        case 'qcore':
+          return `<svg viewBox="0 0 64 56" width="56" height="50">
+            <rect x="14" y="8" width="36" height="40" rx="6" fill="${fillCol}" stroke="${strokeCol}" stroke-width="2"/>
+            <ellipse cx="32" cy="28" rx="13" ry="6" fill="none" stroke="${accentCol}" stroke-width="1.8" transform="rotate(30 32 28)"/>
+            <ellipse cx="32" cy="28" rx="13" ry="6" fill="none" stroke="${strokeCol}" stroke-width="1.8" transform="rotate(-30 32 28)"/>
+            <circle cx="32" cy="28" r="3.5" fill="${accentCol}" class="${ledClass}"/>
+          </svg>`;
+        case 'cooling':
+          return `<svg viewBox="0 0 64 56" width="56" height="50">
+            <path d="M14 46 L18 18 L28 18 L32 46 Z" fill="${fillCol}" stroke="${strokeCol}" stroke-width="2"/>
+            <path d="M32 46 L36 18 L46 18 L50 46 Z" fill="${fillCol}" stroke="${strokeCol}" stroke-width="2"/>
+            <path d="M20 12 Q23 7 26 12 M38 12 Q41 7 44 12" fill="none" stroke="${accentCol}" stroke-width="2" stroke-linecap="round" class="${ledClass}"/>
+          </svg>`;
+        case 'solar':
+          return `<svg viewBox="0 0 64 56" width="56" height="50">
+            <polygon points="10,40 20,18 54,18 44,40" fill="${fillCol}" stroke="${strokeCol}" stroke-width="2"/>
+            <line x1="27" y1="18" x2="19" y2="40" stroke="${accentCol}" stroke-width="1.5"/>
+            <line x1="39" y1="18" x2="31" y2="40" stroke="${accentCol}" stroke-width="1.5"/>
+            <line x1="15" y1="29" x2="49" y2="29" stroke="${strokeCol}" stroke-width="1.5"/>
+            <circle cx="50" cy="11" r="4" fill="${accentCol}" class="${ledClass}"/>
+          </svg>`;
+        case 'agi':
+          return `<svg viewBox="0 0 64 56" width="56" height="50">
+            <polygon points="32,8 52,19 52,39 32,50 12,39 12,19" fill="${fillCol}" stroke="${strokeCol}" stroke-width="2"/>
+            <circle cx="32" cy="29" r="7" fill="none" stroke="${accentCol}" stroke-width="2"/>
+            <circle cx="32" cy="29" r="3" fill="${strokeCol}" class="${ledClass}"/>
+          </svg>`;
+        case 'radar':
+          return `<svg viewBox="0 0 64 56" width="56" height="50">
+            <path d="M14 44 A18 18 0 0 1 50 44 Z" fill="${fillCol}" stroke="${strokeCol}" stroke-width="2"/>
+            <line x1="32" y1="26" x2="44" y2="12" stroke="${accentCol}" stroke-width="2.2" stroke-linecap="round"/>
+            <circle cx="44" cy="12" r="3" fill="${strokeCol}" class="${ledClass}"/>
+          </svg>`;
+        case 'subsea':
+          return `<svg viewBox="0 0 64 56" width="56" height="50">
+            <path d="M8 14 Q20 9 32 14 T56 14" fill="none" stroke="${accentCol}" stroke-width="2"/>
+            <rect x="12" y="22" width="40" height="22" rx="11" fill="${fillCol}" stroke="${strokeCol}" stroke-width="2"/>
+            <circle cx="23" cy="33" r="3.5" fill="${accentCol}" class="${ledClass}"/>
+            <circle cx="41" cy="33" r="3.5" fill="${strokeCol}" class="${ledClass}"/>
+          </svg>`;
+        case 'nuclear':
+          return `<svg viewBox="0 0 64 56" width="56" height="50">
+            <rect x="14" y="14" width="36" height="34" rx="8" fill="${fillCol}" stroke="${strokeCol}" stroke-width="2"/>
+            <circle cx="32" cy="31" r="9" fill="none" stroke="${accentCol}" stroke-width="2" stroke-dasharray="6 4"/>
+            <circle cx="32" cy="31" r="3.5" fill="${strokeCol}" class="${ledClass}"/>
+          </svg>`;
+        case 'orbital':
+          return `<svg viewBox="0 0 64 56" width="56" height="50">
+            <rect x="25" y="20" width="14" height="16" rx="3" fill="${fillCol}" stroke="${strokeCol}" stroke-width="2"/>
+            <rect x="8" y="22" width="14" height="12" fill="${fillCol}" stroke="${accentCol}" stroke-width="1.8"/>
+            <rect x="42" y="22" width="14" height="12" fill="${fillCol}" stroke="${accentCol}" stroke-width="1.8"/>
+            <circle cx="32" cy="28" r="2.8" fill="${strokeCol}" class="${ledClass}"/>
+          </svg>`;
+        case 'lunar':
+          return `<svg viewBox="0 0 64 56" width="56" height="50">
+            <path d="M10 44 Q32 16 54 44 Z" fill="${fillCol}" stroke="${strokeCol}" stroke-width="2"/>
+            <rect x="24" y="30" width="16" height="14" rx="2" fill="none" stroke="${accentCol}" stroke-width="1.8"/>
+            <circle cx="32" cy="22" r="3" fill="${accentCol}" class="${ledClass}"/>
+          </svg>`;
+        default: // dyson
+          return `<svg viewBox="0 0 64 56" width="56" height="50">
+            <circle cx="32" cy="28" r="18" fill="${fillCol}" stroke="${strokeCol}" stroke-width="2" stroke-dasharray="5 3"/>
+            <ellipse cx="32" cy="28" rx="18" ry="7" fill="none" stroke="${accentCol}" stroke-width="1.8"/>
+            <circle cx="32" cy="28" r="6" fill="${strokeCol}" class="${ledClass}"/>
+          </svg>`;
+      }
+    }
 
     function ensureCollectionState() {
       if (!appState.collection) {
@@ -3178,27 +4044,30 @@
           },
           activeMegaprojectId: 'mp_qcore',
           megaprojectProgress: {
-            mp_qcore: 240,
-            mp_agi: 0,
-            mp_subsea: 0,
-            mp_orbital: 0,
-            mp_dyson: 0
+            mp_diesel: 300,
+            mp_fiber: 450,
+            mp_qcore: 240
           },
           bonusMegaprojectMinutes: 0,
-          claimedMegaprojects: []
+          claimedMegaprojects: ['mp_diesel', 'mp_fiber']
         };
-      }
-      if (!appState.collection.activeMegaprojectId) {
-        appState.collection.activeMegaprojectId = 'mp_qcore';
       }
       if (!appState.collection.megaprojectProgress) {
         appState.collection.megaprojectProgress = {
-          mp_qcore: 240,
-          mp_agi: 0,
-          mp_subsea: 0,
-          mp_orbital: 0,
-          mp_dyson: 0
+          mp_qcore: 240
         };
+      }
+      MEGAPROJECTS_CATALOG.forEach(m => {
+        if (typeof appState.collection.megaprojectProgress[m.id] !== 'number') {
+          appState.collection.megaprojectProgress[m.id] = 0;
+        }
+      });
+      if (!Array.isArray(appState.collection.claimedMegaprojects)) {
+        appState.collection.claimedMegaprojects = [];
+      }
+      if (!appState.collection.activeMegaprojectId || !MEGAPROJECTS_CATALOG.some(m => m.id === appState.collection.activeMegaprojectId)) {
+        const firstUnfinished = MEGAPROJECTS_CATALOG.find(m => (appState.collection.megaprojectProgress[m.id] || 0) < m.targetMinutes);
+        appState.collection.activeMegaprojectId = firstUnfinished ? firstUnfinished.id : MEGAPROJECTS_CATALOG[0].id;
       }
     }
 
@@ -3208,11 +4077,9 @@
       let activeId = c.activeMegaprojectId || 'mp_qcore';
       let mpMeta = MEGAPROJECTS_CATALOG.find(m => m.id === activeId) || MEGAPROJECTS_CATALOG[0];
 
-      // Add minutes only to the currently selected active megaproject
       const curVal = c.megaprojectProgress[activeId] || 0;
       c.megaprojectProgress[activeId] = Math.min(mpMeta.targetMinutes, curVal + mins);
 
-      // If this megaproject just reached 100%, automatically advance active pointer to next unfinished project
       if (c.megaprojectProgress[activeId] >= mpMeta.targetMinutes) {
         const nextUnfinished = MEGAPROJECTS_CATALOG.find(m => (c.megaprojectProgress[m.id] || 0) < m.targetMinutes);
         if (nextUnfinished) {
@@ -3223,34 +4090,45 @@
 
     function selectActiveMegaproject(mpId) {
       ensureCollectionState();
-      appState.collection.activeMegaprojectId = mpId;
       const mp = MEGAPROJECTS_CATALOG.find(m => m.id === mpId);
+      if (!mp) return;
+      const curMins = appState.collection.megaprojectProgress[mpId] || 0;
+      const isCompleted = curMins >= mp.targetMinutes;
+      const isClaimed = appState.collection.claimedMegaprojects.includes(mpId);
+
+      if (isCompleted && !isClaimed) {
+        claimMegaprojectReward(mpId);
+        return;
+      }
+      if (isCompleted) {
+        showToast(`Объект «${mp.shortName}» уже построен и введён в строй!`);
+        return;
+      }
+
+      appState.collection.activeMegaprojectId = mpId;
       playTone('plus');
-      if (mp) showToast(`🎯 Активная стройка переключена на: ${mp.title}`);
+      showToast(`🎯 Активная стройка переключена на: ${mp.title}`);
       saveState();
       renderAll();
     }
 
-    function rollCollectionLootDrop(difficultyId, taskMinutes) {
+    function rollCollectionLootDrop(difficultyId, constructionUnits) {
       ensureCollectionState();
-      addMinutesToActiveMegaproject(taskMinutes || 30);
-      // Drop chance scales with task difficulty
+      addMinutesToActiveMegaproject(constructionUnits || 30);
+
       const chanceMap = { trivial: 0.35, easy: 0.55, medium: 0.80, hard: 1.0 };
       const chance = chanceMap[difficultyId] || 0.65;
       if (Math.random() > chance) return '';
 
       const roll = Math.random();
       if (roll < 0.45) {
-        // Drop Energy Core (for evolving familiars)
         appState.collection.energyCores = (appState.collection.energyCores || 0) + 1;
         return '🔋 Выпало Ядро питания (+1)!';
       } else if (roll < 0.75) {
-        // Drop a Hardware Relic
         const rel = RELICS_CATALOG[Math.floor(Math.random() * RELICS_CATALOG.length)];
         appState.collection.relics[rel.id] = (appState.collection.relics[rel.id] || 0) + 1;
         return `🏛️ Найден артефакт: ${rel.icon} ${rel.name}!`;
       } else {
-        // Unlock a new Cyber-Familiar Blueprint or give Energy Core if already owned
         const lockedFams = FAMILIARS_CATALOG.filter(f => !appState.collection.familiars[f.id] || appState.collection.familiars[f.id].stage === 0);
         if (lockedFams.length > 0) {
           const picked = lockedFams[Math.floor(Math.random() * lockedFams.length)];
@@ -3272,7 +4150,6 @@
       }
       appState.rpg.tflops -= cost;
 
-      // Guaranteed exciting drop: prioritizes unowned familiars or unowned relics
       const lockedFams = FAMILIARS_CATALOG.filter(f => !appState.collection.familiars[f.id] || appState.collection.familiars[f.id].stage === 0);
       const lockedRelics = RELICS_CATALOG.filter(r => !appState.collection.relics[r.id]);
 
@@ -3348,7 +4225,7 @@
       appState.rpg.tflops -= cost;
       addMinutesToActiveMegaproject(120);
       playTone('lvlup');
-      showToast('🚀 Инвестировано 40 TFLOPS: +120 минут в текущий активный Мегапроект!', 'lvl');
+      showToast('🚀 Инвестировано 40 TFLOPS: +120 ед. в текущий активный объект ЦОД!', 'lvl');
       saveState();
       renderAll();
     }
@@ -3363,7 +4240,7 @@
       appState.rpg.tflops += mp.rewardTflops;
       appState.collection.energyCores = (appState.collection.energyCores || 0) + mp.rewardCores;
       playTone('lvlup');
-      showToast(`🏆 Мегапроект завершен! Получено +${mp.rewardTflops} TFLOPS и +${mp.rewardCores} 🔋 Ядер!`, 'lvl');
+      showToast(`🏆 Объект «${mp.shortName}» введён в строй! +${mp.rewardTflops} TFLOPS и +${mp.rewardCores} 🔋 Ядер!`, 'lvl');
       saveState();
       renderAll();
     }
@@ -3372,7 +4249,6 @@
       ensureCollectionState();
       const c = appState.collection;
 
-      // Update Header Equipped Familiar Badge
       const eqBadge = document.getElementById('equippedFamiliarBadge');
       if (eqBadge) {
         const eqMeta = FAMILIARS_CATALOG.find(f => f.id === c.equippedFamiliarId) || FAMILIARS_CATALOG[0];
@@ -3389,7 +4265,68 @@
       document.getElementById('collTotalProgressBadge').textContent =
         `Коллекция: ${ownedFamsCount + ownedRelicsCount} / ${FAMILIARS_CATALOG.length + RELICS_CATALOG.length}`;
 
-      // 1. Render Megaprojects (Only the selected Active Megaproject receives progress; others wait their turn)
+      // 1A. Render Forest-style Data Center Campus Map
+      const builtBuildings = MEGAPROJECTS_CATALOG.filter(mp => (c.megaprojectProgress[mp.id] || 0) >= mp.targetMinutes);
+      const totalPowerMw = builtBuildings.reduce((sum, mp) => sum + (mp.powerMw || 0), 0);
+
+      document.getElementById('campusBuiltSummaryBadge').textContent =
+        `Построено: ${builtBuildings.length} / ${MEGAPROJECTS_CATALOG.length}`;
+      document.getElementById('campusPowerBadge').textContent =
+        `⚡ Мощность кампуса: ${totalPowerMw} МВт`;
+
+      const zonesSpec = [
+        { id: 'tier1', label: '🌱 Контур I: Инфраструктурное Ядро и Охлаждение (Наземный сектор)' },
+        { id: 'tier2', label: '🏢 Контур II: Кластеры Гиперскейлера, ИИ и Шельф' },
+        { id: 'tier3', label: '🌌 Контур III: Атомный и Космический Суперкластер' }
+      ];
+
+      const mapContainer = document.getElementById('dcCampusMapContainer');
+      mapContainer.innerHTML = zonesSpec.map(z => {
+        const zoneItems = MEGAPROJECTS_CATALOG.filter(m => m.zone === z.id);
+        const zoneBuilt = zoneItems.filter(m => (c.megaprojectProgress[m.id] || 0) >= m.targetMinutes).length;
+
+        return `
+          <div class="campus-zone-block">
+            <div class="campus-zone-title">
+              <span>${z.label}</span>
+              <span class="mono" style="color: ${zoneBuilt === zoneItems.length ? 'var(--green)' : 'var(--cyan)'};">${zoneBuilt}/${zoneItems.length} возведено</span>
+            </div>
+            <div class="campus-plots-grid">
+              ${zoneItems.map(mp => {
+                const curMins = Math.min(mp.targetMinutes, (c.megaprojectProgress && c.megaprojectProgress[mp.id]) || 0);
+                const pct = Math.min(100, Math.round((curMins / mp.targetMinutes) * 100));
+                const isCompleted = curMins >= mp.targetMinutes;
+                const isClaimed = (c.claimedMegaprojects || []).includes(mp.id);
+                const isActive = c.activeMegaprojectId === mp.id && !isCompleted;
+
+                const stateClass = isCompleted ? 'plot-built' : isActive ? 'plot-building' : curMins > 0 ? 'plot-partial' : 'plot-empty';
+
+                return `
+                  <div class="campus-plot ${stateClass}" onclick="selectActiveMegaproject('${mp.id}')" title="${mp.title} — ${curMins}/${mp.targetMinutes} ед. (${pct}%)">
+                    <div style="width: 100%; display: flex; justify-content: space-between; align-items: center; font-size: 10px;" class="mono">
+                      <span>${mp.icon}</span>
+                      <span style="color: ${isCompleted ? 'var(--green)' : isActive ? 'var(--cyan)' : 'var(--muted)'}; font-weight: 700;">
+                        ${isCompleted ? (isClaimed ? '100% ✓' : '🎁 ЗАБРАТЬ') : `${pct}%`}
+                      </span>
+                    </div>
+                    <div class="plot-svg-box">
+                      ${getCampusBuildingSvg(mp.svgType, stateClass)}
+                    </div>
+                    <div style="width: 100%;">
+                      <div style="font-size: 11px; font-weight: 700; color: #fff; line-height: 1.2;">${mp.shortName}</div>
+                      <div style="font-size: 10px; color: ${isActive ? 'var(--cyan)' : isCompleted ? 'var(--green)' : 'var(--muted)'}; margin-top: 2px;" class="mono">
+                        ${isCompleted ? `+${mp.powerMw} МВт В СТРОЮ` : isActive ? '🔨 СТРОИТСЯ' : `${curMins}/${mp.targetMinutes}`}
+                      </div>
+                    </div>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      // 1B. Render Megaprojects Detailed Progress Bars
       const mpBox = document.getElementById('megaprojectsContainer');
       mpBox.innerHTML = MEGAPROJECTS_CATALOG.map(mp => {
         const curMins = Math.min(mp.targetMinutes, (c.megaprojectProgress && c.megaprojectProgress[mp.id]) || 0);
@@ -3399,21 +4336,22 @@
         const isActive = c.activeMegaprojectId === mp.id && !isCompleted;
 
         return `
-          <div style="background: var(--bg); border: ${isActive ? '2px solid var(--cyan)' : isCompleted ? '1px solid var(--green)' : '1px solid var(--border)'}; border-radius: 11px; padding: 12px 14px; opacity: ${isActive || isCompleted || curMins > 0 ? '1' : '0.72'};">
+          <div style="background: var(--bg); border: ${isActive ? '2px solid var(--cyan)' : isCompleted ? '1px solid var(--green)' : '1px solid var(--border)'}; border-radius: 11px; padding: 11px 14px; opacity: ${isActive || isCompleted || curMins > 0 ? '1' : '0.74'};">
             <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
               <div>
                 <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-                  <strong style="font-size: 14px; color: #fff;">${mp.icon} ${mp.title}</strong>
+                  <strong style="font-size: 13px; color: #fff;">${mp.icon} ${mp.title}</strong>
                   ${isActive ? `<span class="badge badge-cyan mono">🔨 СТРОИТСЯ СЕЙЧАС</span>` : ''}
+                  <span class="badge mono">+${mp.powerMw} МВт</span>
                 </div>
                 <div style="font-size: 11px; color: var(--muted); margin-top: 2px;">${mp.desc}</div>
               </div>
               <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
                 <span class="mono" style="font-size: 12px; font-weight: 700; color: ${isCompleted ? 'var(--green)' : isActive ? 'var(--cyan)' : 'var(--muted)'};">
-                  ${curMins} / ${mp.targetMinutes} мин (${pct}%)
+                  ${curMins} / ${mp.targetMinutes} ед. (${pct}%)
                 </span>
                 ${!isActive && !isCompleted
-                  ? `<button type="button" onclick="selectActiveMegaproject('${mp.id}')" class="btn-small mono" style="padding: 4px 9px; font-size: 11px;">🎯 Выбрать для стройки</button>`
+                  ? `<button type="button" onclick="selectActiveMegaproject('${mp.id}')" class="btn-small mono" style="padding: 4px 9px; font-size: 11px;">🎯 Строить этот объект</button>`
                   : ''
                 }
                 ${isCompleted && !isClaimed
@@ -3422,7 +4360,7 @@
                 }
               </div>
             </div>
-            <div class="bar-track" style="margin-top: 8px; height: 8px;">
+            <div class="bar-track" style="margin-top: 8px; height: 7px;">
               <div class="bar-fill" style="width: ${pct}%; background: ${isCompleted ? 'var(--green)' : isActive ? 'var(--cyan)' : 'var(--muted)'};"></div>
             </div>
           </div>
@@ -3463,8 +4401,8 @@
                   </button>
                   ${!isEvolved
                     ? `<button type="button" onclick="feedFamiliarWithCore('${f.id}')" class="btn-small mono" style="padding: 4px 8px; font-size: 11px; color: var(--cyan); border-color: rgba(56,189,248,0.4);">
-                        🔋 Зарядить (+1)
-                      </button>`
+                         🔋 Зарядить (+1)
+                       </button>`
                     : ''
                   }
                 `
@@ -3519,7 +4457,7 @@
       token: '',
       autoSync: true,
       lastSha: null,
-      status: 'off' // 'off' | 'syncing' | 'ok' | 'err'
+      status: 'off'
     };
     let autoPushTimer = null;
 
@@ -3633,7 +4571,6 @@
         showToast('Вставь свой GitHub Token (ghp_... или github_pat_...)', 'err');
         return;
       }
-      // Try pulling existing file first; if 404 (not created yet), push current state to create it!
       const pulled = await pullStateFromGithub(false);
       if (!pulled && cloudConfig.status !== 'err') {
         await pushStateToGithub(true);
@@ -3678,7 +4615,7 @@
         const parsed = JSON.parse(jsonStr);
 
         if (parsed && Array.isArray(parsed.tasks) && Array.isArray(parsed.events)) {
-          appState.tasks = parsed.tasks;
+          appState.tasks = normalizeLoadedTasks(parsed.tasks);
           appState.events = parsed.events;
           if (Array.isArray(parsed.customStreaks)) appState.customStreaks = parsed.customStreaks;
           if (parsed.rpg) appState.rpg = parsed.rpg;
@@ -3714,7 +4651,6 @@
       updateCloudUiIndicators('Сохранение в dc-state.json...');
 
       try {
-        // Fetch current SHA first so PUT never conflicts
         const getRes = await fetch(`https://api.github.com/repos/${cloudConfig.repo}/contents/${cloudConfig.path}?t=${Date.now()}`, {
           headers: {
             'Authorization': `Bearer ${cloudConfig.token}`,
