@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-12T08:31:40.694Z",
+  "updatedAt": "2026-11-12T08:52:01.341Z",
   "activeDate": "2026-11-12",
   "weekendBuffer": true,
   "soundEnabled": true,
@@ -11,7 +11,8 @@
     "sp": 2,
     "upgrades": {
       "up_k8s": 1
-    }
+    },
+    "skills": []
   },
   "collection": {
     "energyCores": 6,
@@ -54,6 +55,17 @@
       "mp_lunar": 0
     }
   },
+  "customCategories": [
+    {
+      "id": "cat_1794473518995",
+      "tag": "#Улучшение трекера",
+      "icon": "🎨",
+      "theme": "red",
+      "color": "#F85149",
+      "isCooling": false,
+      "builtin": false
+    }
+  ],
   "tasks": [
     {
       "id": "t_1794460030691",
@@ -68,7 +80,8 @@
       "negCount": 0,
       "completedDates": [],
       "minutes": 90,
-      "completedDate": null
+      "completedDate": null,
+      "checklist": []
     },
     {
       "id": "t_hab_60",
@@ -83,7 +96,8 @@
       "completedDates": [],
       "minutes": 60,
       "completedDate": null,
-      "schedule": "everyday"
+      "schedule": "everyday",
+      "checklist": []
     },
     {
       "id": "t_hab_30",
@@ -98,7 +112,8 @@
       "completedDates": [],
       "minutes": 30,
       "completedDate": null,
-      "schedule": "everyday"
+      "schedule": "everyday",
+      "checklist": []
     },
     {
       "id": "t_hab_pool",
@@ -112,7 +127,8 @@
       "negCount": 0,
       "completedDates": [],
       "minutes": 60,
-      "completedDate": null
+      "completedDate": null,
+      "checklist": []
     },
     {
       "id": "t_hab_distract",
@@ -126,7 +142,8 @@
       "negCount": 6,
       "completedDates": [],
       "minutes": 30,
-      "completedDate": null
+      "completedDate": null,
+      "checklist": []
     },
     {
       "id": "t_day_plan",
@@ -142,7 +159,8 @@
       "posCount": 0,
       "negCount": 0,
       "minutes": 10,
-      "completedDate": null
+      "completedDate": null,
+      "checklist": []
     },
     {
       "id": "t_1794413439840",
@@ -157,7 +175,8 @@
       "negCount": 7,
       "completedDates": [],
       "minutes": 0,
-      "completedDate": null
+      "completedDate": null,
+      "checklist": []
     },
     {
       "id": "t_1794459950770",
@@ -174,7 +193,8 @@
         "2026-11-12"
       ],
       "minutes": 10,
-      "completedDate": "2026-11-12"
+      "completedDate": "2026-11-12",
+      "checklist": []
     },
     {
       "id": "t_1794459987162",
@@ -189,7 +209,8 @@
       "negCount": 0,
       "completedDates": [],
       "minutes": 10,
-      "completedDate": null
+      "completedDate": null,
+      "checklist": []
     },
     {
       "id": "t_1794461371115",
@@ -204,7 +225,8 @@
       "negCount": 0,
       "completedDates": [],
       "minutes": 60,
-      "completedDate": null
+      "completedDate": null,
+      "checklist": []
     },
     {
       "id": "t_1794463683649",
@@ -219,7 +241,8 @@
       "negCount": 0,
       "completedDates": [],
       "minutes": 60,
-      "completedDate": null
+      "completedDate": null,
+      "checklist": []
     },
     {
       "id": "t_1794467371082",
@@ -236,7 +259,8 @@
         "2026-11-12"
       ],
       "minutes": 10,
-      "completedDate": "2026-11-12"
+      "completedDate": "2026-11-12",
+      "checklist": []
     }
   ],
   "customStreaks": [
