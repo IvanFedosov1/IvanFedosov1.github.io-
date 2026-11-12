@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-12T09:02:00.689Z",
+  "updatedAt": "2026-11-12T09:02:33.197Z",
   "activeDate": "2026-11-12",
   "weekendBuffer": true,
   "soundEnabled": true,
@@ -283,6 +283,13 @@
       "title": "⚡ Баланс железа (Все задачи)",
       "targetSource": "cat:all",
       "requiredCount": 15,
+      "period": "week"
+    },
+    {
+      "id": "str_1794474150799",
+      "title": "Правильно питался неделю",
+      "targetSource": "task:t_1794413439840",
+      "requiredCount": 7,
       "period": "week"
     }
   ],
