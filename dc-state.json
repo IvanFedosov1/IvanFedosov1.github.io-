@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-11-12T07:04:11.795Z",
+  "updatedAt": "2026-11-12T07:09:35.017Z",
   "activeDate": "2026-11-12",
   "weekendBuffer": true,
   "soundEnabled": true,
   "rpg": {
     "level": 3,
-    "xp": 81,
+    "xp": 90,
     "hp": 97,
-    "tflops": 27,
+    "tflops": 30,
     "sp": 2,
     "upgrades": {
       "up_k8s": 1
@@ -40,7 +40,7 @@
     "claimedMegaprojects": [],
     "activeMegaprojectId": "mp_qcore",
     "megaprojectProgress": {
-      "mp_qcore": 470,
+      "mp_qcore": 490,
       "mp_agi": 0,
       "mp_subsea": 0,
       "mp_orbital": 0,
@@ -189,6 +189,21 @@
       "posCount": 0,
       "negCount": 0,
       "completedDates": []
+    },
+    {
+      "id": "t_1794467371082",
+      "type": "todo",
+      "title": "тест",
+      "category": "work",
+      "difficulty": "trivial",
+      "habitDir": "pos",
+      "schedule": "everyday",
+      "note": "",
+      "posCount": 0,
+      "negCount": 0,
+      "completedDates": [
+        "2026-11-12"
+      ]
     }
   ],
   "customStreaks": [
@@ -344,6 +359,19 @@
       "tflops": 20,
       "direction": "pos",
       "time": "10:04"
+    },
+    {
+      "id": "ev_1794467374985_luvc",
+      "date": "2026-11-12",
+      "taskId": "t_1794467371082",
+      "title": "тест",
+      "category": "work",
+      "difficulty": "trivial",
+      "minutes": 10,
+      "xp": 9,
+      "tflops": 3,
+      "direction": "pos",
+      "time": "10:09"
     }
   ]
 }
