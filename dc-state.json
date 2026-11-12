@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-12T06:07:12.431Z",
+  "updatedAt": "2026-11-12T06:08:06.039Z",
   "activeDate": "2026-11-12",
   "weekendBuffer": true,
   "soundEnabled": true,
@@ -172,6 +172,19 @@
       "habitDir": "pos",
       "schedule": "everyday",
       "note": "1) редактирование задач. 2) не все задачи должны учитывать время, некоторые достаточно просто факт.",
+      "posCount": 0,
+      "negCount": 0,
+      "completedDates": []
+    },
+    {
+      "id": "t_1794463683649",
+      "type": "todo",
+      "title": "Допилить трекер",
+      "category": "work",
+      "difficulty": "medium",
+      "habitDir": "pos",
+      "schedule": "everyday",
+      "note": "Сделать задачи привязанными к дате или исчезающими. 2 варианта, с возможностью поменять потом",
       "posCount": 0,
       "negCount": 0,
       "completedDates": []
