@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-12T08:53:56.243Z",
+  "updatedAt": "2026-11-12T08:55:10.333Z",
   "activeDate": "2026-11-11",
   "weekendBuffer": true,
   "soundEnabled": true,
@@ -7,7 +7,7 @@
     "level": 3,
     "xp": 108,
     "hp": 97,
-    "tflops": 36,
+    "tflops": 96,
     "sp": 2,
     "upgrades": {
       "up_k8s": 1
@@ -15,7 +15,7 @@
     "skills": []
   },
   "collection": {
-    "energyCores": 8,
+    "energyCores": 11,
     "equippedFamiliarId": "fam_python",
     "familiars": {
       "fam_rust": {
@@ -38,7 +38,9 @@
       "rel_vt100": 1
     },
     "bonusMegaprojectMinutes": 0,
-    "claimedMegaprojects": [],
+    "claimedMegaprojects": [
+      "mp_qcore"
+    ],
     "activeMegaprojectId": "mp_diesel",
     "megaprojectProgress": {
       "mp_qcore": 600,
