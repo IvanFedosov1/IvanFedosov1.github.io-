@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-12T05:05:59.778Z",
+  "updatedAt": "2026-11-12T05:06:29.405Z",
   "activeDate": "2026-11-12",
   "weekendBuffer": true,
   "soundEnabled": true,
@@ -124,6 +124,19 @@
       "id": "t_1794459950770",
       "type": "todo",
       "title": "Ответить безопаснику по срокам",
+      "category": "work",
+      "difficulty": "trivial",
+      "habitDir": "pos",
+      "schedule": "everyday",
+      "note": "",
+      "posCount": 0,
+      "negCount": 0,
+      "completedDates": []
+    },
+    {
+      "id": "t_1794459987162",
+      "type": "daily",
+      "title": "Планирование дел на завтра",
       "category": "work",
       "difficulty": "trivial",
       "habitDir": "pos",
