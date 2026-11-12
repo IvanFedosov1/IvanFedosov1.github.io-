@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-12T10:01:11.858Z",
+  "updatedAt": "2026-11-12T10:01:15.896Z",
   "activeDate": "2026-11-12",
   "weekendBuffer": true,
   "soundEnabled": true,
@@ -117,7 +117,7 @@
       "id": "t_hab_30",
       "type": "habit",
       "title": "Спринт 30 мин",
-      "category": "work",
+      "category": "code",
       "difficulty": "easy",
       "habitDir": "pos",
       "note": "",
