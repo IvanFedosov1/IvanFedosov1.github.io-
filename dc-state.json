@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-11-12T10:27:01.103Z",
+  "updatedAt": "2026-11-12T11:00:58.926Z",
   "activeDate": "2026-11-12",
   "weekendBuffer": true,
   "soundEnabled": true,
   "rpg": {
     "level": 3,
-    "xp": 130,
+    "xp": 182,
     "hp": 97,
-    "tflops": 12,
+    "tflops": 38,
     "sp": 0,
     "upgrades": {
       "up_k8s": 1,
@@ -34,6 +34,10 @@
       "fam_python": {
         "stage": 1,
         "feedProgress": 0
+      },
+      "fam_agi": {
+        "stage": 1,
+        "feedProgress": 0
       }
     },
     "relics": {
@@ -53,7 +57,7 @@
       "mp_subsea": 0,
       "mp_orbital": 0,
       "mp_dyson": 0,
-      "mp_diesel": 30,
+      "mp_diesel": 90,
       "mp_fiber": 0,
       "mp_hydro_tower": 0,
       "mp_solar": 0,
@@ -107,7 +111,7 @@
       "difficulty": "medium",
       "habitDir": "pos",
       "note": "",
-      "posCount": 4,
+      "posCount": 5,
       "negCount": 0,
       "completedDates": [],
       "minutes": 60,
@@ -465,6 +469,19 @@
       "tflops": 9,
       "direction": "pos",
       "time": "11:59"
+    },
+    {
+      "id": "ev_1794481256563_kme7",
+      "date": "2026-11-12",
+      "taskId": "t_hab_60",
+      "title": "Спринт 60 мин",
+      "category": "code",
+      "difficulty": "medium",
+      "minutes": 60,
+      "xp": 52,
+      "tflops": 26,
+      "direction": "pos",
+      "time": "14:00"
     }
   ]
 }
