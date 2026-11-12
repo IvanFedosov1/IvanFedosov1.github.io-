@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-12T05:10:58.598Z",
+  "updatedAt": "2026-11-12T05:11:03.008Z",
   "activeDate": "2026-11-12",
   "weekendBuffer": true,
   "soundEnabled": true,
@@ -37,7 +37,7 @@
     },
     "bonusMegaprojectMinutes": 0,
     "claimedMegaprojects": [],
-    "activeMegaprojectId": "mp_agi",
+    "activeMegaprojectId": "mp_qcore",
     "megaprojectProgress": {
       "mp_qcore": 400,
       "mp_agi": 0,
