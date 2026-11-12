@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-12T08:10:39.186Z",
+  "updatedAt": "2026-11-12T08:11:32.446Z",
   "activeDate": "2026-11-12",
   "weekendBuffer": true,
   "soundEnabled": true,
@@ -392,19 +392,6 @@
       "tflops": 20,
       "direction": "pos",
       "time": "10:04"
-    },
-    {
-      "id": "ev_1794467374985_luvc",
-      "date": "2026-11-12",
-      "taskId": "t_1794467371082",
-      "title": "тест",
-      "category": "work",
-      "difficulty": "trivial",
-      "minutes": 10,
-      "xp": 9,
-      "tflops": 3,
-      "direction": "pos",
-      "time": "10:09"
     }
   ]
 }
