@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-12T08:31:06.842Z",
+  "updatedAt": "2026-11-12T08:31:18.181Z",
   "activeDate": "2026-11-11",
   "weekendBuffer": true,
   "soundEnabled": true,
@@ -156,7 +156,7 @@
       "posCount": 5,
       "negCount": 7,
       "completedDates": [],
-      "minutes": 30,
+      "minutes": 0,
       "completedDate": null
     },
     {
