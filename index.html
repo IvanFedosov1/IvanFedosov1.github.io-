@@ -400,6 +400,8 @@
       justify-content: space-between;
       padding-bottom: 8px;
       border-bottom: 1px solid var(--border-subtle);
+      gap: 6px;
+      flex-wrap: wrap;
     }
 
     .col-title {
@@ -487,6 +489,59 @@
     .icon-action-btn.del:hover {
       color: var(--red);
       background: rgba(248, 81, 73, 0.15);
+    }
+
+    /* Checklist inside task card */
+    .task-checklist {
+      margin-top: 7px;
+      padding-top: 6px;
+      border-top: 1px dashed var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .subtask-row {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 12px;
+      color: var(--text);
+      padding: 3px 6px;
+      border-radius: 6px;
+      cursor: pointer;
+      user-select: none;
+      text-align: left;
+      width: 100%;
+    }
+
+    .subtask-row:hover {
+      background: var(--card-hover);
+    }
+
+    .subtask-row.sub-done {
+      color: var(--muted);
+      text-decoration: line-through;
+    }
+
+    .subtask-box {
+      width: 15px;
+      height: 15px;
+      border-radius: 4px;
+      border: 1.5px solid var(--border);
+      background: var(--card);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      color: transparent;
+      flex-shrink: 0;
+    }
+
+    .subtask-row.sub-done .subtask-box {
+      background: var(--green-dark);
+      border-color: var(--green);
+      color: #fff;
     }
 
     /* Habit +/- Controls */
@@ -630,6 +685,134 @@
       font-weight: 600;
       color: var(--muted);
       margin-bottom: 4px;
+    }
+
+    /* ARCHITECT PASSIVE SKILL TREE (ICON-ONLY TREE + INSPECTOR) */
+    .skill-tree-shell {
+      background: radial-gradient(circle at 50% 10%, rgba(168, 85, 247, 0.12), rgba(7, 10, 14, 0.96) 75%);
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      padding: 14px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-tree-scroll {
+      overflow-x: auto;
+      padding-bottom: 6px;
+    }
+
+    .skill-tree-canvas {
+      position: relative;
+      width: 820px;
+      height: 360px;
+      margin: 0 auto;
+      user-select: none;
+    }
+
+    .skill-tree-svg-lines {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .skill-node-btn {
+      position: absolute;
+      width: 46px;
+      height: 46px;
+      margin-left: -23px;
+      margin-top: -23px;
+      border-radius: 13px;
+      background: var(--card);
+      border: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 21px;
+      transition: all 0.16s ease;
+      z-index: 2;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+    }
+
+    .skill-node-btn:hover {
+      transform: scale(1.12);
+    }
+
+    .skill-node-btn.sk-unlocked {
+      border-color: var(--green);
+      background: linear-gradient(145deg, rgba(35, 134, 54, 0.32), rgba(22, 27, 34, 0.95));
+      box-shadow: 0 0 16px rgba(57, 211, 83, 0.28);
+    }
+
+    .skill-node-btn.sk-available {
+      border-color: #C084FC;
+      background: linear-gradient(145deg, rgba(168, 85, 247, 0.22), rgba(22, 27, 34, 0.95));
+      box-shadow: 0 0 14px rgba(168, 85, 247, 0.22);
+    }
+
+    .skill-node-btn.sk-locked {
+      opacity: 0.48;
+      background: var(--bg-deep);
+      border-color: #21262D;
+    }
+
+    .skill-node-btn.sk-selected {
+      outline: 2px solid #fff;
+      outline-offset: 2px;
+      transform: scale(1.14);
+    }
+
+    .sk-cost-pip {
+      position: absolute;
+      bottom: -5px;
+      right: -5px;
+      font-size: 9px;
+      font-weight: 700;
+      padding: 1px 4px;
+      border-radius: 999px;
+      background: var(--bg-deep);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      line-height: 1.1;
+    }
+
+    .skill-node-btn.sk-unlocked .sk-cost-pip {
+      background: var(--green-dark);
+      border-color: var(--green);
+      color: #fff;
+    }
+
+    .skill-node-btn.sk-available .sk-cost-pip {
+      background: rgba(168, 85, 247, 0.3);
+      border-color: #C084FC;
+      color: #fff;
+    }
+
+    .skill-branch-header-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      width: 820px;
+      margin: 0 auto 6px;
+      text-align: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .skill-inspector-box {
+      margin-top: 12px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
     }
 
     /* Tech Tree & Upgrades Grid */
@@ -1038,7 +1221,7 @@
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 16px;
-      max-width: 540px;
+      max-width: 560px;
       width: 100%;
       padding: 20px;
       max-height: 90vh;
@@ -1140,7 +1323,7 @@
               <span style="font-size: 10px; color: var(--muted); text-transform: uppercase;">Мощность (Валюта)</span>
               <span id="rpgTflopsText" class="mono" style="font-size: 15px; font-weight: 700; color: var(--cyan);">⚡ 85 TFLOPS</span>
             </div>
-            <div class="currency-pill" style="text-align: right;">
+            <div class="currency-pill" style="text-align: right; cursor: pointer;" onclick="switchTab('rack')" title="Нажми, чтобы открыть Матрицу Талантов Архитектора за SP">
               <span style="font-size: 10px; color: var(--muted); text-transform: uppercase;">Очки прокачки</span>
               <span id="rpgSpText" class="mono" style="font-size: 15px; font-weight: 700; color: #C084FC;">🧬 2 SP</span>
             </div>
@@ -1187,16 +1370,17 @@
 
       <!-- Filter & Quick Action Row -->
       <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 12px;">
-        <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+        <div id="boardCatFilterRow" style="display: flex; gap: 6px; flex-wrap: wrap; align-items: center;">
           <button type="button" onclick="setBoardCatFilter('all')" data-bcat="all" class="board-cat-btn btn-small active">Все категории</button>
           <button type="button" onclick="setBoardCatFilter('work')" data-bcat="work" class="board-cat-btn btn-small">⚡ #Работа</button>
           <button type="button" onclick="setBoardCatFilter('code')" data-bcat="code" class="board-cat-btn btn-small">💻 #Код</button>
           <button type="button" onclick="setBoardCatFilter('study')" data-bcat="study" class="board-cat-btn btn-small">📚 #Обучение</button>
           <button type="button" onclick="setBoardCatFilter('cooling')" data-bcat="cooling" class="board-cat-btn btn-small">🌊 #Бассейн / #Спорт</button>
+          <button type="button" onclick="openCategoryModal()" class="btn-small mono" style="border-style: dashed; color: var(--cyan); border-color: rgba(56,189,248,0.45);" title="Создать или настроить свои категории ЦОД">+ Категория</button>
         </div>
 
         <div style="display: flex; gap: 8px; align-items: center;">
-          <span style="font-size: 11px; color: var(--muted);">💡 Перетаскивай карточки за ⠿ или меняй позицию через ✎</span>
+          <span style="font-size: 11px; color: var(--muted);">💡 Перетаскивай карточки за ⠿ или редактируй через ✎</span>
           <button type="button" onclick="openTaskModal()" class="btn-primary" style="padding: 7px 14px; font-size: 12px;">
             + Добавить задание
           </button>
@@ -1235,34 +1419,82 @@
           <div id="dailiesListContainer" class="task-list"></div>
         </div>
 
-        <!-- COLUMN 3: РАЗОВЫЕ ЗАДАЧИ (TO-DOS / BACKLOG) -->
+        <!-- COLUMN 3: РАЗОВЫЕ ЗАДАЧИ (TO-DOS / BACKLOG + ARCHIVE) -->
         <div class="board-col">
           <div class="col-head">
             <div class="col-title">
               <span>🎯 Задачи (Бэклог)</span>
               <span id="countTodosBadge" class="badge mono">0</span>
             </div>
-            <button type="button" onclick="openTaskModal('todo')" class="btn-small" style="padding: 3px 8px;">+ Задача</button>
+            <div style="display: flex; gap: 4px; align-items: center;">
+              <button type="button" id="toggleArchiveBtn" onclick="toggleBacklogArchiveView()" class="btn-small mono" style="padding: 3px 8px; font-size: 11px;" title="Показать или скрыть архив выполненных задач бэклога">
+                📦 Архив (0)
+              </button>
+              <button type="button" onclick="openTaskModal('todo')" class="btn-small" style="padding: 3px 8px;">+ Задача</button>
+            </div>
           </div>
-          <div style="font-size: 11px; color: var(--muted);">
-            Разовые задачи: остаются выполненными в день закрытия и скрываются в другие дни
+          <div id="todosColumnSubtext" style="font-size: 11px; color: var(--muted);">
+            Разовые задачи и чек-листы: остаются выполненными в день закрытия и уходят в архив в другие дни
           </div>
+
+          <!-- Archive Search Bar (Visible only in Archive mode) -->
+          <div id="todosArchiveFilterBar" class="hidden" style="display: flex; gap: 6px; align-items: center;">
+            <input id="todosArchiveSearchInput" type="text" oninput="renderTasksBoard()" placeholder="🔎 Поиск в архиве бэклога..." class="input-box" style="padding: 6px 9px; font-size: 12px;" />
+            <button type="button" onclick="toggleBacklogArchiveView()" class="btn-small" style="flex-shrink: 0;">← К активным</button>
+          </div>
+
           <div id="todosListContainer" class="task-list"></div>
         </div>
       </div>
     </section>
 
     <!-- ================================================================= -->
-    <!-- TAB 2: СТОЙКА ДНЯ И ДЕРЕВО ПРОКАЧКИ (RPG PROGRESSION & RACK)      -->
+    <!-- TAB 2: СТОЙКА ДНЯ, ВЕТКА НАВЫКОВ АРХИТЕКТОРА (SP) И АПГРЕЙДЫ ЦОД   -->
     <!-- ================================================================= -->
     <section id="tab-rack" class="tab-section hidden">
-      <!-- Tech Tree & Rack Upgrades -->
+      <!-- NEW: ARCHITECT PASSIVE SKILL TREE (SP) -->
+      <div class="card" style="border-color: rgba(168, 85, 247, 0.45);">
+        <div class="card-header">
+          <div>
+            <div class="card-title">
+              <span>🧬 Древовидная Матрица Навыков Архитектора (Пассивные таланты за SP)</span>
+            </div>
+            <div class="card-desc">
+              Кликни по любой иконке узла в дереве, чтобы увидеть его название, требования и пассивный эффект. Очки <b style="color: #C084FC;">🧬 SP</b> начисляются за каждый новый уровень!
+            </div>
+          </div>
+          <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+            <span id="skillTreeSpBadge" class="badge badge-purple mono" style="font-size: 12px; padding: 4px 10px;">Доступно: 🧬 2 SP</span>
+            <span id="skillTreeCountBadge" class="badge badge-green mono" style="font-size: 12px; padding: 4px 10px;">Изучено: 0 / 21</span>
+            <button type="button" onclick="respecArchitectSkills()" class="btn-small mono" title="Сбросить все изученные таланты и вернуть потраченные SP">
+              🔄 Сброс SP
+            </button>
+          </div>
+        </div>
+
+        <div class="skill-tree-shell">
+          <div class="skill-tree-scroll">
+            <div class="skill-branch-header-row mono">
+              <span style="color: var(--green);">⚡ I. ВЫЧИСЛЕНИЯ И РАЗГОН</span>
+              <span style="color: var(--cyan);">❄️ II. НАДЁЖНОСТЬ И ХЛАДАГЕНТ</span>
+              <span style="color: #C084FC;">🎲 III. СНАБЖЕНИЕ И СПУТНИКИ</span>
+              <span style="color: var(--amber);">🏗️ IV. КАМПУС И ЧЕК-ЛИСТЫ</span>
+            </div>
+            <div id="architectSkillTreeCanvas" class="skill-tree-canvas"></div>
+          </div>
+
+          <!-- Selected Skill Node Inspector -->
+          <div id="architectSkillInspector" class="skill-inspector-box"></div>
+        </div>
+      </div>
+
+      <!-- Tech Tree & Rack Upgrades (TFLOPS) -->
       <div class="card">
         <div class="card-header">
           <div>
-            <div class="card-title">🌳 Дерево технологий и Апгрейды Дата-центра</div>
+            <div class="card-title">🌳 Апгрейды Оборудования Стоек (за ⚡ TFLOPS)</div>
             <div class="card-desc">
-              Вкладывай заработанные <b style="color: var(--cyan);">⚡ TFLOPS</b> и <b style="color: #C084FC;">🧬 Очки SP</b> в оборудование стоек — каждый уровень дает постоянные бонусы к прокачке
+              Вкладывай заработанные <b style="color: var(--cyan);">⚡ TFLOPS</b> в железо дата-центра — бонусы складываются с талантами Архитектора
             </div>
           </div>
           <div style="display: flex; gap: 8px; align-items: center;">
@@ -1332,12 +1564,13 @@
 
         <!-- Category Filter for Map -->
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 12px;">
-          <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+          <div id="hmCatFilterRow" style="display: flex; gap: 6px; flex-wrap: wrap; align-items: center;">
             <button type="button" onclick="setHeatmapCat('all')" data-hmcat="all" class="hm-cat-btn btn-small active">Все задачи</button>
             <button type="button" onclick="setHeatmapCat('work')" data-hmcat="work" class="hm-cat-btn btn-small">⚡ #Работа</button>
             <button type="button" onclick="setHeatmapCat('code')" data-hmcat="code" class="hm-cat-btn btn-small">💻 #Код</button>
             <button type="button" onclick="setHeatmapCat('study')" data-hmcat="study" class="hm-cat-btn btn-small">📚 #Обучение</button>
             <button type="button" onclick="setHeatmapCat('cooling')" data-hmcat="cooling" class="hm-cat-btn btn-small">🌊 #Бассейн / #Спорт</button>
+            <button type="button" onclick="openCategoryModal()" class="btn-small mono" style="border-style: dashed; color: var(--cyan); border-color: rgba(56,189,248,0.45);" title="Создать или настроить свои категории ЦОД">+ Категория</button>
           </div>
 
           <div style="display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--muted);">
@@ -1358,10 +1591,13 @@
         <div id="heatmapDayDetails" style="margin-top: 12px; padding: 11px 14px; background: var(--bg); border: 1px solid var(--border-subtle); border-radius: 10px; font-size: 12px;"></div>
       </div>
 
-      <!-- Event Log History for Selected Date -->
+      <!-- Event Log History for Selected Date (Filtered by selected Heatmap Category) -->
       <div class="card">
         <div class="card-header">
-          <div class="card-title">📋 Журнал выполненных действий за <span id="logHistoryDateLabel" class="mono" style="color: var(--green);">11.11.2026</span></div>
+          <div class="card-title" style="flex-wrap: wrap;">
+            <span>📋 Журнал выполненных действий за <span id="logHistoryDateLabel" class="mono" style="color: var(--green);">11.11.2026</span></span>
+            <span id="logHistoryCatBadge" class="badge badge-green mono">Фильтр: Все задачи</span>
+          </div>
         </div>
         <div id="eventHistoryList" style="display: flex; flex-direction: column; gap: 8px;"></div>
       </div>
@@ -1383,7 +1619,7 @@
           <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
             <span id="collCoresBadge" class="badge badge-cyan mono" style="font-size: 12px; padding: 5px 10px;">🔋 Ядра питания: 3 шт.</span>
             <span id="collTotalProgressBadge" class="badge badge-purple mono" style="font-size: 12px; padding: 5px 10px;">Собрано: 4 / 22</span>
-            <button type="button" onclick="openSupplyLootbox()" class="btn-primary mono" style="padding: 8px 14px; font-size: 12px;">
+            <button type="button" id="openLootboxBtn" onclick="openSupplyLootbox()" class="btn-primary mono" style="padding: 8px 14px; font-size: 12px;">
               🎲 Открыть Контейнер Снабжения (30 ⚡ TFLOPS)
             </button>
           </div>
@@ -1459,7 +1695,7 @@
     <!-- TAB 4: НАСТРОЙКИ, ДАТА И БЭКАП             -->
     <!-- ========================================== -->
     <section id="tab-settings" class="tab-section hidden">
-      <!-- GITHUB CLOUD FILE SYNC CARD -->
+      <!-- GITHUB CLOUD FILE SYNC CARD WITH CONFLICT PROTECTION -->
       <div class="card" style="border-color: rgba(56, 189, 248, 0.5);">
         <div class="card-header">
           <div>
@@ -1468,7 +1704,7 @@
               <span id="cloudSyncStatusBadge" class="badge badge-amber mono">Не подключено</span>
             </div>
             <div class="card-desc">
-              Так как GitHub Pages — это статический хостинг, по умолчанию браузер хранит данные в своем локальном кэше (<code>localStorage</code>). Подключи свой токен GitHub ниже, и приложение будет автоматически сохранять и читать твои данные напрямую из файла <code>dc-state.json</code> в твоем репозитории!
+              Подключи свой токен GitHub ниже, и приложение будет сохранять и читать твои данные напрямую из файла <code>dc-state.json</code>. Встроена <b>защита от конфликтов версий</b>: если на другом устройстве появились более свежие данные, приложение предупредит и предложит выбор или умное слияние!
             </div>
           </div>
         </div>
@@ -1489,19 +1725,25 @@
         </div>
 
         <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; padding-top: 8px; border-top: 1px solid var(--border-subtle);">
-          <label style="display: flex; align-items: center; gap: 8px; font-size: 12px; cursor: pointer;">
-            <input type="checkbox" id="ghAutoSyncToggle" onchange="saveCloudConfigFromInputs()" checked />
-            <span>Автоматически сохранять в <code>dc-state.json</code> при каждом действии и загружать при входе</span>
-          </label>
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 12px; cursor: pointer;">
+              <input type="checkbox" id="ghAutoSyncToggle" onchange="saveCloudConfigFromInputs()" checked />
+              <span>Автоматически сохранять в <code>dc-state.json</code> при каждом действии и загружать при входе</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 12px; cursor: pointer; color: var(--cyan);">
+              <input type="checkbox" id="ghConflictGuardToggle" onchange="saveCloudConfigFromInputs()" checked />
+              <span>🛡️ Защита от перезаписи более свежей облачной версии (проверять <code>updatedAt</code> перед отправкой)</span>
+            </label>
+          </div>
 
           <div style="display: flex; flex-wrap: wrap; gap: 8px;">
             <button type="button" onclick="saveAndConnectCloud()" class="btn-primary mono" style="padding: 8px 14px; font-size: 12px;">
               🔗 Сохранить ключ и подключить
             </button>
-            <button type="button" onclick="pushStateToGithub(true)" class="btn-secondary mono" style="padding: 8px 12px; font-size: 12px; color: var(--cyan); border-color: rgba(56,189,248,0.4);">
+            <button type="button" onclick="pushStateToGithub(true, false)" class="btn-secondary mono" style="padding: 8px 12px; font-size: 12px; color: var(--cyan); border-color: rgba(56,189,248,0.4);">
               ⬆ Выгрузить в файл ( с ПК )
             </button>
-            <button type="button" onclick="pullStateFromGithub(true)" class="btn-secondary mono" style="padding: 8px 12px; font-size: 12px; color: var(--green); border-color: rgba(57,211,83,0.4);">
+            <button type="button" onclick="pullStateFromGithub(true, false)" class="btn-secondary mono" style="padding: 8px 12px; font-size: 12px; color: var(--green); border-color: rgba(57,211,83,0.4);">
               ⬇ Загрузить из файла ( на Телефон )
             </button>
           </div>
@@ -1615,7 +1857,7 @@
   </nav>
 
   <!-- ================================================================= -->
-  <!-- MODAL 1: CREATE / EDIT TASK (HABIT / DAILY / TODO)                -->
+  <!-- MODAL 1: CREATE / EDIT TASK (WITH CHECKLIST EDITOR & POSITION)    -->
   <!-- ================================================================= -->
   <div id="taskModal" class="modal-backdrop hidden">
     <div class="modal-box">
@@ -1627,7 +1869,7 @@
       <div style="display: flex; flex-direction: column; gap: 12px;">
         <div>
           <label for="tmTitle" class="field-label">Название задачи / привычки</label>
-          <input id="tmTitle" type="text" placeholder="Например: Глубокий спринт / Бассейн 1500м / Код-ревью" class="input-box" />
+          <input id="tmTitle" type="text" placeholder="Например: Глубокий спринт / Бассейн 1500м / Релиз модуля" class="input-box" />
         </div>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
@@ -1641,7 +1883,10 @@
           </div>
 
           <div>
-            <label for="tmCategory" class="field-label">Категория ЦОД</label>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+              <label for="tmCategory" class="field-label" style="margin-bottom: 0;">Категория ЦОД</label>
+              <button type="button" onclick="openCategoryModal(true)" class="mono" style="font-size: 11px; font-weight: 600; color: var(--cyan);">+ Своя категория</button>
+            </div>
             <select id="tmCategory" class="input-box">
               <option value="work">⚡ #Работа</option>
               <option value="code">💻 #Код</option>
@@ -1717,6 +1962,19 @@
           <input id="tmNote" type="text" placeholder="Например: Без телефона и мессенджеров" class="input-box" />
         </div>
 
+        <!-- NEW: CHECKLIST / SUBTASKS EDITOR -->
+        <div style="background: var(--bg); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 10px 12px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+            <label for="tmNewSubtaskInput" class="field-label" style="margin-bottom: 0;">☑️ Чек-лист / Подзадачи (необязательно)</label>
+            <span id="tmChecklistCountBadge" class="badge mono" style="font-size: 10px;">0 п.</span>
+          </div>
+          <div style="display: flex; gap: 6px; margin-bottom: 8px;">
+            <input id="tmNewSubtaskInput" type="text" onkeydown="if(event.key==='Enter'){event.preventDefault();addModalChecklistItem();}" placeholder="Добавить пункт чек-листа и нажать +..." class="input-box" style="padding: 7px 10px; font-size: 12px;" />
+            <button type="button" onclick="addModalChecklistItem()" class="btn-secondary mono" style="padding: 7px 12px; font-size: 13px;">+ Пункт</button>
+          </div>
+          <div id="tmChecklistContainer" style="display: flex; flex-direction: column; gap: 5px; max-height: 150px; overflow-y: auto;"></div>
+        </div>
+
         <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: 6px;">
           <div>
             <button type="button" id="tmDeleteBtn" onclick="deleteTaskFromModal()" class="btn-danger hidden">🗑 Удалить</button>
@@ -1769,6 +2027,111 @@
         <div style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 6px;">
           <button type="button" onclick="closeStreakModal()" class="btn-secondary">Отмена</button>
           <button type="button" onclick="saveStreakFromModal()" class="btn-primary">Создать стрик</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================================= -->
+  <!-- MODAL 3: CLOUD SYNC CONFLICT RESOLUTION GUARD                     -->
+  <!-- ================================================================= -->
+  <div id="syncConflictModal" class="modal-backdrop hidden">
+    <div class="modal-box" style="border-color: var(--amber);">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+        <strong style="font-size: 16px; color: var(--amber);">🛡️ Обнаружен конфликт версий синхронизации</strong>
+        <button type="button" onclick="closeSyncConflictModal()" class="btn-small">✕</button>
+      </div>
+      <div style="font-size: 12px; color: var(--muted); margin-bottom: 12px;">
+        В облачном файле <code>dc-state.json</code> на GitHub обнаружена версия с другого устройства, которая отличается от локального кэша. Выбери, как поступить, чтобы не потерять прогресс:
+      </div>
+
+      <div id="syncConflictComparisonGrid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px;"></div>
+
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <button type="button" onclick="resolveSyncConflict('merge')" class="btn-primary mono" style="width: 100%; justify-content: center;">
+          🔀 Умное слияние (Объединить задачи, события и прогресс без потерь)
+        </button>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+          <button type="button" onclick="resolveSyncConflict('pull_remote')" class="btn-secondary mono" style="color: var(--cyan); border-color: rgba(56,189,248,0.4);">
+            ⬇ Взять версию из Облака
+          </button>
+          <button type="button" onclick="resolveSyncConflict('push_local')" class="btn-secondary mono" style="color: var(--amber); border-color: rgba(245,158,11,0.4);">
+            ⬆ Перезаписать Облако локальной
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================================= -->
+  <!-- MODAL 4: CREATE & MANAGE CUSTOM CATEGORIES                        -->
+  <!-- ================================================================= -->
+  <div id="categoryModal" class="modal-backdrop hidden">
+    <div class="modal-box">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+        <strong style="font-size: 16px; color: #fff;">🏷️ Категории ЦОД (Свои теги и фильтры)</strong>
+        <button type="button" onclick="closeCategoryModal()" class="btn-small">✕</button>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div style="background: var(--bg); border: 1px solid var(--border); border-radius: 11px; padding: 12px;">
+          <div style="font-size: 12px; font-weight: 700; color: #fff; margin-bottom: 8px;">➕ Создать новую категорию</div>
+          <div style="display: grid; grid-template-columns: 90px 1fr; gap: 8px; margin-bottom: 10px;">
+            <div>
+              <label for="cmIcon" class="field-label">Иконка</label>
+              <input id="cmIcon" type="text" value="🚀" maxlength="4" class="input-box" style="text-align: center; font-size: 16px;" />
+            </div>
+            <div>
+              <label for="cmTag" class="field-label">Название тега (например: #ПетПроект, #Чтение)</label>
+              <input id="cmTag" type="text" placeholder="#ПетПроект" class="input-box" onkeydown="if(event.key==='Enter'){event.preventDefault();saveCustomCategoryFromModal();}" />
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 10px;">
+            <span style="font-size: 11px; color: var(--muted); align-self: center; margin-right: 4px;">Быстрый выбор:</span>
+            <button type="button" onclick="document.getElementById('cmIcon').value='🚀'" class="btn-small" style="padding: 3px 7px;">🚀</button>
+            <button type="button" onclick="document.getElementById('cmIcon').value='🛠️'" class="btn-small" style="padding: 3px 7px;">🛠️</button>
+            <button type="button" onclick="document.getElementById('cmIcon').value='🏋️'" class="btn-small" style="padding: 3px 7px;">🏋️</button>
+            <button type="button" onclick="document.getElementById('cmIcon').value='🎨'" class="btn-small" style="padding: 3px 7px;">🎨</button>
+            <button type="button" onclick="document.getElementById('cmIcon').value='📖'" class="btn-small" style="padding: 3px 7px;">📖</button>
+            <button type="button" onclick="document.getElementById('cmIcon').value='🇬🇧'" class="btn-small" style="padding: 3px 7px;">🇬🇧</button>
+            <button type="button" onclick="document.getElementById('cmIcon').value='💰'" class="btn-small" style="padding: 3px 7px;">💰</button>
+            <button type="button" onclick="document.getElementById('cmIcon').value='🏠'" class="btn-small" style="padding: 3px 7px;">🏠</button>
+            <button type="button" onclick="document.getElementById('cmIcon').value='🎵'" class="btn-small" style="padding: 3px 7px;">🎵</button>
+            <button type="button" onclick="document.getElementById('cmIcon').value='🧘'" class="btn-small" style="padding: 3px 7px;">🧘</button>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; align-items: end;">
+            <div>
+              <label for="cmTheme" class="field-label">Цветовая схема (бейджи и карта)</label>
+              <select id="cmTheme" class="input-box mono">
+                <option value="green">🟩 Зелёный (Матрица)</option>
+                <option value="cyan">🟦 Голубой (Крио / Циан)</option>
+                <option value="purple">🟪 Фиолетовый (Нейро)</option>
+                <option value="amber">🟧 Янтарный (Энергия)</option>
+                <option value="red">🟥 Рубиновый (Хардкор)</option>
+              </select>
+            </div>
+            <div>
+              <button type="button" onclick="saveCustomCategoryFromModal()" class="btn-primary" style="width: 100%; padding: 9px 12px;">
+                + Добавить категорию
+              </button>
+            </div>
+          </div>
+
+          <label style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--cyan); margin-top: 10px; cursor: pointer;">
+            <input type="checkbox" id="cmIsCooling" />
+            <span>❄️ Считать категорией охлаждения/спорта (восстанавливает SLA HP и снижает нагрев ЦОД)</span>
+          </label>
+        </div>
+
+        <div>
+          <div style="font-size: 12px; font-weight: 700; color: #fff; margin-bottom: 6px;">Список всех категорий (базовые и твои)</div>
+          <div id="customCategoriesModalList" style="display: flex; flex-direction: column; gap: 6px; max-height: 220px; overflow-y: auto;"></div>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end;">
+          <button type="button" onclick="closeCategoryModal()" class="btn-secondary">Готово</button>
         </div>
       </div>
     </div>
@@ -1828,22 +2191,326 @@
       return days[new Date(y, m - 1, d, 12, 0, 0).getDay()];
     }
 
+    function formatIsoTimestampRu(isoTs) {
+      if (!isoTs) return 'Неизвестно';
+      try {
+        const dt = new Date(isoTs);
+        if (isNaN(dt.getTime())) return 'Неизвестно';
+        return dt.toLocaleString('ru-RU', {
+          day: '2-digit', month: '2-digit', year: 'numeric',
+          hour: '2-digit', minute: '2-digit', second: '2-digit'
+        });
+      } catch (e) {
+        return String(isoTs);
+      }
+    }
+
     // =========================================================================
-    // 2. DIFFICULTIES (DECOUPLED FROM TIME), CATEGORIES & RPG UPGRADE TREE
+    // 2. DIFFICULTIES, CATEGORIES, TECH TREE & ARCHITECT PASSIVE SKILL TREE (SP)
     // =========================================================================
     const DIFFICULTIES = {
-      trivial: { id: 'trivial', label: '🔧 Trivial (Патч)',     shortLabel: '🔧 Патч',      defaultMinutes: 10, xp: 8,  tflops: 3,  rackType: 'patch',     rackLabel: 'Патч' },
-      easy:    { id: 'easy',    label: '📦 Easy (Контейнер)',  shortLabel: '📦 Контейнер', defaultMinutes: 30, xp: 18, tflops: 8,  rackType: 'container', rackLabel: 'Docker Контейнер' },
-      medium:  { id: 'medium',  label: '🖥 Medium (Сервер 2U)', shortLabel: '🖥 Сервер',    defaultMinutes: 60, xp: 40, tflops: 18, rackType: 'server',    rackLabel: '2U Сервер' },
-      hard:    { id: 'hard',    label: '🚀 Hard (Кластер)',     shortLabel: '🚀 Кластер',   defaultMinutes: 90, xp: 75, tflops: 35, rackType: 'cluster',   rackLabel: 'Блейд-Кластер' }
+      trivial: { id: 'trivial', label: '🔧 Trivial (Патч)',      shortLabel: '🔧 Патч',      defaultMinutes: 10, xp: 8,  tflops: 3,  rackType: 'patch',     rackLabel: 'Патч' },
+      easy:    { id: 'easy',    label: '📦 Easy (Контейнер)',   shortLabel: '📦 Контейнер', defaultMinutes: 30, xp: 18, tflops: 8,  rackType: 'container', rackLabel: 'Docker Контейнер' },
+      medium:  { id: 'medium',  label: '🖥 Medium (Сервер 2U)',  shortLabel: '🖥 Сервер',    defaultMinutes: 60, xp: 40, tflops: 18, rackType: 'server',    rackLabel: '2U Сервер' },
+      hard:    { id: 'hard',    label: '🚀 Hard (Кластер)',      shortLabel: '🚀 Кластер',   defaultMinutes: 90, xp: 75, tflops: 35, rackType: 'cluster',   rackLabel: 'Блейд-Кластер' }
     };
 
-    const CATEGORIES = {
-      work:    { id: 'work',    tag: '#Работа',          icon: '⚡', color: '#39D353' },
-      code:    { id: 'code',    tag: '#Код',             icon: '💻', color: '#39D353' },
-      study:   { id: 'study',   tag: '#Обучение',        icon: '📚', color: '#A855F7' },
-      cooling: { id: 'cooling', tag: '#Бассейн / Спорт', icon: '🌊', color: '#38BDF8' }
+    const BASE_CATEGORIES = {
+      work:    { id: 'work',    tag: '#Работа',          icon: '⚡', color: '#39D353', theme: 'green',  isCooling: false, builtin: true },
+      code:    { id: 'code',    tag: '#Код',             icon: '💻', color: '#39D353', theme: 'green',  isCooling: false, builtin: true },
+      study:   { id: 'study',   tag: '#Обучение',        icon: '📚', color: '#A855F7', theme: 'purple', isCooling: false, builtin: true },
+      cooling: { id: 'cooling', tag: '#Бассейн / Спорт', icon: '🌊', color: '#38BDF8', theme: 'cyan',   isCooling: true,  builtin: true }
     };
+
+    const CATEGORY_THEMES = {
+      green:  { badgeClass: 'badge-green',  hex: '#39D353', hmScale: ['#0E4429', '#006D32', '#26A641', '#39D353'] },
+      cyan:   { badgeClass: 'badge-cyan',   hex: '#38BDF8', hmScale: ['#0C4A6E', '#0369A1', '#0284C7', '#38BDF8'] },
+      purple: { badgeClass: 'badge-purple', hex: '#A855F7', hmScale: ['#3B0764', '#6B21A8', '#9333EA', '#C084FC'] },
+      amber:  { badgeClass: 'badge-amber',  hex: '#F59E0B', hmScale: ['#451A03', '#92400E', '#D97706', '#FBBF24'] },
+      red:    { badgeClass: 'badge-red',    hex: '#F85149', hmScale: ['#450A0A', '#991B1B', '#DC2626', '#F87171'] }
+    };
+
+    function getAllCategoriesList() {
+      const baseList = Object.values(BASE_CATEGORIES);
+      const customList = Array.isArray(appState?.customCategories) ? appState.customCategories : [];
+      return [...baseList, ...customList];
+    }
+
+    function getCategoryMeta(catId) {
+      if (BASE_CATEGORIES[catId]) return BASE_CATEGORIES[catId];
+      const customList = Array.isArray(appState?.customCategories) ? appState.customCategories : [];
+      const found = customList.find(c => c.id === catId);
+      if (found) return found;
+      return BASE_CATEGORIES.work;
+    }
+
+    function isCategoryCooling(catId) {
+      const meta = getCategoryMeta(catId);
+      return Boolean(meta && (meta.id === 'cooling' || meta.isCooling));
+    }
+
+    function getCategoryBadgeClass(catId, fallbackClass = 'badge-green') {
+      const meta = getCategoryMeta(catId);
+      if (!meta) return fallbackClass;
+      const th = CATEGORY_THEMES[meta.theme] || CATEGORY_THEMES.green;
+      return th.badgeClass;
+    }
+
+    // 21-Node Tree of Architect Passive Skills (Spent with SP, displayed as compact icons on tree canvas)
+    const ARCHITECT_SKILL_TREE = [
+      // ROOT NODE (Tier 0)
+      {
+        id: 'sk_root',
+        icon: '🧠',
+        name: 'Нейро-интерфейс Архитектора',
+        branch: 'Ядро Архитектора',
+        costSp: 1,
+        parents: [],
+        x: 410,
+        y: 34,
+        desc: 'Базовый нейро-линк с ЦОД: даёт постоянные +5% к опыту XP и +5% к добыче TFLOPS за любые действия. Открывает все 4 ветви талантов.'
+      },
+
+      // BRANCH 1: ВЫЧИСЛЕНИЯ И РАЗГОН (x around 105)
+      {
+        id: 'sk_c1',
+        icon: '⚡',
+        name: 'Кэш L3 Вычислительных Нитей',
+        branch: 'I. Вычисления и Разгон',
+        costSp: 1,
+        parents: ['sk_root'],
+        x: 105,
+        y: 102,
+        desc: 'Ускоряет рабочие потоки: даёт +10% к опыту XP за все задачи из категорий #Работа и #Код.'
+      },
+      {
+        id: 'sk_c2',
+        icon: '🔥',
+        name: 'Турбо-Буст Частоты Стоек',
+        branch: 'I. Вычисления и Разгон',
+        costSp: 1,
+        parents: ['sk_c1'],
+        x: 105,
+        y: 172,
+        desc: 'Повышает отдачу тяжёлых узлов: даёт +15% к добыче TFLOPS за задачи сложности Medium и Hard.'
+      },
+      {
+        id: 'sk_c3a',
+        icon: '⏱️',
+        name: 'Квантовое Сжатие Тактов',
+        branch: 'I. Вычисления и Разгон',
+        costSp: 1,
+        parents: ['sk_c2'],
+        x: 62,
+        y: 246,
+        desc: 'Фокус-спринты по таймеру приносят на +20% больше опыта XP и +20% больше TFLOPS.'
+      },
+      {
+        id: 'sk_c3b',
+        icon: '📦',
+        name: 'Микросервисный Конвейер',
+        branch: 'I. Вычисления и Разгон',
+        costSp: 1,
+        parents: ['sk_c2'],
+        x: 148,
+        y: 246,
+        desc: 'Быстрые задачи (Trivial и Easy) приносят дополнительно +5 XP и +3 TFLOPS при каждом выполнении.'
+      },
+      {
+        id: 'sk_c4',
+        icon: '🚀',
+        name: 'Гипер-Поточность Кластера',
+        branch: 'I. Вычисления и Разгон (Финал)',
+        costSp: 2,
+        parents: ['sk_c3a', 'sk_c3b'],
+        x: 105,
+        y: 320,
+        desc: 'Высший талант вычислений: глобально увеличивает добычу мощности на +20% TFLOPS от всех источников.'
+      },
+
+      // BRANCH 2: НАДЁЖНОСТЬ И ХЛАДАГЕНТ (x around 308)
+      {
+        id: 'sk_s1',
+        icon: '🛡️',
+        name: 'Резервирование Питания N+1',
+        branch: 'II. Надёжность и Хладагент',
+        costSp: 1,
+        parents: ['sk_root'],
+        x: 308,
+        y: 102,
+        desc: 'Повышает максимальный запас прочности кластера на +20 SLA HP.'
+      },
+      {
+        id: 'sk_s2',
+        icon: '❄️',
+        name: 'Криогенные Форсунки Залов',
+        branch: 'II. Надёжность и Хладагент',
+        costSp: 1,
+        parents: ['sk_s1'],
+        x: 308,
+        y: 172,
+        desc: 'Тренировки и отдых (#Бассейн / #Спорт) восстанавливают дополнительно +12 SLA HP.'
+      },
+      {
+        id: 'sk_s3a',
+        icon: '🧯',
+        name: 'Газовое Пожаротушение Halon',
+        branch: 'II. Надёжность и Хладагент',
+        costSp: 1,
+        parents: ['sk_s2'],
+        x: 265,
+        y: 246,
+        desc: 'Снижает урон по SLA HP от срывов привычек и SIGKILL ещё на 25%.'
+      },
+      {
+        id: 'sk_s3b',
+        icon: '🌊',
+        name: 'Глубокий Крио-Разгон',
+        branch: 'II. Надёжность и Хладагент',
+        costSp: 1,
+        parents: ['sk_s2'],
+        x: 351,
+        y: 246,
+        desc: 'В дни, когда выполнена задача #Бассейн/#Спорт, бонус охлаждения даёт ещё +10% XP и +10% TFLOPS.'
+      },
+      {
+        id: 'sk_s4',
+        icon: '💎',
+        name: 'Бессмертный Кластер (SLA 99.999%)',
+        branch: 'II. Надёжность и Хладагент (Финал)',
+        costSp: 2,
+        parents: ['sk_s3a', 'sk_s3b'],
+        x: 308,
+        y: 320,
+        desc: 'Даёт +35 к макс. SLA HP и полностью защищает от потери 20 TFLOPS при падении HP до нуля (Kernel Panic).'
+      },
+
+      // BRANCH 3: СНАБЖЕНИЕ И СПУТНИКИ (x around 512)
+      {
+        id: 'sk_l1',
+        icon: '🧲',
+        name: 'Магнитный Сборщик Трофеев',
+        branch: 'III. Снабжение и Спутники',
+        costSp: 1,
+        parents: ['sk_root'],
+        x: 512,
+        y: 102,
+        desc: 'Увеличивает шанс выпадения лута (ядер, чертежей и артефактов) при закрытии задач на +15%.'
+      },
+      {
+        id: 'sk_l2',
+        icon: '🔋',
+        name: 'Реактор Синтеза Ядер',
+        branch: 'III. Снабжение и Спутники',
+        costSp: 1,
+        parents: ['sk_l1'],
+        x: 512,
+        y: 172,
+        desc: 'При выпадении Ядра питания с задачи даёт 35% шанс получить сразу 2 🔋 Ядра вместо одного.'
+      },
+      {
+        id: 'sk_l3a',
+        icon: '🎲',
+        name: 'Прямой Контракт Снабжения',
+        branch: 'III. Снабжение и Спутники',
+        costSp: 1,
+        parents: ['sk_l2'],
+        x: 469,
+        y: 246,
+        desc: 'Снижает стоимость открытия Контейнера Снабжения в Коллекции с 30 до 22 ⚡ TFLOPS.'
+      },
+      {
+        id: 'sk_l3b',
+        icon: '🛸',
+        name: 'Нейро-Симбиоз со Спутником',
+        branch: 'III. Снабжение и Спутники',
+        costSp: 1,
+        parents: ['sk_l2'],
+        x: 555,
+        y: 246,
+        desc: 'Усиливает пассивный бонус твоего активного Кибер-Спутника ещё на +50%.'
+      },
+      {
+        id: 'sk_l4',
+        icon: '👑',
+        name: 'Гранд-Куратор Музея Железа',
+        branch: 'III. Снабжение и Спутники (Финал)',
+        costSp: 2,
+        parents: ['sk_l3a', 'sk_l3b'],
+        x: 512,
+        y: 320,
+        desc: 'Каждый уникальный артефакт в твоём Музее Легендарного Железа даёт +1.5% к XP и TFLOPS (до +18%).'
+      },
+
+      // BRANCH 4: КАМПУС ЦОД И ЧЕК-ЛИСТЫ (x around 715)
+      {
+        id: 'sk_b1',
+        icon: '🏗️',
+        name: 'Роботизированные Краны ЦОД',
+        branch: 'IV. Кампус и Чек-листы',
+        costSp: 1,
+        parents: ['sk_root'],
+        x: 715,
+        y: 102,
+        desc: 'Ускоряет строительство всех объектов на Карте Кампуса ЦОД на +25% от каждой задачи.'
+      },
+      {
+        id: 'sk_b2',
+        icon: '📚',
+        name: 'База Знаний Архитектора',
+        branch: 'IV. Кампус и Чек-листы',
+        costSp: 1,
+        parents: ['sk_b1'],
+        x: 715,
+        y: 172,
+        desc: 'Задачи категории #Обучение приносят на +20% больше XP и +5 дополнительных TFLOPS.'
+      },
+      {
+        id: 'sk_b3a',
+        icon: '☑️',
+        name: 'Мастер Декомпозиции Чек-листов',
+        branch: 'IV. Кампус и Чек-листы',
+        costSp: 1,
+        parents: ['sk_b2'],
+        x: 672,
+        y: 246,
+        desc: 'Каждый отмеченный пункт чек-листа внутри карточки задачи даёт бонусные +4 XP и +2 TFLOPS при закрытии задачи.'
+      },
+      {
+        id: 'sk_b3b',
+        icon: '⚡',
+        name: 'Энергокольцо Гиперскейлера',
+        branch: 'IV. Кампус и Чек-листы',
+        costSp: 1,
+        parents: ['sk_b2'],
+        x: 758,
+        y: 246,
+        desc: 'Каждый полностью построенный объект на Карте Кампуса ЦОД добавляет +2% к добыче TFLOPS.'
+      },
+      {
+        id: 'sk_b4',
+        icon: '🌟',
+        name: 'Архитектор Сингулярности',
+        branch: 'IV. Кампус и Чек-листы (Финал)',
+        costSp: 2,
+        parents: ['sk_b3a', 'sk_b3b'],
+        x: 715,
+        y: 320,
+        desc: 'Финальный талант ветви: +15% ко всем наградам XP, +15% к TFLOPS и +25% к прогрессу стройки Мегапроектов.'
+      }
+    ];
+
+    function hasSkill(skillId) {
+      return Array.isArray(appState.rpg.skills) && appState.rpg.skills.includes(skillId);
+    }
+
+    function canUnlockSkill(skillNode) {
+      if (!skillNode) return false;
+      if (hasSkill(skillNode.id)) return false;
+      if (!skillNode.parents || skillNode.parents.length === 0) return true;
+      // For tier-4 capstone nodes with 2 sub-branch parents, unlocking EITHER parent in tier-3 unlocks access to the capstone (or require at least one parent)
+      return skillNode.parents.some(pid => hasSkill(pid));
+    }
 
     function getTaskMinutes(task) {
       if (task && typeof task.minutes === 'number' && !isNaN(task.minutes)) {
@@ -1858,14 +2525,16 @@
       return `⏱ ${minutes}м`;
     }
 
-    // Returns effective construction units for Megaprojects (if task has 0 minutes, uses difficulty weight so fact-only tasks still build the Data Center!)
     function getConstructionUnitsForTask(difficultyId, minutes) {
-      if (typeof minutes === 'number' && minutes > 0) return minutes;
-      const diff = DIFFICULTIES[difficultyId] || DIFFICULTIES.medium;
-      return diff.defaultMinutes;
+      let base = (typeof minutes === 'number' && minutes > 0)
+        ? minutes
+        : (DIFFICULTIES[difficultyId] || DIFFICULTIES.medium).defaultMinutes;
+      let mult = 1;
+      if (hasSkill('sk_b1')) mult += 0.25;
+      if (hasSkill('sk_b4')) mult += 0.25;
+      return Math.round(base * mult);
     }
 
-    // Helper for To-Do single-day binding (backward compatible with completedDates[])
     function getTodoCompletionDate(task) {
       if (!task) return null;
       if (typeof task.completedDate === 'string' && task.completedDate.length >= 10) {
@@ -1879,8 +2548,8 @@
 
     function isTodoVisibleOnDate(task, dateIso) {
       const doneDate = getTodoCompletionDate(task);
-      if (!doneDate) return true; // Active backlog item: visible on any day until completed
-      return doneDate === dateIso; // Once completed: stays visible as completed ONLY on the day it was completed
+      if (!doneDate) return true;
+      return doneDate === dateIso;
     }
 
     const TECH_TREE_SPEC = [
@@ -1917,13 +2586,19 @@
     // 3. APPLICATION STATE & CLEAN DEMO INITIALIZATION
     // =========================================================================
     let editingTaskId = null;
+    let modalChecklistDraft = [];
     let draggedTaskId = null;
+    let showBacklogArchive = false;
+    let selectedSkillId = 'sk_root';
+    let pendingRemoteConflictPayload = null;
+    let pendingRemoteConflictSha = null;
 
     let appState = {
+      updatedAt: new Date().toISOString(),
       activeTab: 'tasks',
       activeDate: getSystemLocalDateIso(),
       boardCatFilter: 'all',
-      heatmapPeriod: 'month', // 'week' | 'month' | 'year'
+      heatmapPeriod: 'month',
       heatmapCat: 'all',
       selectedHeatmapDate: null,
       weekendBuffer: true,
@@ -1938,8 +2613,10 @@
           up_blade: 1,
           up_k8s: 1,
           up_hydro: 1
-        }
+        },
+        skills: []
       },
+      customCategories: [],
       tasks: [],
       customStreaks: [],
       events: [],
@@ -1958,7 +2635,6 @@
       const d2 = shiftIsoDate(d0, -2);
 
       const tasks = [
-        // Habits (+/-)
         {
           id: 't_hab_60',
           type: 'habit',
@@ -1969,7 +2645,8 @@
           habitDir: 'both',
           note: 'Полный час фокуса без мессенджеров',
           posCount: 3,
-          negCount: 0
+          negCount: 0,
+          checklist: []
         },
         {
           id: 't_hab_30',
@@ -1981,7 +2658,8 @@
           habitDir: 'pos',
           note: 'Закрытие подзадачи или код-ревью',
           posCount: 4,
-          negCount: 0
+          negCount: 0,
+          checklist: []
         },
         {
           id: 't_hab_pool',
@@ -1993,7 +2671,8 @@
           habitDir: 'pos',
           note: 'Факт тренировки: сбрасывает нагрев серверов и восстанавливает SLA HP',
           posCount: 1,
-          negCount: 0
+          negCount: 0,
+          checklist: []
         },
         {
           id: 't_hab_distract',
@@ -2005,7 +2684,8 @@
           habitDir: 'neg',
           note: 'Штраф по стабильности SLA кластера',
           posCount: 0,
-          negCount: 0
+          negCount: 0,
+          checklist: []
         },
         // Dailies (Cron)
         {
@@ -2017,7 +2697,8 @@
           minutes: 0,
           schedule: 'everyday',
           note: 'Выбрать 3 главные задачи дня (по факту)',
-          completedDates: [d2, d1, d0]
+          completedDates: [d2, d1, d0],
+          checklist: []
         },
         {
           id: 't_day_code',
@@ -2028,7 +2709,8 @@
           minutes: 60,
           schedule: 'weekdays',
           note: 'Обязательный буст ключевого проекта',
-          completedDates: [d2, d1, d0]
+          completedDates: [d2, d1, d0],
+          checklist: []
         },
         {
           id: 't_day_study',
@@ -2039,7 +2721,8 @@
           minutes: 30,
           schedule: 'everyday',
           note: 'Прокачка базы знаний',
-          completedDates: [d1]
+          completedDates: [d1],
+          checklist: []
         },
         // To-Dos (Backlog)
         {
@@ -2049,9 +2732,14 @@
           category: 'code',
           difficulty: 'hard',
           minutes: 0,
-          note: 'Факт релиза новой версии',
+          note: 'Факт релиза новой версии с чек-листом',
           completedDates: [],
-          completedDate: null
+          completedDate: null,
+          checklist: [
+            { id: 'chk_1', text: 'Проверить дерево пассивных навыков за SP', done: true },
+            { id: 'chk_2', text: 'Протестировать чек-листы и архив бэклога', done: false },
+            { id: 'chk_3', text: 'Залить index.html в репозиторий', done: false }
+          ]
         },
         {
           id: 't_todo_db',
@@ -2062,7 +2750,11 @@
           minutes: 60,
           note: 'Проверить индексы и время ответа',
           completedDates: [],
-          completedDate: null
+          completedDate: null,
+          checklist: [
+            { id: 'chk_4', text: 'Снять план выполнения EXPLAIN ANALYZE', done: false },
+            { id: 'chk_5', text: 'Добавить составной индекс', done: false }
+          ]
         }
       ];
 
@@ -2091,19 +2783,16 @@
       ];
 
       const events = [
-        // 2 days ago (d2)
         { id: 'ev_1', date: d2, taskId: 't_hab_60', title: 'Глубокий спринт (Сервер в стойку)', category: 'work', difficulty: 'medium', minutes: 60, xp: 40, tflops: 18, direction: 'pos', time: '10:00' },
         { id: 'ev_2', date: d2, taskId: 't_hab_60', title: 'Глубокий спринт (Сервер в стойку)', category: 'work', difficulty: 'medium', minutes: 60, xp: 40, tflops: 18, direction: 'pos', time: '12:00' },
         { id: 'ev_3', date: d2, taskId: 't_day_code', title: 'Минимум 1 час чистого кода / архитектуры', category: 'code', difficulty: 'medium', minutes: 60, xp: 40, tflops: 18, direction: 'pos', time: '15:00' },
         { id: 'ev_4', date: d2, taskId: 't_hab_pool', title: 'Бассейн / Силовая разминка (Охлаждение ЦОД)', category: 'cooling', difficulty: 'medium', minutes: 0, xp: 40, tflops: 18, direction: 'pos', time: '18:00' },
 
-        // Yesterday (d1)
         { id: 'ev_5', date: d1, taskId: 't_hab_60', title: 'Глубокий спринт (Сервер в стойку)', category: 'work', difficulty: 'medium', minutes: 60, xp: 40, tflops: 18, direction: 'pos', time: '09:30' },
         { id: 'ev_6', date: d1, taskId: 't_hab_60', title: 'Глубокий спринт (Сервер в стойку)', category: 'work', difficulty: 'medium', minutes: 60, xp: 40, tflops: 18, direction: 'pos', time: '11:30' },
         { id: 'ev_7', date: d1, taskId: 't_day_code', title: 'Минимум 1 час чистого кода / архитектуры', category: 'code', difficulty: 'medium', minutes: 60, xp: 40, tflops: 18, direction: 'pos', time: '14:00' },
         { id: 'ev_8', date: d1, taskId: 't_day_study', title: 'Чтение тех. документации / книги', category: 'study', difficulty: 'easy', minutes: 30, xp: 18, tflops: 8, direction: 'pos', time: '17:00' },
 
-        // Today (d0)
         { id: 'ev_9',  date: d0, taskId: 't_hab_60', title: 'Глубокий спринт (Сервер #1)', category: 'work', difficulty: 'medium', minutes: 60, xp: 46, tflops: 20, direction: 'pos', time: '09:00' },
         { id: 'ev_10', date: d0, taskId: 't_hab_30', title: 'Быстрый спринт (Docker-контейнер #1)', category: 'code', difficulty: 'easy', minutes: 30, xp: 20, tflops: 9, direction: 'pos', time: '10:30' },
         { id: 'ev_11', date: d0, taskId: 't_day_code', title: 'Минимум 1 час чистого кода (Сервер #2)', category: 'code', difficulty: 'medium', minutes: 60, xp: 46, tflops: 20, direction: 'pos', time: '12:00' },
@@ -2114,7 +2803,6 @@
       return { tasks, customStreaks, events };
     }
 
-    // Normalize loaded tasks so older saves work seamlessly with separated time & single-day todo completion
     function normalizeLoadedTasks(tasksArray) {
       if (!Array.isArray(tasksArray)) return [];
       return tasksArray.map(t => {
@@ -2133,11 +2821,20 @@
             completedDates = [completedDate];
           }
         }
+        const checklist = Array.isArray(t.checklist)
+          ? t.checklist.map((item, idx) => ({
+              id: item.id || ('chk_' + idx + '_' + Date.now()),
+              text: String(item.text || '').trim(),
+              done: Boolean(item.done)
+            })).filter(item => item.text.length > 0)
+          : [];
+
         return {
           ...t,
           minutes,
           completedDates,
-          completedDate
+          completedDate,
+          checklist
         };
       });
     }
@@ -2146,13 +2843,16 @@
     // 4. STORAGE PERSISTENCE
     // =========================================================================
     function saveState() {
+      appState.updatedAt = new Date().toISOString();
       try {
         const payload = {
+          updatedAt: appState.updatedAt,
           activeDate: appState.activeDate,
           weekendBuffer: appState.weekendBuffer,
           soundEnabled: appState.soundEnabled,
           rpg: appState.rpg,
           collection: appState.collection,
+          customCategories: appState.customCategories || [],
           tasks: appState.tasks,
           customStreaks: appState.customStreaks,
           events: appState.events
@@ -2177,14 +2877,17 @@
         if (raw) {
           const parsed = JSON.parse(raw);
           if (parsed && Array.isArray(parsed.tasks) && Array.isArray(parsed.events)) {
+            appState.customCategories = Array.isArray(parsed.customCategories) ? parsed.customCategories : [];
             appState.tasks = normalizeLoadedTasks(parsed.tasks);
             appState.events = parsed.events;
             appState.customStreaks = parsed.customStreaks || starter.customStreaks;
             appState.rpg = parsed.rpg || appState.rpg;
+            if (!Array.isArray(appState.rpg.skills)) appState.rpg.skills = [];
             if (parsed.collection) appState.collection = parsed.collection;
             if (typeof parsed.weekendBuffer === 'boolean') appState.weekendBuffer = parsed.weekendBuffer;
             if (typeof parsed.soundEnabled === 'boolean') appState.soundEnabled = parsed.soundEnabled;
             if (parsed.activeDate) appState.activeDate = parsed.activeDate;
+            if (parsed.updatedAt) appState.updatedAt = parsed.updatedAt;
             appState.selectedHeatmapDate = appState.activeDate;
           }
         }
@@ -2264,10 +2967,12 @@
     }
 
     // =========================================================================
-    // 6. RPG BONUSES, REWARDS & LEVELING ENGINE
+    // 6. RPG BONUSES, ARCHITECT SKILLS (SP) & LEVELING ENGINE
     // =========================================================================
     function getTechBonuses() {
       const u = appState.rpg.upgrades || {};
+      if (!Array.isArray(appState.rpg.skills)) appState.rpg.skills = [];
+
       let xpPct = 0;
       let tflopsPct = 0;
       let healHpBonus = 0;
@@ -2276,6 +2981,7 @@
       let dailyExtraTflops = 0;
       let todoExtraXp = 0;
 
+      // 1. Hardware Rack Upgrades (TFLOPS)
       TECH_TREE_SPEC.forEach(branch => {
         branch.nodes.forEach(node => {
           const lvl = u[node.id] || 0;
@@ -2291,19 +2997,49 @@
         });
       });
 
-      const todayEvents = appState.events.filter(e => e.date === appState.activeDate && e.direction === 'pos');
-      const hasCoolingToday = todayEvents.some(e => e.category === 'cooling');
-      if (hasCoolingToday) {
-        xpPct += 15;
+      // 2. Architect Passive Skills (SP)
+      if (hasSkill('sk_root')) { xpPct += 5; tflopsPct += 5; }
+      if (hasSkill('sk_c4'))   { tflopsPct += 20; }
+      if (hasSkill('sk_s1'))   { maxHpBonus += 20; }
+      if (hasSkill('sk_s2'))   { healHpBonus += 12; }
+      if (hasSkill('sk_s3a'))  { dmgReductionPct += 25; }
+      if (hasSkill('sk_s4'))   { maxHpBonus += 35; }
+      if (hasSkill('sk_b4'))   { xpPct += 15; tflopsPct += 15; }
+
+      // Capstone sk_l4: +1.5% XP & TFLOPS per unique relic owned in museum
+      if (hasSkill('sk_l4') && appState.collection && appState.collection.relics && typeof RELICS_CATALOG !== 'undefined') {
+        const ownedRelics = RELICS_CATALOG.filter(r => (appState.collection.relics[r.id] || 0) > 0).length;
+        const relicBonus = Math.round(ownedRelics * 1.5);
+        xpPct += relicBonus;
+        tflopsPct += relicBonus;
       }
 
+      // Skill sk_b3b: +2% TFLOPS per completed Megaproject on Campus Map
+      if (hasSkill('sk_b3b') && appState.collection && appState.collection.megaprojectProgress && typeof MEGAPROJECTS_CATALOG !== 'undefined') {
+        const builtCount = MEGAPROJECTS_CATALOG.filter(m => (appState.collection.megaprojectProgress[m.id] || 0) >= m.targetMinutes).length;
+        tflopsPct += builtCount * 2;
+      }
+
+      // 3. Today's Cooling Overclock
+      const todayEvents = appState.events.filter(e => e.date === appState.activeDate && e.direction === 'pos');
+      const hasCoolingToday = todayEvents.some(e => isCategoryCooling(e.category));
+      if (hasCoolingToday) {
+        xpPct += 15;
+        if (hasSkill('sk_s3b')) {
+          xpPct += 10;
+          tflopsPct += 10;
+        }
+      }
+
+      // 4. Equipped Cyber-Familiar Passive Bonus (amplified by +50% if sk_l3b is unlocked!)
       if (appState.collection && appState.collection.equippedFamiliarId && typeof FAMILIARS_CATALOG !== 'undefined') {
         const eqId = appState.collection.equippedFamiliarId;
         const fMeta = FAMILIARS_CATALOG.find(f => f.id === eqId);
         const fSt = (appState.collection.familiars && appState.collection.familiars[eqId]) || { stage: 0 };
         if (fMeta && fSt.stage > 0) {
-          const mult = fSt.stage >= 2 ? 2 : 1;
-          const val = fMeta.bonusVal * mult;
+          const evoMult = fSt.stage >= 2 ? 2 : 1;
+          const synMult = hasSkill('sk_l3b') ? 1.5 : 1;
+          const val = Math.round(fMeta.bonusVal * evoMult * synMult);
           if (fMeta.bonusType === 'xp') xpPct += val;
           else if (fMeta.bonusType === 'tflops') tflopsPct += val;
           else if (fMeta.bonusType === 'hp') maxHpBonus += val;
@@ -2315,7 +3051,7 @@
         xpPct,
         tflopsPct,
         healHpBonus,
-        dmgReductionPct: Math.min(75, dmgReductionPct),
+        dmgReductionPct: Math.min(85, dmgReductionPct),
         maxHp: 100 + maxHpBonus,
         dailyExtraTflops,
         todoExtraXp,
@@ -2336,20 +3072,56 @@
       return `AI Core Overlord (Tier ${lvl})`;
     }
 
-    function awardRpgProgress(taskType, difficultyId, categoryId, taskMinutes) {
+    function awardRpgProgress(taskType, difficultyId, categoryId, taskMinutes, taskObj = null) {
       const diff = DIFFICULTIES[difficultyId] || DIFFICULTIES.medium;
       const bonuses = getTechBonuses();
 
-      let gainedXp = Math.round(diff.xp * (1 + bonuses.xpPct / 100));
-      let gainedTflops = Math.round(diff.tflops * (1 + bonuses.tflopsPct / 100));
+      let taskXpPct = bonuses.xpPct;
+      let taskTfPct = bonuses.tflopsPct;
 
+      // Apply task-specific Architect passive skills
+      if (hasSkill('sk_c1') && (categoryId === 'work' || categoryId === 'code')) {
+        taskXpPct += 10;
+      }
+      if (hasSkill('sk_c2') && (difficultyId === 'medium' || difficultyId === 'hard')) {
+        taskTfPct += 15;
+      }
+      if (hasSkill('sk_c3a') && taskType === 'timer_sprint') {
+        taskXpPct += 20;
+        taskTfPct += 20;
+      }
+      if (hasSkill('sk_b2') && categoryId === 'study') {
+        taskXpPct += 20;
+      }
+
+      let gainedXp = Math.round(diff.xp * (1 + taskXpPct / 100));
+      let gainedTflops = Math.round(diff.tflops * (1 + taskTfPct / 100));
+
+      if (hasSkill('sk_c3b') && (difficultyId === 'trivial' || difficultyId === 'easy')) {
+        gainedXp += 5;
+        gainedTflops += 3;
+      }
+      if (hasSkill('sk_b2') && categoryId === 'study') {
+        gainedTflops += 5;
+      }
       if (taskType === 'daily') gainedTflops += bonuses.dailyExtraTflops;
       if (taskType === 'todo') gainedXp += bonuses.todoExtraXp;
+
+      // Bonus for completed checklist items inside the task
+      if (taskObj && Array.isArray(taskObj.checklist) && taskObj.checklist.length > 0) {
+        const doneSubCount = taskObj.checklist.filter(c => c.done).length;
+        if (doneSubCount > 0) {
+          const perSubXp = hasSkill('sk_b3a') ? 6 : 2;
+          const perSubTf = hasSkill('sk_b3a') ? 3 : 1;
+          gainedXp += doneSubCount * perSubXp;
+          gainedTflops += doneSubCount * perSubTf;
+        }
+      }
 
       appState.rpg.xp += gainedXp;
       appState.rpg.tflops += gainedTflops;
 
-      if (categoryId === 'cooling') {
+      if (isCategoryCooling(categoryId)) {
         const heal = 12 + bonuses.healHpBonus;
         appState.rpg.hp = Math.min(bonuses.maxHp, appState.rpg.hp + heal);
       }
@@ -2368,7 +3140,7 @@
 
       if (leveledUp) {
         playTone('lvlup');
-        showToast(`УРОВЕНЬ ПОВЫШЕН! LVL ${appState.rpg.level} +1 SP! ${dropMsg}`, 'lvl');
+        showToast(`УРОВЕНЬ ПОВЫШЕН! LVL ${appState.rpg.level} +1 🧬 SP! ${dropMsg}`, 'lvl');
       } else if (dropMsg) {
         playTone('lvlup');
         showToast(`+${gainedXp} XP, +${gainedTflops} TF • ${dropMsg}`, 'lvl');
@@ -2383,21 +3155,75 @@
     function applySlaPenalty(reasonTitle) {
       const bonuses = getTechBonuses();
       const rawDmg = 15;
-      const actualDmg = Math.max(3, Math.round(rawDmg * (1 - bonuses.dmgReductionPct / 100)));
+      const actualDmg = Math.max(2, Math.round(rawDmg * (1 - bonuses.dmgReductionPct / 100)));
       appState.rpg.hp = Math.max(0, appState.rpg.hp - actualDmg);
 
       playTone('minus');
       if (appState.rpg.hp <= 0) {
         appState.rpg.hp = bonuses.maxHp;
-        appState.rpg.tflops = Math.max(0, appState.rpg.tflops - 20);
-        showToast(`KERNEL PANIC! SLA упал до 0% — потеряно 20 TFLOPS на перезапуск стойки`, 'err');
+        if (hasSkill('sk_s4')) {
+          showToast(`🛡️ КЛАСТЕР СПАСЁН (SLA 99.999%)! Перезапуск без потери TFLOPS`, 'lvl');
+        } else {
+          appState.rpg.tflops = Math.max(0, appState.rpg.tflops - 20);
+          showToast(`KERNEL PANIC! SLA упал до 0% — потеряно 20 TFLOPS на перезапуск стойки`, 'err');
+        }
       } else {
         showToast(`Срыв (${reasonTitle}): −${actualDmg} SLA HP`, 'err');
       }
     }
 
+    // Architect Skill Tree Interactions
+    function selectSkillNode(skillId) {
+      selectedSkillId = skillId;
+      renderRackAndTreeTab();
+    }
+
+    function unlockArchitectSkill(skillId) {
+      if (!Array.isArray(appState.rpg.skills)) appState.rpg.skills = [];
+      const node = ARCHITECT_SKILL_TREE.find(n => n.id === skillId);
+      if (!node) return;
+      if (hasSkill(skillId)) {
+        showToast('Этот навык уже изучен!');
+        return;
+      }
+      if (!canUnlockSkill(node)) {
+        showToast('Сначала изучи предыдущий связанный узел в этой ветке!', 'err');
+        return;
+      }
+      const curSp = appState.rpg.sp || 0;
+      if (curSp < node.costSp) {
+        showToast(`Не хватает очков прокачки: нужно 🧬 ${node.costSp} SP (повышай уровень LVL)`, 'err');
+        return;
+      }
+
+      appState.rpg.sp = curSp - node.costSp;
+      appState.rpg.skills.push(skillId);
+      playTone('lvlup');
+      showToast(`🧬 Изучен талант: ${node.icon} ${node.name}!`, 'lvl');
+      saveState();
+      renderAll();
+    }
+
+    function respecArchitectSkills() {
+      if (!Array.isArray(appState.rpg.skills) || appState.rpg.skills.length === 0) {
+        showToast('У тебя пока нет изученных навыков для сброса');
+        return;
+      }
+      let refundedSp = 0;
+      appState.rpg.skills.forEach(skId => {
+        const n = ARCHITECT_SKILL_TREE.find(x => x.id === skId);
+        if (n) refundedSp += n.costSp;
+      });
+      appState.rpg.skills = [];
+      appState.rpg.sp = (appState.rpg.sp || 0) + refundedSp;
+      playTone('plus');
+      showToast(`🔄 Таланты сброшены! Возвращено +${refundedSp} 🧬 SP`);
+      saveState();
+      renderAll();
+    }
+
     // =========================================================================
-    // 7. TASK INTERACTIONS, EDITING, SINGLE-DAY TODO BINDING & REORDERING
+    // 7. TASK INTERACTIONS, CHECKLISTS, ARCHIVE, EDITING & REORDERING
     // =========================================================================
     function triggerHabit(taskId, direction) {
       const task = appState.tasks.find(t => t.id === taskId);
@@ -2407,7 +3233,7 @@
 
       if (direction === 'pos') {
         task.posCount = (task.posCount || 0) + 1;
-        const { gainedXp, gainedTflops } = awardRpgProgress('habit', task.difficulty, task.category, taskMins);
+        const { gainedXp, gainedTflops } = awardRpgProgress('habit', task.difficulty, task.category, taskMins, task);
         appState.events.push({
           id: 'ev_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6),
           date: appState.activeDate,
@@ -2451,14 +3277,12 @@
       const activeDate = appState.activeDate;
       const taskMins = getTaskMinutes(task);
 
-      // Check current completion state depending on daily vs todo
       const alreadyDone = task.type === 'todo'
         ? (getTodoCompletionDate(task) === activeDate)
         : task.completedDates.includes(activeDate);
 
       if (!alreadyDone) {
         if (task.type === 'todo') {
-          // Bind Todo strictly to this specific day
           task.completedDate = activeDate;
           task.completedDates = [activeDate];
         } else {
@@ -2466,7 +3290,7 @@
             task.completedDates.push(activeDate);
           }
         }
-        const { gainedXp, gainedTflops } = awardRpgProgress(task.type, task.difficulty, task.category, taskMins);
+        const { gainedXp, gainedTflops } = awardRpgProgress(task.type, task.difficulty, task.category, taskMins, task);
         appState.events.push({
           id: 'ev_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6),
           date: activeDate,
@@ -2481,7 +3305,6 @@
           time: new Date().toTimeString().slice(0, 5)
         });
       } else {
-        // Uncheck: remove completion and revert event on activeDate
         if (task.type === 'todo') {
           task.completedDate = null;
           task.completedDates = [];
@@ -2502,6 +3325,34 @@
       renderAll();
     }
 
+    // Toggle a checklist sub-item directly on the task card
+    function toggleTaskSubtask(taskId, subId) {
+      const task = appState.tasks.find(t => t.id === taskId);
+      if (!task || !Array.isArray(task.checklist)) return;
+      const sub = task.checklist.find(c => c.id === subId);
+      if (!sub) return;
+      sub.done = !sub.done;
+      if (sub.done) playTone('plus');
+      saveState();
+      renderTasksBoard();
+    }
+
+    // Backlog Archive View & Restore
+    function toggleBacklogArchiveView() {
+      showBacklogArchive = !showBacklogArchive;
+      renderTasksBoard();
+    }
+
+    function restoreTaskFromArchive(taskId) {
+      const task = appState.tasks.find(t => t.id === taskId);
+      if (!task) return;
+      task.completedDate = null;
+      task.completedDates = [];
+      saveState();
+      renderAll();
+      showToast(`↩ Задача возвращена в активный бэклог: ${task.title}`);
+    }
+
     function deleteTask(taskId) {
       appState.tasks = appState.tasks.filter(t => t.id !== taskId);
       saveState();
@@ -2515,7 +3366,6 @@
       closeTaskModal();
     }
 
-    // Reordering tasks within their column (by relative index among tasks of the same type)
     function getTasksOfTypeForOrdering(type) {
       if (type === 'todo') {
         return appState.tasks.filter(t => t.type === 'todo' && isTodoVisibleOnDate(t, appState.activeDate));
@@ -2533,14 +3383,12 @@
       const clampedTargetIdx = Math.max(0, Math.min(colTasks.length - 1, targetOneBasedIndex - 1));
       if (curIdxInCol === clampedTargetIdx) return;
 
-      // Remove task from global array
       const globalFromIdx = appState.tasks.findIndex(t => t.id === taskId);
       if (globalFromIdx === -1) return;
       const [removed] = appState.tasks.splice(globalFromIdx, 1);
 
       const remainingCol = getTasksOfTypeForOrdering(task.type);
       if (clampedTargetIdx >= remainingCol.length) {
-        // Insert after the last task of this type
         if (remainingCol.length === 0) {
           appState.tasks.push(removed);
         } else {
@@ -2568,7 +3416,7 @@
       renderAll();
     }
 
-    // HTML5 Drag & Drop Handlers for Task Cards
+    // HTML5 Drag & Drop Handlers
     function onTaskDragStart(ev, taskId) {
       draggedTaskId = taskId;
       if (ev.dataTransfer) {
@@ -2579,7 +3427,7 @@
       if (el) setTimeout(() => el.classList.add('dragging'), 0);
     }
 
-    function onTaskDragEnd(ev) {
+    function onTaskDragEnd() {
       draggedTaskId = null;
       document.querySelectorAll('.task-item').forEach(el => {
         el.classList.remove('dragging', 'drag-over');
@@ -2671,11 +3519,210 @@
       return Math.max(0, parseInt(presetVal, 10) || 0);
     }
 
+    // Modal Checklist Editor Functions
+    function renderModalChecklistDraft() {
+      const box = document.getElementById('tmChecklistContainer');
+      const badge = document.getElementById('tmChecklistCountBadge');
+      if (!box || !badge) return;
+
+      badge.textContent = `${modalChecklistDraft.length} п.`;
+      if (modalChecklistDraft.length === 0) {
+        box.innerHTML = `<div style="font-size: 11px; color: var(--muted); padding: 4px 2px;">Пунктов пока нет. Добавь подзадачи выше, если нужно разбить задачу на шаги.</div>`;
+        return;
+      }
+
+      box.innerHTML = modalChecklistDraft.map((item, idx) => `
+        <div style="display: flex; align-items: center; gap: 6px; background: var(--card); border: 1px solid var(--border-subtle); border-radius: 7px; padding: 5px 8px;">
+          <input type="checkbox" ${item.done ? 'checked' : ''} onchange="toggleModalChecklistDraftDone(${idx}, this.checked)" />
+          <input type="text" value="${item.text.replace(/"/g, '&quot;')}" oninput="updateModalChecklistDraftText(${idx}, this.value)" class="input-box" style="padding: 3px 6px; font-size: 12px; border-color: transparent; background: transparent;" />
+          <button type="button" onclick="removeModalChecklistDraftItem(${idx})" class="icon-action-btn del" title="Удалить пункт">✕</button>
+        </div>
+      `).join('');
+    }
+
+    function addModalChecklistItem() {
+      const inp = document.getElementById('tmNewSubtaskInput');
+      if (!inp) return;
+      const text = (inp.value || '').trim();
+      if (!text) return;
+      modalChecklistDraft.push({
+        id: 'chk_' + Date.now() + '_' + Math.random().toString(36).slice(2, 5),
+        text,
+        done: false
+      });
+      inp.value = '';
+      renderModalChecklistDraft();
+    }
+
+    function toggleModalChecklistDraftDone(idx, val) {
+      if (modalChecklistDraft[idx]) {
+        modalChecklistDraft[idx].done = Boolean(val);
+      }
+    }
+
+    function updateModalChecklistDraftText(idx, val) {
+      if (modalChecklistDraft[idx]) {
+        modalChecklistDraft[idx].text = val;
+      }
+    }
+
+    function removeModalChecklistDraftItem(idx) {
+      modalChecklistDraft.splice(idx, 1);
+      renderModalChecklistDraft();
+    }
+
+    function populateTaskModalCategoriesSelect(selectedCatId = 'work') {
+      const sel = document.getElementById('tmCategory');
+      if (!sel) return;
+      const allCats = getAllCategoriesList();
+      sel.innerHTML = allCats.map(c => {
+        const suffix = (c.id === 'cooling' || c.isCooling) ? ' (Охлаждение)' : '';
+        return `<option value="${c.id}" ${c.id === selectedCatId ? 'selected' : ''}>${c.icon} ${c.tag}${suffix}</option>`;
+      }).join('');
+    }
+
+    let reopenTaskModalAfterCat = false;
+
+    function openCategoryModal(fromTaskModal = false) {
+      reopenTaskModalAfterCat = Boolean(fromTaskModal);
+      document.getElementById('cmIcon').value = '🚀';
+      document.getElementById('cmTag').value = '';
+      document.getElementById('cmTheme').value = 'purple';
+      document.getElementById('cmIsCooling').checked = false;
+      renderCustomCategoriesModalList();
+      document.getElementById('categoryModal').classList.remove('hidden');
+    }
+
+    function closeCategoryModal() {
+      document.getElementById('categoryModal').classList.add('hidden');
+      reopenTaskModalAfterCat = false;
+    }
+
+    function renderCustomCategoriesModalList() {
+      const box = document.getElementById('customCategoriesModalList');
+      if (!box) return;
+      const allCats = getAllCategoriesList();
+      box.innerHTML = allCats.map(c => {
+        const badgeCls = getCategoryBadgeClass(c.id);
+        return `
+          <div style="display: flex; justify-content: space-between; align-items: center; background: var(--bg); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 7px 10px;">
+            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+              <span class="badge ${badgeCls} mono">${c.icon} ${c.tag}</span>
+              ${c.isCooling ? `<span class="badge badge-cyan mono" style="font-size: 10px;">❄️ Охлаждение ЦОД</span>` : ''}
+              ${c.builtin ? `<span style="font-size: 11px; color: var(--muted);">Базовая</span>` : `<span style="font-size: 11px; color: var(--green);">Пользовательская</span>`}
+            </div>
+            ${c.builtin
+              ? `<span style="font-size: 11px; color: var(--muted);">Системная</span>`
+              : `<button type="button" onclick="deleteCustomCategory('${c.id}')" class="btn-danger" style="padding: 3px 8px; font-size: 11px;">Удалить</button>`
+            }
+          </div>
+        `;
+      }).join('');
+    }
+
+    function saveCustomCategoryFromModal() {
+      const rawIcon = (document.getElementById('cmIcon').value || '🏷️').trim() || '🏷️';
+      let rawTag = (document.getElementById('cmTag').value || '').trim();
+      if (!rawTag) {
+        showToast('Введи название категории (например, #ПетПроект)!', 'err');
+        return;
+      }
+      if (!rawTag.startsWith('#')) {
+        rawTag = '#' + rawTag;
+      }
+      const theme = document.getElementById('cmTheme').value || 'purple';
+      const isCooling = document.getElementById('cmIsCooling').checked;
+      const thObj = CATEGORY_THEMES[theme] || CATEGORY_THEMES.purple;
+
+      if (!Array.isArray(appState.customCategories)) appState.customCategories = [];
+      const newCat = {
+        id: 'cat_' + Date.now(),
+        tag: rawTag,
+        icon: rawIcon,
+        theme,
+        color: thObj.hex,
+        isCooling,
+        builtin: false
+      };
+      appState.customCategories.push(newCat);
+      document.getElementById('cmTag').value = '';
+
+      saveState();
+      renderAll();
+      renderCustomCategoriesModalList();
+      populateTaskModalCategoriesSelect(newCat.id);
+      showToast(`Категория создана: ${newCat.icon} ${newCat.tag}`);
+
+      if (reopenTaskModalAfterCat) {
+        closeCategoryModal();
+      }
+    }
+
+    function deleteCustomCategory(catId) {
+      if (!Array.isArray(appState.customCategories)) return;
+      const target = appState.customCategories.find(c => c.id === catId);
+      appState.customCategories = appState.customCategories.filter(c => c.id !== catId);
+      appState.tasks.forEach(t => {
+        if (t.category === catId) t.category = 'work';
+      });
+      if (appState.boardCatFilter === catId) appState.boardCatFilter = 'all';
+      if (appState.heatmapCat === catId) appState.heatmapCat = 'all';
+
+      saveState();
+      renderAll();
+      renderCustomCategoriesModalList();
+      populateTaskModalCategoriesSelect(document.getElementById('tmCategory')?.value || 'work');
+      if (target) showToast(`Категория ${target.tag} удалена`);
+    }
+
+    function renderDynamicCategoryFilterBars() {
+      const customList = Array.isArray(appState.customCategories) ? appState.customCategories : [];
+
+      const boardRow = document.getElementById('boardCatFilterRow');
+      if (boardRow) {
+        if (appState.boardCatFilter !== 'all' && !getAllCategoriesList().some(c => c.id === appState.boardCatFilter)) {
+          appState.boardCatFilter = 'all';
+        }
+        const customBtns = customList.map(c => `
+          <button type="button" onclick="setBoardCatFilter('${c.id}')" data-bcat="${c.id}" class="board-cat-btn btn-small ${appState.boardCatFilter === c.id ? 'active' : ''}">${c.icon} ${c.tag}</button>
+        `).join('');
+        boardRow.innerHTML = `
+          <button type="button" onclick="setBoardCatFilter('all')" data-bcat="all" class="board-cat-btn btn-small ${appState.boardCatFilter === 'all' ? 'active' : ''}">Все категории</button>
+          <button type="button" onclick="setBoardCatFilter('work')" data-bcat="work" class="board-cat-btn btn-small ${appState.boardCatFilter === 'work' ? 'active' : ''}">⚡ #Работа</button>
+          <button type="button" onclick="setBoardCatFilter('code')" data-bcat="code" class="board-cat-btn btn-small ${appState.boardCatFilter === 'code' ? 'active' : ''}">💻 #Код</button>
+          <button type="button" onclick="setBoardCatFilter('study')" data-bcat="study" class="board-cat-btn btn-small ${appState.boardCatFilter === 'study' ? 'active' : ''}">📚 #Обучение</button>
+          <button type="button" onclick="setBoardCatFilter('cooling')" data-bcat="cooling" class="board-cat-btn btn-small ${appState.boardCatFilter === 'cooling' ? 'active' : ''}">🌊 #Бассейн / #Спорт</button>
+          ${customBtns}
+          <button type="button" onclick="openCategoryModal()" class="btn-small mono" style="border-style: dashed; color: var(--cyan); border-color: rgba(56,189,248,0.45);" title="Создать или настроить свои категории ЦОД">+ Категория</button>
+        `;
+      }
+
+      const hmRow = document.getElementById('hmCatFilterRow');
+      if (hmRow) {
+        if (appState.heatmapCat !== 'all' && !getAllCategoriesList().some(c => c.id === appState.heatmapCat)) {
+          appState.heatmapCat = 'all';
+        }
+        const customHmBtns = customList.map(c => `
+          <button type="button" onclick="setHeatmapCat('${c.id}')" data-hmcat="${c.id}" class="hm-cat-btn btn-small ${appState.heatmapCat === c.id ? 'active' : ''}">${c.icon} ${c.tag}</button>
+        `).join('');
+        hmRow.innerHTML = `
+          <button type="button" onclick="setHeatmapCat('all')" data-hmcat="all" class="hm-cat-btn btn-small ${appState.heatmapCat === 'all' ? 'active' : ''}">Все задачи</button>
+          <button type="button" onclick="setHeatmapCat('work')" data-hmcat="work" class="hm-cat-btn btn-small ${appState.heatmapCat === 'work' ? 'active' : ''}">⚡ #Работа</button>
+          <button type="button" onclick="setHeatmapCat('code')" data-hmcat="code" class="hm-cat-btn btn-small ${appState.heatmapCat === 'code' ? 'active' : ''}">💻 #Код</button>
+          <button type="button" onclick="setHeatmapCat('study')" data-hmcat="study" class="hm-cat-btn btn-small ${appState.heatmapCat === 'study' ? 'active' : ''}">📚 #Обучение</button>
+          <button type="button" onclick="setHeatmapCat('cooling')" data-hmcat="cooling" class="hm-cat-btn btn-small ${appState.heatmapCat === 'cooling' ? 'active' : ''}">🌊 #Бассейн / #Спорт</button>
+          ${customHmBtns}
+          <button type="button" onclick="openCategoryModal()" class="btn-small mono" style="border-style: dashed; color: var(--cyan); border-color: rgba(56,189,248,0.45);" title="Создать или настроить свои категории ЦОД">+ Категория</button>
+        `;
+      }
+    }
+
     function openTaskModal(defaultType = 'habit', editId = null) {
       editingTaskId = editId || null;
       const headerEl = document.getElementById('taskModalHeader');
       const delBtn = document.getElementById('tmDeleteBtn');
       const saveBtn = document.getElementById('tmSaveBtn');
+      document.getElementById('tmNewSubtaskInput').value = '';
 
       if (editingTaskId) {
         const task = appState.tasks.find(t => t.id === editingTaskId);
@@ -2689,12 +3736,17 @@
 
         document.getElementById('tmTitle').value = task.title || '';
         document.getElementById('tmType').value = task.type || 'habit';
-        document.getElementById('tmCategory').value = task.category || 'work';
+        populateTaskModalCategoriesSelect(task.category || 'work');
         document.getElementById('tmDifficulty').value = task.difficulty || 'medium';
         document.getElementById('tmHabitDir').value = task.habitDir || 'both';
         document.getElementById('tmDailySchedule').value = task.schedule || 'everyday';
         document.getElementById('tmNote').value = task.note || '';
         setModalMinutesFields(getTaskMinutes(task));
+
+        modalChecklistDraft = Array.isArray(task.checklist)
+          ? task.checklist.map(c => ({ id: c.id, text: c.text, done: Boolean(c.done) }))
+          : [];
+        renderModalChecklistDraft();
 
         onTaskModalTypeChange(true);
         populateOrderPositionSelect(task.type, task.id);
@@ -2705,13 +3757,15 @@
 
         document.getElementById('tmTitle').value = '';
         document.getElementById('tmType').value = defaultType;
-        document.getElementById('tmCategory').value = 'work';
+        populateTaskModalCategoriesSelect('work');
         document.getElementById('tmDifficulty').value = 'medium';
         document.getElementById('tmHabitDir').value = 'both';
         document.getElementById('tmDailySchedule').value = 'everyday';
         document.getElementById('tmNote').value = '';
-        // Default time: 0 min (fact only) for todos, 60 min for work habits/dailies
         setModalMinutesFields(defaultType === 'todo' ? 0 : 60);
+
+        modalChecklistDraft = [];
+        renderModalChecklistDraft();
 
         onTaskModalTypeChange(true);
         populateOrderPositionSelect(defaultType, null);
@@ -2722,6 +3776,7 @@
 
     function closeTaskModal() {
       editingTaskId = null;
+      modalChecklistDraft = [];
       document.getElementById('taskModal').classList.add('hidden');
     }
 
@@ -2740,6 +3795,12 @@
         showToast('Введи название задания!', 'err');
         return;
       }
+      // Also capture any unadded text sitting in tmNewSubtaskInput
+      const pendingSubInput = document.getElementById('tmNewSubtaskInput');
+      if (pendingSubInput && (pendingSubInput.value || '').trim()) {
+        addModalChecklistItem();
+      }
+
       const type = document.getElementById('tmType').value;
       const category = document.getElementById('tmCategory').value;
       const difficulty = document.getElementById('tmDifficulty').value;
@@ -2748,6 +3809,9 @@
       const habitDir = document.getElementById('tmHabitDir').value;
       const schedule = document.getElementById('tmDailySchedule').value;
       const desiredPos = parseInt(document.getElementById('tmOrderPos').value, 10) || 1;
+      const cleanedChecklist = modalChecklistDraft
+        .map(c => ({ id: c.id, text: (c.text || '').trim(), done: Boolean(c.done) }))
+        .filter(c => c.text.length > 0);
 
       if (editingTaskId) {
         const task = appState.tasks.find(t => t.id === editingTaskId);
@@ -2760,6 +3824,7 @@
           task.habitDir = type === 'habit' ? habitDir : 'pos';
           task.schedule = type === 'daily' ? schedule : 'everyday';
           task.note = note;
+          task.checklist = cleanedChecklist;
           moveTaskToColumnPosition(task.id, desiredPos);
           showToast(`Обновлено: ${title}`);
         }
@@ -2778,7 +3843,8 @@
           posCount: 0,
           negCount: 0,
           completedDates: [],
-          completedDate: null
+          completedDate: null,
+          checklist: cleanedChecklist
         });
         moveTaskToColumnPosition(newId, desiredPos);
         showToast(`Добавлено: ${title}`);
@@ -2835,7 +3901,7 @@
       appState.timer.remainingSec = mins * 60;
 
       const diffId = mins >= 60 ? 'medium' : mins >= 30 ? 'easy' : 'trivial';
-      const { gainedXp, gainedTflops } = awardRpgProgress('habit', diffId, 'work', mins);
+      const { gainedXp, gainedTflops } = awardRpgProgress('timer_sprint', diffId, 'work', mins);
       appState.events.push({
         id: 'ev_' + Date.now(),
         date: appState.activeDate,
@@ -3028,11 +4094,10 @@
       let opts = `
         <option value="diff:medium_hard">🖥 Любые серверы (Medium / Hard)</option>
         <option value="cat:all">⚡ Любые выполненные задачи (Все категории)</option>
-        <option value="cat:work">⚡ Категория #Работа</option>
-        <option value="cat:code">💻 Категория #Код</option>
-        <option value="cat:study">📚 Категория #Обучение</option>
-        <option value="cat:cooling">🌊 Категория #Бассейн / #Спорт (Охлаждение)</option>
       `;
+      getAllCategoriesList().forEach(c => {
+        opts += `<option value="cat:${c.id}">${c.icon} Категория ${c.tag}</option>`;
+      });
       appState.tasks.forEach(t => {
         opts += `<option value="task:${t.id}">📌 Задание: ${t.title}</option>`;
       });
@@ -3126,8 +4191,11 @@
         t.negCount = 0;
         t.completedDates = [];
         t.completedDate = null;
+        if (Array.isArray(t.checklist)) {
+          t.checklist.forEach(c => { c.done = false; });
+        }
       });
-      appState.rpg = { level: 1, xp: 0, hp: 100, tflops: 0, sp: 0, upgrades: {} };
+      appState.rpg = { level: 1, xp: 0, hp: 100, tflops: 0, sp: 0, upgrades: {}, skills: [] };
       saveState();
       renderAll();
       showToast('История полностью очищена! Все дни на карте теперь пустые и чёрные.');
@@ -3137,7 +4205,7 @@
       appState.events = [];
       appState.tasks = [];
       appState.customStreaks = [];
-      appState.rpg = { level: 1, xp: 0, hp: 100, tflops: 0, sp: 0, upgrades: {} };
+      appState.rpg = { level: 1, xp: 0, hp: 100, tflops: 0, sp: 0, upgrades: {}, skills: [] };
       const emptyMp = {};
       MEGAPROJECTS_CATALOG.forEach(m => { emptyMp[m.id] = 0; });
       appState.collection = {
@@ -3163,7 +4231,7 @@
       appState.tasks = starter.tasks;
       appState.customStreaks = starter.customStreaks;
       appState.events = starter.events;
-      appState.rpg = { level: 3, xp: 140, hp: 95, tflops: 85, sp: 2, upgrades: { up_blade: 1, up_k8s: 1, up_hydro: 1 } };
+      appState.rpg = { level: 3, xp: 140, hp: 95, tflops: 85, sp: 2, upgrades: { up_blade: 1, up_k8s: 1, up_hydro: 1 }, skills: ['sk_root'] };
       saveState();
       renderAll();
       showToast('Стартовый демо-набор восстановлен');
@@ -3195,10 +4263,14 @@
       try {
         const parsed = JSON.parse(document.getElementById('settingsJsonArea').value);
         if (parsed && Array.isArray(parsed.tasks) && Array.isArray(parsed.events)) {
+          if (Array.isArray(parsed.customCategories)) appState.customCategories = parsed.customCategories;
           appState.tasks = normalizeLoadedTasks(parsed.tasks);
           appState.events = parsed.events;
           if (Array.isArray(parsed.customStreaks)) appState.customStreaks = parsed.customStreaks;
-          if (parsed.rpg) appState.rpg = parsed.rpg;
+          if (parsed.rpg) {
+            appState.rpg = parsed.rpg;
+            if (!Array.isArray(appState.rpg.skills)) appState.rpg.skills = [];
+          }
           if (parsed.collection) appState.collection = parsed.collection;
           if (parsed.activeDate) appState.activeDate = parsed.activeDate;
           saveState();
@@ -3272,14 +4344,14 @@
       document.getElementById('rpgSpText').textContent = `🧬 ${appState.rpg.sp || 0} SP`;
 
       const todayEv = appState.events.filter(e => e.date === appState.activeDate && e.direction === 'pos');
-      const computeCount = todayEv.filter(e => e.category !== 'cooling').length;
-      const coolCount = todayEv.filter(e => e.category === 'cooling').length;
+      const computeCount = todayEv.filter(e => !isCategoryCooling(e.category)).length;
+      const coolCount = todayEv.filter(e => isCategoryCooling(e.category)).length;
       const tempC = Math.max(28, Math.min(92, 34 + computeCount * 8 - coolCount * 22));
       const tBadge = document.getElementById('headerThermalBadge');
 
       if (bonuses.hasCoolingToday) {
         tBadge.className = 'badge badge-cyan mono';
-        tBadge.textContent = `❄️ ${tempC}°C • Охлаждение активно (+15% XP)`;
+        tBadge.textContent = `❄️ ${tempC}°C • Охлаждение активно (+${hasSkill('sk_s3b') ? '25' : '15'}% XP)`;
       } else if (tempC >= 70) {
         tBadge.className = 'badge badge-amber mono';
         tBadge.textContent = `🔥 ${tempC}°C • Нагрев (сходи на спорт/бассейн)`;
@@ -3287,6 +4359,27 @@
         tBadge.className = 'badge badge-green mono';
         tBadge.textContent = `🌡️ ${tempC}°C • Норма`;
       }
+    }
+
+    function renderTaskChecklistBlock(task) {
+      if (!Array.isArray(task.checklist) || task.checklist.length === 0) return '';
+      return `
+        <div class="task-checklist">
+          ${task.checklist.map(sub => `
+            <button type="button" onclick="toggleTaskSubtask('${task.id}', '${sub.id}')" class="subtask-row ${sub.done ? 'sub-done' : ''}">
+              <span class="subtask-box">✓</span>
+              <span style="flex: 1; word-break: break-word;">${sub.text}</span>
+            </button>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    function renderChecklistProgressBadge(task) {
+      if (!Array.isArray(task.checklist) || task.checklist.length === 0) return '';
+      const doneCount = task.checklist.filter(c => c.done).length;
+      const allDone = doneCount === task.checklist.length;
+      return `<span class="badge ${allDone ? 'badge-green' : ''} mono" title="Прогресс чек-листа">☑️ ${doneCount}/${task.checklist.length}</span>`;
     }
 
     function renderTaskActionsBlock(task, idxInCol, totalInCol) {
@@ -3314,12 +4407,28 @@
       const filtered = appState.tasks.filter(t => catFilter === 'all' || t.category === catFilter);
       const habits = filtered.filter(t => t.type === 'habit');
       const dailies = filtered.filter(t => t.type === 'daily');
-      // Backlog To-Dos: show uncompleted tasks + tasks completed specifically on activeDate
-      const todos = filtered.filter(t => t.type === 'todo' && isTodoVisibleOnDate(t, activeDate));
+      const activeTodos = filtered.filter(t => t.type === 'todo' && isTodoVisibleOnDate(t, activeDate));
+      const allArchivedTodos = appState.tasks.filter(t => t.type === 'todo' && Boolean(getTodoCompletionDate(t)));
 
       document.getElementById('countHabitsBadge').textContent = habits.length;
       document.getElementById('countDailiesBadge').textContent = dailies.length;
-      document.getElementById('countTodosBadge').textContent = todos.length;
+      document.getElementById('countTodosBadge').textContent = activeTodos.length;
+
+      const archBtn = document.getElementById('toggleArchiveBtn');
+      const archBar = document.getElementById('todosArchiveFilterBar');
+      const subText = document.getElementById('todosColumnSubtext');
+      if (archBtn) {
+        archBtn.textContent = `📦 Архив (${allArchivedTodos.length})`;
+        archBtn.classList.toggle('active', showBacklogArchive);
+      }
+      if (archBar) {
+        archBar.classList.toggle('hidden', !showBacklogArchive);
+      }
+      if (subText) {
+        subText.textContent = showBacklogArchive
+          ? `Архив всех закрытых задач бэклога (${allArchivedTodos.length} шт.). Можно вернуть любую задачу в работу.`
+          : 'Разовые задачи и чек-листы: остаются выполненными в день закрытия и уходят в архив в другие дни';
+      }
 
       // 1. Render Habits
       const habBox = document.getElementById('habitsListContainer');
@@ -3327,7 +4436,7 @@
         habBox.innerHTML = `<div style="font-size: 12px; color: var(--muted); padding: 14px; text-align: center;">Нет привычек. Нажми «+ Привычка» сверху.</div>`;
       } else {
         habBox.innerHTML = habits.map((h, idx) => {
-          const cat = CATEGORIES[h.category] || CATEGORIES.work;
+          const cat = getCategoryMeta(h.category);
           const diff = DIFFICULTIES[h.difficulty] || DIFFICULTIES.medium;
           const mins = getTaskMinutes(h);
           const todayCount = appState.events.filter(e => e.date === activeDate && e.taskId === h.id && e.direction === 'pos').length;
@@ -3346,10 +4455,12 @@
               <div class="task-body">
                 <div class="task-name">${h.title}</div>
                 ${h.note ? `<div style="font-size: 11px; color: var(--muted); margin-top: 2px;">${h.note}</div>` : ''}
+                ${renderTaskChecklistBlock(h)}
                 <div class="task-meta">
-                  <span class="badge ${h.category === 'cooling' ? 'badge-cyan' : 'badge-green'} mono">${cat.icon} ${cat.tag}</span>
+                  <span class="badge ${getCategoryBadgeClass(h.category, 'badge-green')} mono">${cat.icon} ${cat.tag}</span>
                   <span class="badge mono">${diff.shortLabel}</span>
                   <span class="badge mono">${formatTaskTimeBadge(mins)}</span>
+                  ${renderChecklistProgressBadge(h)}
                   <span class="badge mono" title="Выполнено за выбранный день">За день: ${todayCount}</span>
                 </div>
               </div>
@@ -3365,7 +4476,7 @@
         dayBox.innerHTML = `<div style="font-size: 12px; color: var(--muted); padding: 14px; text-align: center;">Нет ежедневных дел. Нажми «+ Дейлик».</div>`;
       } else {
         dayBox.innerHTML = dailies.map((d, idx) => {
-          const cat = CATEGORIES[d.category] || CATEGORIES.work;
+          const cat = getCategoryMeta(d.category);
           const diff = DIFFICULTIES[d.difficulty] || DIFFICULTIES.medium;
           const mins = getTaskMinutes(d);
           const isDone = Array.isArray(d.completedDates) && d.completedDates.includes(activeDate);
@@ -3382,10 +4493,12 @@
               <div class="task-body">
                 <div class="task-name">${d.title}</div>
                 ${d.note ? `<div style="font-size: 11px; color: var(--muted); margin-top: 2px;">${d.note}</div>` : ''}
+                ${renderTaskChecklistBlock(d)}
                 <div class="task-meta">
-                  <span class="badge ${d.category === 'cooling' ? 'badge-cyan' : 'badge-green'} mono">${cat.icon} ${cat.tag}</span>
+                  <span class="badge ${getCategoryBadgeClass(d.category, 'badge-green')} mono">${cat.icon} ${cat.tag}</span>
                   <span class="badge mono">${diff.shortLabel}</span>
                   <span class="badge mono">${formatTaskTimeBadge(mins)}</span>
+                  ${renderChecklistProgressBadge(d)}
                   <span class="badge mono">📅 ${schedLabel}</span>
                 </div>
               </div>
@@ -3395,24 +4508,72 @@
         }).join('');
       }
 
-      // 3. Render To-Dos (Backlog bound to completion date)
+      // 3. Render To-Dos (Either Active Board or Backlog Archive)
       const todoBox = document.getElementById('todosListContainer');
+
+      if (showBacklogArchive) {
+        const searchQ = ((document.getElementById('todosArchiveSearchInput')?.value) || '').trim().toLowerCase();
+        const archivedFiltered = allArchivedTodos
+          .filter(t => (catFilter === 'all' || t.category === catFilter))
+          .filter(t => !searchQ || (t.title || '').toLowerCase().includes(searchQ) || (t.note || '').toLowerCase().includes(searchQ))
+          .slice()
+          .sort((a, b) => String(getTodoCompletionDate(b)).localeCompare(String(getTodoCompletionDate(a))));
+
+        if (archivedFiltered.length === 0) {
+          todoBox.innerHTML = `<div style="font-size: 12px; color: var(--muted); padding: 16px; text-align: center;">В архиве бэклога пока нет выполненных задач.</div>`;
+        } else {
+          todoBox.innerHTML = archivedFiltered.map(t => {
+            const cat = getCategoryMeta(t.category);
+            const diff = DIFFICULTIES[t.difficulty] || DIFFICULTIES.medium;
+            const mins = getTaskMinutes(t);
+            const doneIso = getTodoCompletionDate(t);
+
+            return `
+              <div class="task-item done-today" style="opacity: 0.88;">
+                <div class="task-body">
+                  <div class="task-name">${t.title}</div>
+                  ${t.note ? `<div style="font-size: 11px; color: var(--muted); margin-top: 2px;">${t.note}</div>` : ''}
+                  ${renderTaskChecklistBlock(t)}
+                  <div class="task-meta">
+                    <span class="badge badge-green mono">✓ Закрыто ${isoToRuDate(doneIso)}</span>
+                    <span class="badge mono">${cat.icon} ${cat.tag}</span>
+                    <span class="badge mono">${diff.shortLabel}</span>
+                    <span class="badge mono">${formatTaskTimeBadge(mins)}</span>
+                    ${renderChecklistProgressBadge(t)}
+                  </div>
+                </div>
+                <div class="task-actions">
+                  <button type="button" onclick="restoreTaskFromArchive('${t.id}')" class="btn-small mono" style="padding: 4px 8px; font-size: 11px; color: var(--cyan); border-color: rgba(56,189,248,0.4);" title="Вернуть задачу обратно в активный бэклог">
+                    ↩ Вернуть
+                  </button>
+                  <div class="task-actions-row" style="margin-top: 2px;">
+                    <button type="button" onclick="openTaskModal('todo', '${t.id}')" class="icon-action-btn" title="Редактировать">✎</button>
+                    <button type="button" onclick="deleteTask('${t.id}')" class="icon-action-btn del" title="Удалить навсегда">✕</button>
+                  </div>
+                </div>
+              </div>
+            `;
+          }).join('');
+        }
+        return;
+      }
+
       const hiddenCompletedCount = appState.tasks.filter(t =>
         t.type === 'todo' &&
         (catFilter === 'all' || t.category === catFilter) &&
         !isTodoVisibleOnDate(t, activeDate)
       ).length;
 
-      if (todos.length === 0) {
+      if (activeTodos.length === 0) {
         todoBox.innerHTML = `
           <div style="font-size: 12px; color: var(--muted); padding: 14px; text-align: center;">
             На ${isoToRuDate(activeDate)} активных задач в бэклоге нет. Нажми «+ Задача».
-            ${hiddenCompletedCount > 0 ? `<div style="margin-top: 6px; font-size: 11px; color: var(--green);">✓ Закрыто в другие дни: ${hiddenCompletedCount} шт.</div>` : ''}
+            ${hiddenCompletedCount > 0 ? `<div style="margin-top: 8px;"><button type="button" onclick="toggleBacklogArchiveView()" class="btn-small mono" style="color: var(--green); border-color: rgba(57,211,83,0.4);">📦 Открыть архив выполненных (${hiddenCompletedCount})</button></div>` : ''}
           </div>
         `;
       } else {
-        todoBox.innerHTML = todos.map((t, idx) => {
-          const cat = CATEGORIES[t.category] || CATEGORIES.work;
+        todoBox.innerHTML = activeTodos.map((t, idx) => {
+          const cat = getCategoryMeta(t.category);
           const diff = DIFFICULTIES[t.difficulty] || DIFFICULTIES.medium;
           const mins = getTaskMinutes(t);
           const doneDate = getTodoCompletionDate(t);
@@ -3429,27 +4590,125 @@
               <div class="task-body">
                 <div class="task-name">${t.title}</div>
                 ${t.note ? `<div style="font-size: 11px; color: var(--muted); margin-top: 2px;">${t.note}</div>` : ''}
+                ${renderTaskChecklistBlock(t)}
                 <div class="task-meta">
-                  <span class="badge ${t.category === 'cooling' ? 'badge-cyan' : 'badge-purple'} mono">${cat.icon} ${cat.tag}</span>
+                  <span class="badge ${getCategoryBadgeClass(t.category, 'badge-purple')} mono">${cat.icon} ${cat.tag}</span>
                   <span class="badge mono">${diff.shortLabel}</span>
                   <span class="badge mono">${formatTaskTimeBadge(mins)}</span>
+                  ${renderChecklistProgressBadge(t)}
                   <span class="badge badge-amber mono">+${diff.xp} XP / +${diff.tflops} TF</span>
                   ${isDone ? `<span class="badge badge-green mono">✓ Выполнено ${isoToShortRu(activeDate)}</span>` : ''}
                 </div>
               </div>
-              ${renderTaskActionsBlock(t, idx, todos.length)}
+              ${renderTaskActionsBlock(t, idx, activeTodos.length)}
             </div>
           `;
         }).join('') + (hiddenCompletedCount > 0
-          ? `<div style="font-size: 11px; color: var(--muted); text-align: center; padding-top: 4px;">✓ Скрыто задач, выполненных в другие дни: ${hiddenCompletedCount}</div>`
+          ? `<div style="text-align: center; padding-top: 4px;">
+               <button type="button" onclick="toggleBacklogArchiveView()" class="btn-small mono" style="font-size: 11px; padding: 4px 10px;">
+                 📦 В архиве выполненных за другие дни: ${hiddenCompletedCount} шт.
+               </button>
+             </div>`
           : '');
       }
     }
 
+    function renderArchitectSkillTreeSection() {
+      if (!Array.isArray(appState.rpg.skills)) appState.rpg.skills = [];
+      const curSp = appState.rpg.sp || 0;
+      const unlockedCount = appState.rpg.skills.length;
+
+      document.getElementById('skillTreeSpBadge').textContent = `Доступно: 🧬 ${curSp} SP`;
+      document.getElementById('skillTreeCountBadge').textContent = `Изучено: ${unlockedCount} / ${ARCHITECT_SKILL_TREE.length}`;
+
+      const canvas = document.getElementById('architectSkillTreeCanvas');
+      if (!canvas) return;
+
+      // 1. Build SVG connecting lines between parent and child nodes
+      let linesSvg = '';
+      ARCHITECT_SKILL_TREE.forEach(node => {
+        (node.parents || []).forEach(parentId => {
+          const pNode = ARCHITECT_SKILL_TREE.find(x => x.id === parentId);
+          if (!pNode) return;
+          const bothUnlocked = hasSkill(node.id) && hasSkill(pNode.id);
+          const parentUnlocked = hasSkill(pNode.id);
+          const stroke = bothUnlocked ? '#39D353' : parentUnlocked ? '#A855F7' : '#262C36';
+          const width = bothUnlocked ? 3 : parentUnlocked ? 2.2 : 1.6;
+          const dash = bothUnlocked ? '' : parentUnlocked ? 'stroke-dasharray="5 4"' : '';
+          linesSvg += `<line x1="${pNode.x}" y1="${pNode.y}" x2="${node.x}" y2="${node.y}" stroke="${stroke}" stroke-width="${width}" ${dash} />`;
+        });
+      });
+
+      // 2. Build compact icon-only skill buttons
+      const nodesHtml = ARCHITECT_SKILL_TREE.map(node => {
+        const isUnlocked = hasSkill(node.id);
+        const isAvail = canUnlockSkill(node);
+        const isSelected = selectedSkillId === node.id;
+        const stateClass = isUnlocked ? 'sk-unlocked' : isAvail ? 'sk-available' : 'sk-locked';
+
+        return `
+          <button type="button"
+            onclick="selectSkillNode('${node.id}')"
+            class="skill-node-btn ${stateClass} ${isSelected ? 'sk-selected' : ''}"
+            style="left: ${node.x}px; top: ${node.y}px;"
+            title="${node.name} (${node.costSp} SP)">
+            <span>${node.icon}</span>
+            <span class="sk-cost-pip mono">${isUnlocked ? '✓' : `${node.costSp}SP`}</span>
+          </button>
+        `;
+      }).join('');
+
+      canvas.innerHTML = `<svg class="skill-tree-svg-lines" viewBox="0 0 820 360">${linesSvg}</svg>${nodesHtml}`;
+
+      // 3. Render Inspector Box for currently selected node
+      const inspector = document.getElementById('architectSkillInspector');
+      const selNode = ARCHITECT_SKILL_TREE.find(n => n.id === selectedSkillId) || ARCHITECT_SKILL_TREE[0];
+      const isUnlocked = hasSkill(selNode.id);
+      const isAvail = canUnlockSkill(selNode);
+      const canAfford = curSp >= selNode.costSp;
+
+      const parentNames = (selNode.parents || [])
+        .map(pid => ARCHITECT_SKILL_TREE.find(x => x.id === pid)?.name)
+        .filter(Boolean)
+        .join(' или ');
+
+      inspector.innerHTML = `
+        <div style="display: flex; align-items: flex-start; gap: 12px; flex: 1; min-width: 240px;">
+          <div style="width: 48px; height: 48px; border-radius: 12px; background: var(--card); border: 2px solid ${isUnlocked ? 'var(--green)' : isAvail ? '#C084FC' : 'var(--border)'}; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0;">
+            ${selNode.icon}
+          </div>
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+              <strong style="font-size: 14px; color: #fff;">${selNode.name}</strong>
+              <span class="badge ${isUnlocked ? 'badge-green' : isAvail ? 'badge-purple' : ''} mono">
+                ${isUnlocked ? 'ИЗУЧЕНО ✓' : isAvail ? `ДОСТУПНО (${selNode.costSp} 🧬 SP)` : 'ЗАБЛОКИРОВАНО 🔒'}
+              </span>
+              <span class="badge mono" style="font-size: 10px;">${selNode.branch}</span>
+            </div>
+            <div style="font-size: 12px; color: var(--text); margin-top: 4px;">${selNode.desc}</div>
+            ${!isUnlocked && !isAvail && parentNames
+              ? `<div style="font-size: 11px; color: var(--amber); margin-top: 3px;">Требуется сначала изучить: <b>${parentNames}</b></div>`
+              : ''
+            }
+          </div>
+        </div>
+        <div>
+          ${isUnlocked
+            ? `<span class="badge badge-green mono" style="padding: 7px 12px; font-size: 12px;">Активный пассивный навык ✓</span>`
+            : `<button type="button" onclick="unlockArchitectSkill('${selNode.id}')" class="btn-primary mono" style="background: ${isAvail && canAfford ? '#7E22CE' : 'var(--card)'}; border-color: ${isAvail && canAfford ? '#C084FC' : 'var(--border)'}; color: ${isAvail && canAfford ? '#fff' : 'var(--muted)'};">
+                 🧬 Изучить за ${selNode.costSp} SP
+               </button>`
+          }
+        </div>
+      `;
+    }
+
     function renderRackAndTreeTab() {
+      renderArchitectSkillTreeSection();
+
       const bonuses = getTechBonuses();
       document.getElementById('treeBonusesSummary').textContent =
-        `Бонус XP: +${bonuses.xpPct}% • Бонус TFLOPS: +${bonuses.tflopsPct}% • Макс SLA: ${bonuses.maxHp}`;
+        `Суммарный Бонус XP: +${bonuses.xpPct}% • Бонус TFLOPS: +${bonuses.tflopsPct}% • Макс SLA: ${bonuses.maxHp}`;
 
       const treeBox = document.getElementById('techTreeContainer');
       treeBox.innerHTML = TECH_TREE_SPEC.map(branch => `
@@ -3489,9 +4748,9 @@
       document.getElementById('rackDateTitle').textContent = isoToRuDate(activeDate);
       const dayEvents = appState.events.filter(e => e.date === activeDate);
 
-      const servers = dayEvents.filter(e => e.direction === 'pos' && e.category !== 'cooling' && (e.difficulty === 'medium' || e.difficulty === 'hard'));
-      const containers = dayEvents.filter(e => e.direction === 'pos' && e.category !== 'cooling' && (e.difficulty === 'easy' || e.difficulty === 'trivial'));
-      const coolings = dayEvents.filter(e => e.direction === 'pos' && e.category === 'cooling');
+      const servers = dayEvents.filter(e => e.direction === 'pos' && !isCategoryCooling(e.category) && (e.difficulty === 'medium' || e.difficulty === 'hard'));
+      const containers = dayEvents.filter(e => e.direction === 'pos' && !isCategoryCooling(e.category) && (e.difficulty === 'easy' || e.difficulty === 'trivial'));
+      const coolings = dayEvents.filter(e => e.direction === 'pos' && isCategoryCooling(e.category));
 
       document.getElementById('rackDayStatsBadge').textContent =
         `Серверов: ${servers.length} • Контейнеров: ${containers.length} • Охлаждение: ${coolings.length}`;
@@ -3503,7 +4762,7 @@
         </div>`;
       } else {
         rackBox.innerHTML = dayEvents.slice().reverse().map(ev => {
-          const cat = CATEGORIES[ev.category] || CATEGORIES.work;
+          const cat = getCategoryMeta(ev.category);
           const evMins = (typeof ev.minutes === 'number') ? ev.minutes : (DIFFICULTIES[ev.difficulty]?.defaultMinutes || 0);
           if (ev.direction === 'neg') {
             return `
@@ -3516,7 +4775,7 @@
               </div>
             `;
           }
-          const isCool = ev.category === 'cooling';
+          const isCool = isCategoryCooling(ev.category);
           return `
             <div class="rack-unit ${isCool ? 'cooling' : ''}">
               <div>
@@ -3540,7 +4799,7 @@
     }
 
     // =========================================================================
-    // 13. RENDER CUSTOM STREAKS & NOISE-FREE ACTIVITY HEATMAP (WEEK/MONTH/YEAR)
+    // 13. RENDER CUSTOM STREAKS & NOISE-FREE ACTIVITY HEATMAP
     // =========================================================================
     function renderAnalyticsTab() {
       const streaksBox = document.getElementById('customStreaksGrid');
@@ -3577,12 +4836,14 @@
 
       const period = appState.heatmapPeriod;
       const catFilter = appState.heatmapCat;
-      const isCoolMap = catFilter === 'cooling';
+      const activeCatMeta = catFilter === 'all' ? null : getCategoryMeta(catFilter);
+      const activeThemeKey = activeCatMeta ? (activeCatMeta.theme || (activeCatMeta.isCooling ? 'cyan' : 'green')) : 'green';
+      const hmScale = (CATEGORY_THEMES[activeThemeKey] || CATEGORY_THEMES.green).hmScale;
 
-      document.getElementById('hmLeg1').style.backgroundColor = isCoolMap ? '#0C4A6E' : '#0E4429';
-      document.getElementById('hmLeg2').style.backgroundColor = isCoolMap ? '#0369A1' : '#006D32';
-      document.getElementById('hmLeg3').style.backgroundColor = isCoolMap ? '#0284C7' : '#26A641';
-      document.getElementById('hmLeg4').style.backgroundColor = isCoolMap ? '#38BDF8' : '#39D353';
+      document.getElementById('hmLeg1').style.backgroundColor = hmScale[0];
+      document.getElementById('hmLeg2').style.backgroundColor = hmScale[1];
+      document.getElementById('hmLeg3').style.backgroundColor = hmScale[2];
+      document.getElementById('hmLeg4').style.backgroundColor = hmScale[3];
 
       function getDayActivityStats(iso) {
         const list = appState.events.filter(e => {
@@ -3599,18 +4860,11 @@
 
       function getCellColor(count, minutes) {
         if (count <= 0) return '#070A0E';
-        // Effective intensity accounts for both timed tasks and fact-only tasks (0 min)
         const intensity = Math.max(minutes, count * 30);
-        if (isCoolMap) {
-          if (intensity <= 30) return '#0C4A6E';
-          if (intensity <= 60) return '#0369A1';
-          if (intensity <= 90) return '#0284C7';
-          return '#38BDF8';
-        }
-        if (intensity <= 30) return '#0E4429';
-        if (intensity <= 60) return '#006D32';
-        if (intensity <= 120) return '#26A641';
-        return '#39D353';
+        if (intensity <= 30) return hmScale[0];
+        if (intensity <= 60) return hmScale[1];
+        if (intensity <= 120) return hmScale[2];
+        return hmScale[3];
       }
 
       const viewport = document.getElementById('heatmapViewport');
@@ -3687,16 +4941,38 @@
       `;
 
       document.getElementById('logHistoryDateLabel').textContent = isoToRuDate(inspectIso);
-      const histBox = document.getElementById('eventHistoryList');
-      const allDayEvents = appState.events.filter(e => e.date === inspectIso);
+      const logCatBadge = document.getElementById('logHistoryCatBadge');
+      if (logCatBadge) {
+        if (catFilter === 'all') {
+          logCatBadge.className = 'badge badge-green mono';
+          logCatBadge.textContent = 'Фильтр: Все задачи';
+        } else {
+          const cm = getCategoryMeta(catFilter);
+          logCatBadge.className = `badge ${getCategoryBadgeClass(catFilter)} mono`;
+          logCatBadge.textContent = `Фильтр: ${cm.icon} ${cm.tag}`;
+        }
+      }
 
-      if (allDayEvents.length === 0) {
+      const histBox = document.getElementById('eventHistoryList');
+      const totalUnfilteredOnDay = appState.events.filter(e => e.date === inspectIso).length;
+      const filteredDayEvents = appState.events.filter(e => {
+        if (e.date !== inspectIso) return false;
+        if (catFilter === 'all') return true;
+        return e.category === catFilter;
+      });
+
+      if (filteredDayEvents.length === 0) {
+        const cm = catFilter === 'all' ? null : getCategoryMeta(catFilter);
         histBox.innerHTML = `<div style="padding: 16px; text-align: center; color: var(--muted); font-size: 13px;">
-          За ${isoToRuDate(inspectIso)} записей нет.
+          ${catFilter === 'all'
+            ? `За ${isoToRuDate(inspectIso)} записей нет.`
+            : `За ${isoToRuDate(inspectIso)} нет записей в категории <b style="color:#fff;">${cm.icon} ${cm.tag}</b>.${totalUnfilteredOnDay > 0 ? ` <button type="button" onclick="setHeatmapCat('all')" class="btn-small mono" style="margin-left:6px; padding:3px 8px;">Показать все за этот день (${totalUnfilteredOnDay})</button>` : ''}`
+          }
         </div>`;
       } else {
-        histBox.innerHTML = allDayEvents.slice().reverse().map(ev => {
-          const cat = CATEGORIES[ev.category] || CATEGORIES.work;
+        histBox.innerHTML = filteredDayEvents.slice().reverse().map(ev => {
+          const cat = getCategoryMeta(ev.category);
+          const badgeCls = getCategoryBadgeClass(ev.category);
           const evMins = typeof ev.minutes === 'number' ? ev.minutes : 0;
           return `
             <div style="background: var(--bg); border: 1px solid var(--border-subtle); border-radius: 9px; padding: 10px 12px; display: flex; justify-content: space-between; align-items: center; gap: 8px;">
@@ -3704,7 +4980,7 @@
                 <strong style="font-size: 13px; color: ${ev.direction === 'neg' ? 'var(--red)' : '#fff'};">
                   ${ev.direction === 'neg' ? '💥' : cat.icon} ${ev.title}
                 </strong>
-                <span class="badge mono" style="margin-left: 6px;">${cat.tag}</span>
+                <span class="badge ${badgeCls} mono" style="margin-left: 6px;">${cat.icon} ${cat.tag}</span>
                 <div style="font-size: 11px; color: var(--muted); margin-top: 2px;">
                   Время: ${ev.time || '—'} • ${evMins > 0 ? `${evMins} мин • ` : 'По факту • '}${ev.direction === 'neg' ? 'Штраф SLA' : `+${ev.xp} XP, +${ev.tflops} TFLOPS`}
                 </div>
@@ -3733,11 +5009,13 @@
       document.getElementById('settingsWeekendToggle').checked = appState.weekendBuffer;
       document.getElementById('settingsSoundToggle').checked = appState.soundEnabled;
       document.getElementById('settingsJsonArea').value = JSON.stringify({
+        updatedAt: appState.updatedAt,
         activeDate: appState.activeDate,
         weekendBuffer: appState.weekendBuffer,
         soundEnabled: appState.soundEnabled,
         rpg: appState.rpg,
         collection: appState.collection,
+        customCategories: appState.customCategories || [],
         tasks: appState.tasks,
         customStreaks: appState.customStreaks,
         events: appState.events
@@ -3775,9 +5053,7 @@
       { id: 'rel_epoch',    icon: '⏳', name: 'Монолит UNIX Epoch (1970)',     rarity: 'Мифический',  desc: 'Хранит нулевую секунду компьютерного времени: 00:00:00 UTC' }
     ];
 
-    // Expanded 12-building Data Center Campus Catalog (Preserves all 5 original IDs: mp_qcore, mp_agi, mp_subsea, mp_orbital, mp_dyson)
     const MEGAPROJECTS_CATALOG = [
-      // ZONE 1: Наземный Инфраструктурный Контур (Tier I)
       {
         id: 'mp_diesel',
         zone: 'tier1',
@@ -3830,8 +5106,6 @@
         svgType: 'cooling',
         desc: 'Замкнутый контур ледяного охлаждения серверных залов (900 ед. / 15 часов)'
       },
-
-      // ZONE 2: Кластер Гиперскейлера и ИИ (Tier II)
       {
         id: 'mp_solar',
         zone: 'tier2',
@@ -3884,8 +5158,6 @@
         svgType: 'subsea',
         desc: 'Герметичные серверные капсулы на шельфе с природным охлаждением (3000 ед. / 50 часов)'
       },
-
-      // ZONE 3: Мегаструктуры и Космический Контур (Tier III)
       {
         id: 'mp_nuclear',
         zone: 'tier3',
@@ -4020,7 +5292,7 @@
             <rect x="24" y="30" width="16" height="14" rx="2" fill="none" stroke="${accentCol}" stroke-width="1.8"/>
             <circle cx="32" cy="22" r="3" fill="${accentCol}" class="${ledClass}"/>
           </svg>`;
-        default: // dyson
+        default:
           return `<svg viewBox="0 0 64 56" width="56" height="50">
             <circle cx="32" cy="28" r="18" fill="${fillCol}" stroke="${strokeCol}" stroke-width="2" stroke-dasharray="5 3"/>
             <ellipse cx="32" cy="28" rx="18" ry="7" fill="none" stroke="${accentCol}" stroke-width="1.8"/>
@@ -4117,13 +5389,15 @@
       addMinutesToActiveMegaproject(constructionUnits || 30);
 
       const chanceMap = { trivial: 0.35, easy: 0.55, medium: 0.80, hard: 1.0 };
-      const chance = chanceMap[difficultyId] || 0.65;
+      let chance = chanceMap[difficultyId] || 0.65;
+      if (hasSkill('sk_l1')) chance = Math.min(1.0, chance + 0.15);
       if (Math.random() > chance) return '';
 
       const roll = Math.random();
       if (roll < 0.45) {
-        appState.collection.energyCores = (appState.collection.energyCores || 0) + 1;
-        return '🔋 Выпало Ядро питания (+1)!';
+        const extraCore = (hasSkill('sk_l2') && Math.random() < 0.35) ? 2 : 1;
+        appState.collection.energyCores = (appState.collection.energyCores || 0) + extraCore;
+        return `🔋 Выпало Ядро питания (+${extraCore})!`;
       } else if (roll < 0.75) {
         const rel = RELICS_CATALOG[Math.floor(Math.random() * RELICS_CATALOG.length)];
         appState.collection.relics[rel.id] = (appState.collection.relics[rel.id] || 0) + 1;
@@ -4141,9 +5415,13 @@
       }
     }
 
+    function getSupplyLootboxCost() {
+      return hasSkill('sk_l3a') ? 22 : 30;
+    }
+
     function openSupplyLootbox() {
       ensureCollectionState();
-      const cost = 30;
+      const cost = getSupplyLootboxCost();
       if (appState.rpg.tflops < cost) {
         showToast(`Нужно ⚡ ${cost} TFLOPS для открытия Контейнера Снабжения`, 'err');
         return;
@@ -4248,6 +5526,11 @@
     function renderCollectionTab() {
       ensureCollectionState();
       const c = appState.collection;
+
+      const lootBtn = document.getElementById('openLootboxBtn');
+      if (lootBtn) {
+        lootBtn.textContent = `🎲 Открыть Контейнер Снабжения (${getSupplyLootboxCost()} ⚡ TFLOPS)`;
+      }
 
       const eqBadge = document.getElementById('equippedFamiliarBadge');
       if (eqBadge) {
@@ -4438,6 +5721,7 @@
 
     function renderAll() {
       ensureCollectionState();
+      renderDynamicCategoryFilterBars();
       renderHeader();
       renderTimerBar();
       renderTasksBoard();
@@ -4448,7 +5732,7 @@
     }
 
     // =========================================================================
-    // 15. GITHUB API CLOUD FILE SYNC (dc-state.json IN USER REPOSITORY)
+    // 15. GITHUB API CLOUD SYNC WITH CONFLICT DETECTION & SMART MERGE
     // =========================================================================
     const CLOUD_CFG_KEY = 'dc_habitica_gh_cloud_cfg_v1';
     let cloudConfig = {
@@ -4456,7 +5740,9 @@
       path: 'dc-state.json',
       token: '',
       autoSync: true,
+      conflictGuard: true,
       lastSha: null,
+      lastSyncedAt: null,
       status: 'off'
     };
     let autoPushTimer = null;
@@ -4471,6 +5757,9 @@
             cloudConfig.path = parsed.path || 'dc-state.json';
             cloudConfig.token = parsed.token || '';
             if (typeof parsed.autoSync === 'boolean') cloudConfig.autoSync = parsed.autoSync;
+            if (typeof parsed.conflictGuard === 'boolean') cloudConfig.conflictGuard = parsed.conflictGuard;
+            if (parsed.lastSha) cloudConfig.lastSha = parsed.lastSha;
+            if (parsed.lastSyncedAt) cloudConfig.lastSyncedAt = parsed.lastSyncedAt;
           }
         }
       } catch (e) {}
@@ -4483,7 +5772,10 @@
           repo: cloudConfig.repo,
           path: cloudConfig.path,
           token: cloudConfig.token,
-          autoSync: cloudConfig.autoSync
+          autoSync: cloudConfig.autoSync,
+          conflictGuard: cloudConfig.conflictGuard,
+          lastSha: cloudConfig.lastSha,
+          lastSyncedAt: cloudConfig.lastSyncedAt
         }));
       } catch (e) {}
       updateCloudUiIndicators();
@@ -4494,10 +5786,12 @@
       const pathEl = document.getElementById('ghFilePathInput');
       const tokEl = document.getElementById('ghTokenInput');
       const autoEl = document.getElementById('ghAutoSyncToggle');
+      const guardEl = document.getElementById('ghConflictGuardToggle');
       if (repoEl) cloudConfig.repo = (repoEl.value || '').trim() || 'IvanFedosov1/IvanFedosov1.github.io-';
       if (pathEl) cloudConfig.path = (pathEl.value || '').trim() || 'dc-state.json';
       if (tokEl) cloudConfig.token = (tokEl.value || '').trim();
       if (autoEl) cloudConfig.autoSync = autoEl.checked;
+      if (guardEl) cloudConfig.conflictGuard = guardEl.checked;
       saveCloudConfig();
     }
 
@@ -4506,10 +5800,12 @@
       const pathEl = document.getElementById('ghFilePathInput');
       const tokEl = document.getElementById('ghTokenInput');
       const autoEl = document.getElementById('ghAutoSyncToggle');
+      const guardEl = document.getElementById('ghConflictGuardToggle');
       if (repoEl) repoEl.value = cloudConfig.repo;
       if (pathEl) pathEl.value = cloudConfig.path;
       if (tokEl) tokEl.value = cloudConfig.token;
       if (autoEl) autoEl.checked = cloudConfig.autoSync;
+      if (guardEl) guardEl.checked = cloudConfig.conflictGuard;
       updateCloudUiIndicators();
     }
 
@@ -4533,6 +5829,12 @@
         hdrBtn.style.color = 'var(--cyan)';
         stBadge.className = 'badge badge-cyan mono';
         stBadge.textContent = customText || 'Синхронизация с GitHub...';
+      } else if (cloudConfig.status === 'conflict') {
+        hdrBtn.textContent = '🛡️ Конфликт!';
+        hdrBtn.style.borderColor = 'var(--amber)';
+        hdrBtn.style.color = 'var(--amber)';
+        stBadge.className = 'badge badge-amber mono';
+        stBadge.textContent = customText || 'Обнаружен конфликт версий (выбери решение)';
       } else if (cloudConfig.status === 'err') {
         hdrBtn.textContent = '☁️ Ошибка API';
         hdrBtn.style.borderColor = 'var(--red)';
@@ -4552,8 +5854,10 @@
       if (!cloudConfig.token) {
         switchTab('settings');
         showToast('Введи GitHub Token в верхнем блоке настроек для синхронизации ПК и телефона');
+      } else if (cloudConfig.status === 'conflict' && pendingRemoteConflictPayload) {
+        openSyncConflictModal(pendingRemoteConflictPayload, pendingRemoteConflictSha);
       } else {
-        pullStateFromGithub(true);
+        pullStateFromGithub(true, false);
       }
     }
 
@@ -4565,19 +5869,193 @@
       return decodeURIComponent(escape(atob(b64.replace(/\s/g, ''))));
     }
 
+    // Open Conflict Resolution Modal comparing Local vs Remote state
+    function openSyncConflictModal(remotePayload, remoteSha) {
+      pendingRemoteConflictPayload = remotePayload;
+      pendingRemoteConflictSha = remoteSha;
+      cloudConfig.status = 'conflict';
+      updateCloudUiIndicators('Требуется выбор версии');
+
+      const locTasks = (appState.tasks || []).length;
+      const locEvents = (appState.events || []).length;
+      const locLvl = (appState.rpg && appState.rpg.level) || 1;
+      const locTf = (appState.rpg && appState.rpg.tflops) || 0;
+
+      const remTasks = (remotePayload.tasks || []).length;
+      const remEvents = (remotePayload.events || []).length;
+      const remLvl = (remotePayload.rpg && remotePayload.rpg.level) || 1;
+      const remTf = (remotePayload.rpg && remotePayload.rpg.tflops) || 0;
+
+      const grid = document.getElementById('syncConflictComparisonGrid');
+      grid.innerHTML = `
+        <div style="background: var(--bg); border: 1px solid var(--amber); border-radius: 10px; padding: 11px;">
+          <div style="font-size: 12px; font-weight: 700; color: var(--amber); margin-bottom: 6px;">📱 Локальная (Это устройство)</div>
+          <div style="font-size: 11px; color: var(--muted);" class="mono">
+            <div>Обновлено: <b style="color: #fff;">${formatIsoTimestampRu(appState.updatedAt)}</b></div>
+            <div style="margin-top: 4px;">Уровень: <b style="color: var(--green);">LVL ${locLvl}</b> • <b style="color: var(--cyan);">${locTf} TF</b></div>
+            <div>Задач: <b>${locTasks}</b> • Записей: <b>${locEvents}</b></div>
+          </div>
+        </div>
+        <div style="background: var(--bg); border: 1px solid var(--cyan); border-radius: 10px; padding: 11px;">
+          <div style="font-size: 12px; font-weight: 700; color: var(--cyan); margin-bottom: 6px;">☁️ В Облаке (GitHub dc-state.json)</div>
+          <div style="font-size: 11px; color: var(--muted);" class="mono">
+            <div>Обновлено: <b style="color: #fff;">${formatIsoTimestampRu(remotePayload.updatedAt)}</b></div>
+            <div style="margin-top: 4px;">Уровень: <b style="color: var(--green);">LVL ${remLvl}</b> • <b style="color: var(--cyan);">${remTf} TF</b></div>
+            <div>Задач: <b>${remTasks}</b> • Записей: <b>${remEvents}</b></div>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('syncConflictModal').classList.remove('hidden');
+    }
+
+    function closeSyncConflictModal() {
+      document.getElementById('syncConflictModal').classList.add('hidden');
+    }
+
+    function applyParsedCloudPayload(parsed, remoteSha) {
+      if (Array.isArray(parsed.customCategories)) appState.customCategories = parsed.customCategories;
+      appState.tasks = normalizeLoadedTasks(parsed.tasks);
+      appState.events = parsed.events;
+      if (Array.isArray(parsed.customStreaks)) appState.customStreaks = parsed.customStreaks;
+      if (parsed.rpg) {
+        appState.rpg = parsed.rpg;
+        if (!Array.isArray(appState.rpg.skills)) appState.rpg.skills = [];
+      }
+      if (parsed.collection) appState.collection = parsed.collection;
+      if (typeof parsed.weekendBuffer === 'boolean') appState.weekendBuffer = parsed.weekendBuffer;
+      if (parsed.updatedAt) appState.updatedAt = parsed.updatedAt;
+
+      cloudConfig.lastSha = remoteSha;
+      cloudConfig.lastSyncedAt = appState.updatedAt;
+      saveCloudConfig();
+
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(parsed));
+      } catch (e) {}
+
+      cloudConfig.status = 'ok';
+      renderAll();
+      updateCloudUiIndicators('Синхронизировано с GitHub ✓');
+    }
+
+    function smartMergeLocalAndRemote(remotePayload) {
+      // 0. Merge Custom Categories by id
+      const catMap = new Map();
+      (remotePayload.customCategories || []).forEach(c => { if (c && c.id) catMap.set(c.id, c); });
+      (appState.customCategories || []).forEach(c => { if (c && c.id) catMap.set(c.id, c); });
+      appState.customCategories = Array.from(catMap.values());
+
+      // 1. Merge Events by unique id
+      const evMap = new Map();
+      (remotePayload.events || []).forEach(e => { if (e && e.id) evMap.set(e.id, e); });
+      (appState.events || []).forEach(e => { if (e && e.id) evMap.set(e.id, e); });
+      appState.events = Array.from(evMap.values()).sort((a, b) => String(a.date).localeCompare(String(b.date)));
+
+      // 2. Merge Tasks by id (union of completedDates & checklists)
+      const remTasks = normalizeLoadedTasks(remotePayload.tasks || []);
+      const locTasks = normalizeLoadedTasks(appState.tasks || []);
+      const taskMap = new Map();
+      remTasks.forEach(t => taskMap.set(t.id, t));
+      locTasks.forEach(lt => {
+        if (!taskMap.has(lt.id)) {
+          taskMap.set(lt.id, lt);
+        } else {
+          const rt = taskMap.get(lt.id);
+          const mergedDates = Array.from(new Set([...(rt.completedDates || []), ...(lt.completedDates || [])]));
+          const compDate = lt.completedDate || rt.completedDate || null;
+          // Merge checklist items
+          const chkMap = new Map();
+          (rt.checklist || []).forEach(c => chkMap.set(c.id, c));
+          (lt.checklist || []).forEach(c => {
+            if (chkMap.has(c.id)) {
+              chkMap.get(c.id).done = Boolean(chkMap.get(c.id).done || c.done);
+            } else {
+              chkMap.set(c.id, c);
+            }
+          });
+          taskMap.set(lt.id, {
+            ...rt,
+            ...lt,
+            posCount: Math.max(rt.posCount || 0, lt.posCount || 0),
+            negCount: Math.max(rt.negCount || 0, lt.negCount || 0),
+            completedDates: mergedDates,
+            completedDate: compDate,
+            checklist: Array.from(chkMap.values())
+          });
+        }
+      });
+      appState.tasks = Array.from(taskMap.values());
+
+      // 3. Merge RPG stats (take highest progression & union of skills/upgrades)
+      if (remotePayload.rpg) {
+        const rr = remotePayload.rpg;
+        const lr = appState.rpg;
+        if ((rr.level || 1) > (lr.level || 1) || ((rr.level === lr.level) && (rr.xp || 0) > (lr.xp || 0))) {
+          lr.level = rr.level;
+          lr.xp = rr.xp;
+        }
+        lr.tflops = Math.max(lr.tflops || 0, rr.tflops || 0);
+        lr.sp = Math.max(lr.sp || 0, rr.sp || 0);
+        lr.skills = Array.from(new Set([...(lr.skills || []), ...(rr.skills || [])]));
+        const mergedUpgrades = { ...(rr.upgrades || {}), ...(lr.upgrades || {}) };
+        Object.keys(mergedUpgrades).forEach(k => {
+          mergedUpgrades[k] = Math.max((rr.upgrades && rr.upgrades[k]) || 0, (lr.upgrades && lr.upgrades[k]) || 0);
+        });
+        lr.upgrades = mergedUpgrades;
+      }
+
+      // 4. Merge Collection & Megaprojects (take max progress per building)
+      ensureCollectionState();
+      if (remotePayload.collection) {
+        const rc = remotePayload.collection;
+        const lc = appState.collection;
+        lc.energyCores = Math.max(lc.energyCores || 0, rc.energyCores || 0);
+        if (rc.megaprojectProgress) {
+          Object.keys(rc.megaprojectProgress).forEach(mpId => {
+            lc.megaprojectProgress[mpId] = Math.max(lc.megaprojectProgress[mpId] || 0, rc.megaprojectProgress[mpId] || 0);
+          });
+        }
+        lc.claimedMegaprojects = Array.from(new Set([...(lc.claimedMegaprojects || []), ...(rc.claimedMegaprojects || [])]));
+      }
+    }
+
+    async function resolveSyncConflict(choice) {
+      closeSyncConflictModal();
+      if (!pendingRemoteConflictPayload) return;
+
+      if (choice === 'pull_remote') {
+        applyParsedCloudPayload(pendingRemoteConflictPayload, pendingRemoteConflictSha);
+        pendingRemoteConflictPayload = null;
+        showToast('⬇ Загружена облачная версия с GitHub!');
+      } else if (choice === 'push_local') {
+        cloudConfig.lastSha = pendingRemoteConflictSha;
+        pendingRemoteConflictPayload = null;
+        await pushStateToGithub(true, true);
+      } else if (choice === 'merge') {
+        smartMergeLocalAndRemote(pendingRemoteConflictPayload);
+        cloudConfig.lastSha = pendingRemoteConflictSha;
+        pendingRemoteConflictPayload = null;
+        saveState();
+        renderAll();
+        await pushStateToGithub(true, true);
+        showToast('🔀 Данные обоих устройств успешно объединены и сохранены в облако!', 'lvl');
+      }
+    }
+
     async function saveAndConnectCloud() {
       saveCloudConfigFromInputs();
       if (!cloudConfig.token) {
         showToast('Вставь свой GitHub Token (ghp_... или github_pat_...)', 'err');
         return;
       }
-      const pulled = await pullStateFromGithub(false);
-      if (!pulled && cloudConfig.status !== 'err') {
-        await pushStateToGithub(true);
+      const pulled = await pullStateFromGithub(false, false);
+      if (!pulled && cloudConfig.status !== 'err' && cloudConfig.status !== 'conflict') {
+        await pushStateToGithub(true, true);
       }
     }
 
-    async function pullStateFromGithub(manualNotify) {
+    async function pullStateFromGithub(manualNotify, forceIgnoreConflict = false) {
       saveCloudConfigFromInputs();
       if (!cloudConfig.token || !cloudConfig.repo) {
         if (manualNotify) showToast('Сначала укажи репозиторий и GitHub Token', 'err');
@@ -4610,25 +6088,22 @@
         }
 
         const data = await res.json();
-        cloudConfig.lastSha = data.sha;
         const jsonStr = base64ToUtf8(data.content || '');
         const parsed = JSON.parse(jsonStr);
 
         if (parsed && Array.isArray(parsed.tasks) && Array.isArray(parsed.events)) {
-          appState.tasks = normalizeLoadedTasks(parsed.tasks);
-          appState.events = parsed.events;
-          if (Array.isArray(parsed.customStreaks)) appState.customStreaks = parsed.customStreaks;
-          if (parsed.rpg) appState.rpg = parsed.rpg;
-          if (parsed.collection) appState.collection = parsed.collection;
-          if (typeof parsed.weekendBuffer === 'boolean') appState.weekendBuffer = parsed.weekendBuffer;
+          // Check if local state has unsynced newer edits when auto-pulling on startup
+          if (!forceIgnoreConflict && !manualNotify && cloudConfig.conflictGuard && cloudConfig.lastSha && data.sha !== cloudConfig.lastSha) {
+            const remTime = parsed.updatedAt ? new Date(parsed.updatedAt).getTime() : 0;
+            const locTime = appState.updatedAt ? new Date(appState.updatedAt).getTime() : 0;
+            const lastSyncTime = cloudConfig.lastSyncedAt ? new Date(cloudConfig.lastSyncedAt).getTime() : 0;
+            if (locTime > lastSyncTime + 5000 && remTime > lastSyncTime + 5000 && Math.abs(locTime - remTime) > 5000) {
+              openSyncConflictModal(parsed, data.sha);
+              return false;
+            }
+          }
 
-          try {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(parsed));
-          } catch (e) {}
-
-          cloudConfig.status = 'ok';
-          renderAll();
-          updateCloudUiIndicators('Синхронизировано с GitHub ✓');
+          applyParsedCloudPayload(parsed, data.sha);
           if (manualNotify) showToast('☁️ Данные успешно загружены из файла dc-state.json на GitHub!');
           return true;
         }
@@ -4640,7 +6115,7 @@
       return false;
     }
 
-    async function pushStateToGithub(manualNotify) {
+    async function pushStateToGithub(manualNotify, forceOverwrite = false) {
       if (manualNotify) saveCloudConfigFromInputs();
       if (!cloudConfig.token || !cloudConfig.repo) {
         if (manualNotify) showToast('Сначала укажи GitHub Token в настройках', 'err');
@@ -4648,7 +6123,7 @@
       }
 
       cloudConfig.status = 'syncing';
-      updateCloudUiIndicators('Сохранение в dc-state.json...');
+      updateCloudUiIndicators('Проверка версии в облаке...');
 
       try {
         const getRes = await fetch(`https://api.github.com/repos/${cloudConfig.repo}/contents/${cloudConfig.path}?t=${Date.now()}`, {
@@ -4657,9 +6132,30 @@
             'Accept': 'application/vnd.github.v3+json'
           }
         });
+
+        let remoteSha = null;
         if (getRes.ok) {
           const meta = await getRes.json();
-          cloudConfig.lastSha = meta.sha;
+          remoteSha = meta.sha;
+
+          // CONFLICT PROTECTION: check if GitHub has a different SHA with a newer updatedAt than our last sync
+          if (!forceOverwrite && cloudConfig.conflictGuard && meta.content) {
+            try {
+              const remoteParsed = JSON.parse(base64ToUtf8(meta.content));
+              const remTime = remoteParsed.updatedAt ? new Date(remoteParsed.updatedAt).getTime() : 0;
+              const lastSyncTime = cloudConfig.lastSyncedAt ? new Date(cloudConfig.lastSyncedAt).getTime() : 0;
+              const shaChangedExternally = cloudConfig.lastSha && remoteSha !== cloudConfig.lastSha;
+              const remoteIsNewerThanLastSync = remTime > 0 && lastSyncTime > 0 && (remTime > lastSyncTime + 3000);
+
+              if (shaChangedExternally || (!cloudConfig.lastSha && remoteParsed.events && remoteParsed.events.length > appState.events.length)) {
+                if (remoteIsNewerThanLastSync || shaChangedExternally) {
+                  openSyncConflictModal(remoteParsed, remoteSha);
+                  return false;
+                }
+              }
+            } catch (e) {}
+          }
+          cloudConfig.lastSha = remoteSha;
         } else if (getRes.status !== 404) {
           cloudConfig.status = 'err';
           updateCloudUiIndicators(`Ошибка доступа (${getRes.status})`);
@@ -4667,13 +6163,17 @@
           return false;
         }
 
+        const nowIso = new Date().toISOString();
+        appState.updatedAt = nowIso;
+
         const payloadObj = {
-          updatedAt: new Date().toISOString(),
+          updatedAt: nowIso,
           activeDate: appState.activeDate,
           weekendBuffer: appState.weekendBuffer,
           soundEnabled: appState.soundEnabled,
           rpg: appState.rpg,
           collection: appState.collection,
+          customCategories: appState.customCategories || [],
           tasks: appState.tasks,
           customStreaks: appState.customStreaks,
           events: appState.events
@@ -4708,6 +6208,8 @@
         if (putData && putData.content && putData.content.sha) {
           cloudConfig.lastSha = putData.content.sha;
         }
+        cloudConfig.lastSyncedAt = nowIso;
+        saveCloudConfig();
 
         cloudConfig.status = 'ok';
         updateCloudUiIndicators(`Сохранено в ${cloudConfig.path} ✓`);
@@ -4725,7 +6227,7 @@
       if (!cloudConfig.token || !cloudConfig.autoSync) return;
       if (autoPushTimer) clearTimeout(autoPushTimer);
       autoPushTimer = setTimeout(() => {
-        pushStateToGithub(false);
+        pushStateToGithub(false, false);
       }, 1800);
     }
 
@@ -4735,7 +6237,7 @@
       populateCloudInputs();
       switchTab('tasks');
       if (cloudConfig.token && cloudConfig.autoSync) {
-        pullStateFromGithub(false);
+        pullStateFromGithub(false, false);
       }
     });
   </script>
