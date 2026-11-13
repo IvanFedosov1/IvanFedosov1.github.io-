@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-13T05:23:49.771Z",
+  "updatedAt": "2026-11-13T05:46:20.907Z",
   "activeDate": "2026-11-13",
   "weekendBuffer": true,
   "soundEnabled": true,
@@ -192,7 +192,7 @@
         {
           "id": "chk_1794477645195_zoj",
           "text": "Спринт 2",
-          "done": false
+          "done": true
         }
       ]
     },
