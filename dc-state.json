@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-11-13T04:31:02.735Z",
-  "activeDate": "2026-11-12",
+  "updatedAt": "2026-11-13T04:31:09.283Z",
+  "activeDate": "2026-11-13",
   "weekendBuffer": true,
   "soundEnabled": true,
   "rpg": {
@@ -187,12 +187,12 @@
         {
           "id": "chk_1794477641419_ut9",
           "text": "Спринт 1",
-          "done": true
+          "done": false
         },
         {
           "id": "chk_1794477645195_zoj",
           "text": "Спринт 2",
-          "done": true
+          "done": false
         }
       ]
     },
