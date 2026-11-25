@@ -1,14 +1,14 @@
 {
-  "updatedAt": "2026-11-25T07:08:55.338Z",
+  "updatedAt": "2026-11-25T07:09:01.084Z",
   "activeDate": "2026-11-20",
   "weekendBuffer": true,
   "soundEnabled": true,
   "rpg": {
-    "level": 4,
-    "xp": 175,
-    "hp": 112,
-    "tflops": 106,
-    "sp": 0,
+    "level": 5,
+    "xp": 29,
+    "hp": 140,
+    "tflops": 158,
+    "sp": 1,
     "upgrades": {
       "up_k8s": 1,
       "up_blade": 2,
@@ -22,7 +22,7 @@
     ]
   },
   "collection": {
-    "energyCores": 12,
+    "energyCores": 13,
     "equippedFamiliarId": "fam_python",
     "familiars": {
       "fam_rust": {
@@ -47,7 +47,7 @@
       "rel_duck": 2,
       "rel_wafer": 2,
       "rel_vt100": 1,
-      "rel_satoshi": 1
+      "rel_satoshi": 2
     },
     "bonusMegaprojectMinutes": 0,
     "claimedMegaprojects": [
@@ -61,7 +61,7 @@
       "mp_orbital": 0,
       "mp_dyson": 0,
       "mp_diesel": 300,
-      "mp_fiber": 0,
+      "mp_fiber": 120,
       "mp_hydro_tower": 0,
       "mp_solar": 0,
       "mp_radar": 0,
@@ -114,7 +114,7 @@
       "difficulty": "medium",
       "habitDir": "pos",
       "note": "",
-      "posCount": 5,
+      "posCount": 7,
       "negCount": 0,
       "completedDates": [],
       "minutes": 60,
@@ -580,6 +580,32 @@
       "minutes": 0,
       "xp": 56,
       "tflops": 38,
+      "direction": "pos",
+      "time": "10:08"
+    },
+    {
+      "id": "ev_1795590537818_603m",
+      "date": "2026-11-20",
+      "taskId": "t_hab_60",
+      "title": "Спринт 60 мин",
+      "category": "code",
+      "difficulty": "medium",
+      "minutes": 60,
+      "xp": 52,
+      "tflops": 26,
+      "direction": "pos",
+      "time": "10:08"
+    },
+    {
+      "id": "ev_1795590538809_681j",
+      "date": "2026-11-20",
+      "taskId": "t_hab_60",
+      "title": "Спринт 60 мин",
+      "category": "code",
+      "difficulty": "medium",
+      "minutes": 60,
+      "xp": 52,
+      "tflops": 26,
       "direction": "pos",
       "time": "10:08"
     }
