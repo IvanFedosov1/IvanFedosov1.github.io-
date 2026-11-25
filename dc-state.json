@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-11-25T07:08:48.301Z",
+  "updatedAt": "2026-11-25T07:08:53.379Z",
   "activeDate": "2026-11-20",
   "weekendBuffer": true,
   "soundEnabled": true,
   "rpg": {
     "level": 4,
-    "xp": 119,
+    "xp": 175,
     "hp": 112,
-    "tflops": 68,
+    "tflops": 106,
     "sp": 0,
     "upgrades": {
       "up_k8s": 1,
@@ -53,14 +53,14 @@
     "claimedMegaprojects": [
       "mp_qcore"
     ],
-    "activeMegaprojectId": "mp_diesel",
+    "activeMegaprojectId": "mp_fiber",
     "megaprojectProgress": {
       "mp_qcore": 600,
       "mp_agi": 0,
       "mp_subsea": 0,
       "mp_orbital": 0,
       "mp_dyson": 0,
-      "mp_diesel": 250,
+      "mp_diesel": 300,
       "mp_fiber": 0,
       "mp_hydro_tower": 0,
       "mp_solar": 0,
@@ -181,19 +181,20 @@
       "posCount": 0,
       "negCount": 0,
       "completedDates": [
-        "2026-11-12"
+        "2026-11-12",
+        "2026-11-20"
       ],
       "completedDate": null,
       "checklist": [
         {
           "id": "chk_1794477641419_ut9",
           "text": "Спринт 1",
-          "done": false
+          "done": true
         },
         {
           "id": "chk_1794477645195_zoj",
           "text": "Спринт 2",
-          "done": false
+          "done": true
         }
       ]
     },
@@ -568,6 +569,19 @@
       "tflops": 26,
       "direction": "pos",
       "time": "11:14"
+    },
+    {
+      "id": "ev_1795590533033_j61f",
+      "date": "2026-11-20",
+      "taskId": "t_1794477655284",
+      "title": "Выполнить два спринта по часу за день",
+      "category": "work",
+      "difficulty": "medium",
+      "minutes": 0,
+      "xp": 56,
+      "tflops": 38,
+      "direction": "pos",
+      "time": "10:08"
     }
   ]
 }
